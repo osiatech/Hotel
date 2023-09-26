@@ -1,6 +1,5 @@
 ﻿
 using System;
-
 namespace Hotel.Domain.Core
 {
     public abstract class BaseEntity
