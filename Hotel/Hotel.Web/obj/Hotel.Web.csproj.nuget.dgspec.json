@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Web\\Hotel.Web.csproj": {}
+    "C:\\Proyects\\Hotel\\Hotel.Web\\Hotel.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Web\\Hotel.Web.csproj": {
+    "C:\\Proyects\\Hotel\\Hotel.Web\\Hotel.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Web\\Hotel.Web.csproj",
+        "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel.Web\\Hotel.Web.csproj",
         "projectName": "Hotel.Web",
-        "projectPath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Web\\Hotel.Web.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Web\\obj\\",
+        "projectPath": "C:\\Proyects\\Hotel\\Hotel.Web\\Hotel.Web.csproj",
+        "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyects\\Hotel\\Hotel.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

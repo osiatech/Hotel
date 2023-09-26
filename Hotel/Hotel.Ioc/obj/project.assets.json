@@ -8,19 +8,19 @@
     ".NETStandard,Version=v2.1": []
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\joang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
+      "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
       "projectName": "Hotel.Ioc",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Ioc\\obj\\",
+      "projectPath": "C:\\Proyects\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
+      "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
+      "outputPath": "C:\\Proyects\\Hotel\\Hotel.Ioc\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {}
+    "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {
+    "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
         "projectName": "Hotel.Domain",
-        "projectPath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Domain\\obj\\",
+        "projectPath": "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
+        "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyects\\Hotel\\Hotel.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
