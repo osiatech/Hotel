@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Hotel.Domain.Entities
 {
-    internal class Categoría
+    public class Categoría
     {
+        public int IdCategoria { get; set; }
+        public String? Descripcion { get; set; }
+        public Boolean? Estado { get; set; }
+        public DateTime? FechaCreacion { get; set; }
     }
 }
