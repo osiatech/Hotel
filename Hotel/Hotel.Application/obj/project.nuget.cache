@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iwDpItsB5bAsjjWIjT25SfN47ekV0GeVWnH2UfElskWmEh3JzGt2BLEh+kXNfjoyGqwZsbeAO/KLTUxA0nuQbw==",
+  "dgSpecHash": "vFmV8BYGsUTgsBaLxuyEbLLhY/H4hg1IjkYhcDiUB68YXDRnvFTu+3prAay99xZBa5Z7220lwIob+IiCw0GjqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Desktop\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj",
+  "projectFilePath": "C:\\Projects\\HotelProject\\Hotel\\Hotel.Application\\Hotel.Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
