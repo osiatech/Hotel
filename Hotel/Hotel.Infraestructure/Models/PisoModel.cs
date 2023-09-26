@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Infraestructure.Exceptions
+namespace Hotel.Infraestructure.Models
 {
-    public class UsuarioException
+    public class PisoModel
     {
     }
 }

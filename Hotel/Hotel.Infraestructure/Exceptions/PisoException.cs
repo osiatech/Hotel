@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hotel.Infraestructure.Exceptions
 {
-    internal class PisoException
+    public class PisoException
     {
     }
 }

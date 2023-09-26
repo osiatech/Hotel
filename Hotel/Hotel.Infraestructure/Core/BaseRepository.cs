@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hotel.Infraestructure.Core
 {
-    internal class BaseRepository
+    public class BaseRepository
     {
     }
 }
