@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Hotel.Domain.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Hotel.Domain.Entities
 {
-    public class Categoría
+    public class Categoría : BaseEntity
     {
         public int IdCategoria { get; set; }
         public String? Descripcion { get; set; }
