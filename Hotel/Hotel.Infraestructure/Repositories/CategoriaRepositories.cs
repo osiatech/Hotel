@@ -3,8 +3,10 @@ using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Hotel.Infraestructure.Repositories
 {
@@ -17,7 +19,7 @@ namespace Hotel.Infraestructure.Repositories
         }
         public bool Exist(Expression<Func<Categoria, bool>> filter)
         {
-            throw new NotImplementedException();
+            return this.context.Categorias.Any(filter);
         }
 
         public List<Categoria> GetCategorias()

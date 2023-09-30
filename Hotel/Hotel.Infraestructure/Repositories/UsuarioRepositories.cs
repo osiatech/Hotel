@@ -3,46 +3,51 @@ using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Hotel.Infraestructure.Repositories
 {
     public class UsuarioRepositories : IUsuarioRepository
     {
         private readonly HotelContext context;
-        public UsuarioRepositories (HotelContext context)
+        public UsuarioRepositories(HotelContext context)
         {
             this.context = context;
         }
         public bool Exist(Expression<Func<Usuario, bool>> filter)
         {
-            throw new NotImplementedException();
+            return this.context.Usuarios.Any(filter);
         }
 
-        public List<Usuario> GetUsuario()
+        public Usuario GetUsuario(int id)
         {
-            throw new NotImplementedException();
+            return this.context.Usuarios.Find(id);
         }
 
-        public Piso GetUsuario(int id)
+        public List<Usuario> GetUsuarios()
         {
-            throw new NotImplementedException();
+            return this.context.Usuarios.Where(ca => !ca.Deleted).ToList();
         }
 
-        public void Remove(Piso usuario)
+        public void Remove(Usuario usuario)
         {
-            throw new NotImplementedException();
+            this.context.Remove(usuario);
         }
 
         public void Save(Usuario usuario)
         {
-            throw new NotImplementedException();
+            this.context.Usuarios.Add(usuario);
         }
 
-        public void Update(Piso usuario)
+        public void Update(Usuario usuario)
         {
-            throw new NotImplementedException();
+            this.context.Update(usuario);
         }
     }
+
+
 }
+    

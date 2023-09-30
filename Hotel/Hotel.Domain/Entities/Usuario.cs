@@ -14,8 +14,9 @@ namespace Hotel.Domain.Entities
             public int? IdRolUsuario { get; set; }
             public string? Clave { get; set; }
             public bool? Estado { get; set; } 
-            public DateTime? FechaCreacion { get; set; } 
-        }
+            public DateTime? FechaCreacion { get; set; }
+        public bool Deleted { get; set; }
+    }
 
     
 }

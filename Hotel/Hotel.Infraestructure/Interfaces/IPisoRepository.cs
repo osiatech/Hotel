@@ -8,7 +8,7 @@ namespace Hotel.Infraestructure.Interfaces
 {
     public interface IPisoRepository
     {
-        public List<Piso> GetPiso();
+        public List<Piso> GetPisos();
         public Piso GetPiso(int id);
         public void Save(Piso piso);
         public void Update(Piso piso);
