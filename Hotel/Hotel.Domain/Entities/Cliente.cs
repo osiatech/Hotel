@@ -12,5 +12,6 @@ namespace Hotel.Domain.Entities
         public string? NombreCompleto { get; set; }
         public string? Correo {  get; set; }
         public Boolean? Estado { get; set; }
+        public bool Deleted { get; set; }
     }
 }
