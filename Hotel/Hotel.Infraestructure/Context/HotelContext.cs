@@ -10,7 +10,7 @@ namespace Hotel.Infraestructure.Context
         {
         }
 
-         public DbSet<Categoría> Categorias { get; set; }
+         public DbSet<Categoria> Categorias { get; set; }
         public DbSet <Piso> pisos { get; set; }
         public DbSet <Usuario> usuarios { get; set; }
     }

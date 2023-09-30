@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hotel.Domain.Entities
 {
-    public class Categoría : BaseEntity
+    public class Categoria : BaseEntity
     {
         public int IdCategoria { get; set; }
         public String? Descripcion { get; set; }
