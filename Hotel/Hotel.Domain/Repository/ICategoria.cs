@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hotel.Domain.Repository
 {
-    public interface ICategoriaRepository
+    public interface ICategoria
     {
         public List<Categoria> GetCategorias();
         public Categoria GetCategorias(int id);
