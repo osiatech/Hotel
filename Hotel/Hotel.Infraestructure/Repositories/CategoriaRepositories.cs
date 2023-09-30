@@ -13,7 +13,7 @@ namespace Hotel.Infraestructure.Repositories
     public class CategoriaRepositories : ICategoriaRepository
     {
         private readonly HotelContext context;
-        public CategoriaRepositories(HotelContext context)
+        public CategoriaRepositories (HotelContext context)
         {
             this.context = context;
         }
@@ -24,27 +24,27 @@ namespace Hotel.Infraestructure.Repositories
 
         public List<Categoria> GetCategorias()
         {
-            throw new NotImplementedException();
+            return this.context.Categorias.Where(ca => !ca.Deleted).ToList();
         }
 
         public Categoria GetCategorias(int id)
         {
-            throw new NotImplementedException();
+            return this.context.Categorias.Find(id);
         }
 
-        public void Remove(Categoria categoría)
+        public void Remove(Categoria categoria)
         {
-            throw new NotImplementedException();
+            this.context.Remove(categoria);
         }
 
         public void Save(Categoria categoria)
         {
-            throw new NotImplementedException();
+            this.context.Categorias.Add(categoria);
         }
 
-        public void Update(Categoria categoría)
+        public void Update(Categoria categoria)
         {
-            throw new NotImplementedException();
+            this.context.Update(categoria);
         }
     }
 }

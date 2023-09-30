@@ -11,8 +11,8 @@ namespace Hotel.Infraestructure.Interfaces
         public List<Categoria> GetCategorias();
         public Categoria GetCategorias(int id);
         public void Save(Categoria categoria);
-        public void Update(Categoria categoría);
-        public void Remove(Categoria categoría);
+        public void Update(Categoria categoria);
+        public void Remove(Categoria categoria);
         public bool Exist (Expression <Func <Categoria, bool >> filter);
     }
 }
