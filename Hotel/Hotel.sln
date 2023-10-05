@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Domain", "Hotel.Domain\Hotel.Domain.csproj", "{16C01CEE-D632-402B-950C-B0C5E149CEEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Domain", "Hotel.Domain\Hotel.Domain.csproj", "{16C01CEE-D632-402B-950C-B0C5E149CEEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Infraestructure", "Hotel.Infraestructure\Hotel.Infraestructure.csproj", "{ADED3D11-81A2-4C74-8041-A5DCF0F4F4FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Infraestructure", "Hotel.Infraestructure\Hotel.Infraestructure.csproj", "{ADED3D11-81A2-4C74-8041-A5DCF0F4F4FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Application", "Hotel.Application\Hotel.Application.csproj", "{F56BA7F8-158A-4794-8B39-FDD251546D13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Application", "Hotel.Application\Hotel.Application.csproj", "{F56BA7F8-158A-4794-8B39-FDD251546D13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Web", "Hotel.Web\Hotel.Web.csproj", "{9D0AB034-2A24-441D-9060-C81F55C3231B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Web", "Hotel.Web\Hotel.Web.csproj", "{9D0AB034-2A24-441D-9060-C81F55C3231B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.API", "Hotel.API\Hotel.API.csproj", "{7ACA5522-38BC-4E03-ACD0-D8C770E6A48B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.API", "Hotel.API\Hotel.API.csproj", "{7ACA5522-38BC-4E03-ACD0-D8C770E6A48B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Ioc", "Hotel.Ioc\Hotel.Ioc.csproj", "{E0EFDF81-1F94-442D-8600-C00C0C6FA5F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Ioc", "Hotel.Ioc\Hotel.Ioc.csproj", "{E0EFDF81-1F94-442D-8600-C00C0C6FA5F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0AF13DED-8056-4D48-A23E-676BA8932229}"
 EndProject

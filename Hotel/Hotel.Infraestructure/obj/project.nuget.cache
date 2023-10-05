@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+7gJwr0jewbwtyMZkiRWug58H4QgdRPtIQhi0xy0CkG1Srj41Qy9n6Tu+oUMk+SOXCy9rTz1VkiZngSM47ZP7Q==",
+  "dgSpecHash": "VRT2Q8RKSa8TrEbv+danUadtKBCDSWutuQlDdXZkUYibx47BhE9LBuzUjbmGHHdQY/03ZkR5BxQnpqeSvENzIg==",
   "success": true,
   "projectFilePath": "C:\\Projects\\HotelProject\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj",
   "expectedPackageFiles": [
@@ -58,7 +58,7 @@
     "C:\\Users\\Carlos\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\system.collections.specialized\\4.3.0\\system.collections.specialized.4.3.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
-    "C:\\Users\\Carlos\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\Carlos\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\system.componentmodel.primitives\\4.3.0\\system.componentmodel.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\system.componentmodel.typeconverter\\4.3.0\\system.componentmodel.typeconverter.4.3.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\system.configuration.configurationmanager\\4.5.0\\system.configuration.configurationmanager.4.5.0.nupkg.sha512",

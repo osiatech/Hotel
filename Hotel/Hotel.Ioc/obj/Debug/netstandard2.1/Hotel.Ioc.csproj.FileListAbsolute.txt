@@ -1,0 +1,10 @@
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Ioc.deps.json
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Ioc.dll
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Ioc.pdb
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.AssemblyReference.cache
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.AssemblyInfoInputs.cache
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.AssemblyInfo.cs
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.CoreCompileInputs.cache
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.dll
+C:\Projects\HotelProject\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.pdb
