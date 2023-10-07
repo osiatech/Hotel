@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wLsoWnpMVzqeRvEU0VfRxaIIf4B9rS+YHoH+JSqqTpmNwjyEmhrGUvo2mwaDPSwjxoqmeemtA2+kMYf9qeeLSw==",
+  "dgSpecHash": "7uAANfmMcEHGTr+rNJT5aUCddQ1dDCqeqj7eAxpJQz8JyP/sKrpqX6W/JSUhFzXdosX1wOabvQF8FQWSM2mlkg==",
   "success": true,
-  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel.API\\Hotel.API.csproj",
+  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joang\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\joang\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7IOHnJ3EmRARxEmegEnwA3OD+UzrpC+k6X8gliA/axkvviTf6SOFV6F2vRSgxxba6E1cMUJhqgsU1EVOeYxWYQ==",
+  "dgSpecHash": "mqUQ2l1oZOcJchKKrD8MUeiTZY3HkioRZp+QrMTnbgcCKv7AhgzvC7xo+c2G9sbFIksDmRhQ40mJn5qWwDN38w==",
   "success": true,
-  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
+  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

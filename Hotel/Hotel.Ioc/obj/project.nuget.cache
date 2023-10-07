@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HHfMTeN4vwMfmcAQSXFT/pEkCIWr0cJp1bquuKpk09Nw5VlLa3A4MSGpSwn4sD8dWGCcIpS0IK3Kpi36dQwa0g==",
+  "dgSpecHash": "AsUOswS5EA9p5wRlgJinOS0eJpRRllBK+6ketEqhVT4pq+BrFd/37NtuUha2UlMJE5ULN/kE2xnoU4k8rnn9uw==",
   "success": true,
-  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
+  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
