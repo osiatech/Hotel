@@ -12,8 +12,11 @@ namespace Hotel.Domain.Entities
     {
         [Key]
         public int IdRolUsuario { get; set; }
+        [Column("Descripcion")]
         public string? Description { get; set; }
+        [Column("Estado")]
         public bool? Status { get; set; }
+        [Column("FechaRegistro")]
         public DateTime RegistryDate { get; set; }
 
     }
