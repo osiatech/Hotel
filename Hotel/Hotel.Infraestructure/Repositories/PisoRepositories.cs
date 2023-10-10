@@ -29,7 +29,8 @@ namespace Hotel.Infraestructure.Repositories
 
         public List<Piso> GetPisos()
         {
-            return this.context.Pisos.Where(ca => !ca.Deleted).ToList();
+            
+            return this.context.Pisos.Where(ps => !ps.Deleted).ToList();
         }
 
         public void Remove(Piso piso)

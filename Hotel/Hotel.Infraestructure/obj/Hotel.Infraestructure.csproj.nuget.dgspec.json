@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyects\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {}
+    "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {}
   },
   "projects": {
-    "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {
+    "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
         "projectName": "Hotel.Domain",
-        "projectPath": "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj",
         "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyects\\Hotel\\Hotel.Domain\\obj\\",
+        "outputPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,21 +60,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Proyects\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
+    "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj",
+        "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj",
         "projectName": "Hotel.Infraestructure",
-        "projectPath": "C:\\Proyects\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj",
+        "projectPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj",
         "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyects\\Hotel\\Hotel.Infraestructure\\obj\\",
+        "outputPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,14 +86,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {
-                "projectPath": "C:\\Proyects\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj"
+              "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj": {
+                "projectPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Domain\\Hotel.Domain.csproj"
               }
             }
           }
@@ -124,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

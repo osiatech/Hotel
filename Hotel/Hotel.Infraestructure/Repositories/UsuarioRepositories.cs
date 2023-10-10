@@ -29,7 +29,7 @@ namespace Hotel.Infraestructure.Repositories
 
         public List<Usuario> GetUsuarios()
         {
-            return this.context.Usuarios.Where(ca => !ca.Deleted).ToList();
+            return this.context.Usuarios.Where(us => !us.Deleted).ToList();
         }
 
         public void Remove(Usuario usuario)

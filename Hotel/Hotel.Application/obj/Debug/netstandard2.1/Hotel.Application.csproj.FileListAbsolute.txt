@@ -1,0 +1,9 @@
+C:\Proyects\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Application.deps.json
+C:\Proyects\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Application.dll
+C:\Proyects\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Application.pdb
+C:\Proyects\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyects\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.AssemblyInfoInputs.cache
+C:\Proyects\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.AssemblyInfo.cs
+C:\Proyects\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.CoreCompileInputs.cache
+C:\Proyects\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.dll
+C:\Proyects\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.pdb

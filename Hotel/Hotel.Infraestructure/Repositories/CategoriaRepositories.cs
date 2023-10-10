@@ -24,7 +24,7 @@ namespace Hotel.Infraestructure.Repositories
 
         public List<Categoria> GetCategorias()
         {
-            return this.context.Categorias.Where(ca => !ca.Deleted).ToList();
+            return this.context.Categorias.Where(ct => !ct.Deleted).ToList();
         }
 
         public Categoria GetCategorias(int id)
