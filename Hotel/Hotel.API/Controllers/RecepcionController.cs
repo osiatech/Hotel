@@ -31,23 +31,5 @@ namespace Hotel.API.Controllers
             var recepciones = this.recepcionRepository.GetRecepcionByHabitacionId(habitacionId);
             return Ok(recepciones);
         }
-
-        // POST api/<RecepcionController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<RecepcionController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<RecepcionController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
