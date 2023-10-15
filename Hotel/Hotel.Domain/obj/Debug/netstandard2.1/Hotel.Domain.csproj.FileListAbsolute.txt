@@ -1,0 +1,10 @@
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.deps.json
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfo.cs
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.AssemblyReference.cache

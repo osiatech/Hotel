@@ -1,5 +1,6 @@
 ﻿using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
+using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -10,41 +11,29 @@ using System.Text;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class RecepcionRepository : IRecepcionRepository
+    public class RecepcionRepository : BaseRepository<Recepcion>, IRecepcionRepository
     {
         private readonly HotelContext context;
-        public RecepcionRepository(HotelContext context)
+        public RecepcionRepository(HotelContext context) : base(context)
         {
             this.context = context;
         }
-        public bool Exists(Expression<Func<Recepcion, bool>> filter)
+
+        public List<Recepcion> GetRecepcionByClienteId(int clienteId)
         {
-            return this.context.Recepciones.Any(filter);
+            var recepciones = this.context.RECEPCION.Where(cd => cd.IdCliente == clienteId).ToList();
+            return recepciones;
         }
 
-        public Recepcion GetRecepcion(int id)
+        public List<Recepcion> GetRecepcionByHabitacionId(int habitacionId)
         {
-            return this.context.Recepciones.Find(id);
+            var recepciones = this.context.RECEPCION.Where(cd => cd.IdHabitacion == habitacionId).ToList();
+            return recepciones;
         }
 
-        public List<Recepcion> GetRecepciones()
+        public override List<Recepcion> GetEntities()
         {
-            return this.context.Recepciones.Where(st => !st.Deleted).ToList();
-        }
-
-        public void Remove(Recepcion recepcion)
-        {
-            this.context.Recepciones.Remove(recepcion);
-        }
-
-        public void Save(Recepcion recepcion)
-        {
-            this.context.Recepciones.Add(recepcion);
-        }
-
-        public void Update(Recepcion recepcion)
-        {
-            this.context.Recepciones.Update(recepcion);
+            return base.GetEntities().Where(co => !co.Eliminado).ToList();
         }
     }
 }

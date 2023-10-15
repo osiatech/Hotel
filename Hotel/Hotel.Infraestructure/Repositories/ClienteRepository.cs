@@ -1,49 +1,31 @@
 ﻿using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
+using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class ClienteRepository : IClienteRepository
+    public class ClienteRepository : BaseRepository<Cliente>, IClienteRepository
     {
         private readonly HotelContext context;
-        public ClienteRepository(HotelContext context)
+        public ClienteRepository(HotelContext context) : base(context)
         {
             this.context = context;
         }
-        public bool Exists(Expression<Func<Cliente, bool>> filter)
+        public List<Cliente> GetClienteByClienteId(int clienteId)
         {
-            return this.context.Clientes.Any(filter);
+           var clientes = this.context.Cliente.Where(cd => cd.IdCliente == clienteId
+            ).ToList();
+            return clientes;
         }
-
-        public Cliente GetCliente(int id)
+        public override List<Cliente> GetEntities()
         {
-            return this.context.Clientes.Find(id);
-        }
-
-        public List<Cliente> GetClientes()
-        {
-            return this.context.Clientes.Where(st => !st.Deleted).ToList();
-        }
-
-        public void Remove(Cliente cliente)
-        {
-            this.context.Clientes.Remove(cliente);
-        }
-
-        public void Save(Cliente cliente)
-        {
-            this.context.Clientes.Add(cliente);
-        }
-
-        public void Update(Cliente cliente)
-        {
-            this.context.Clientes.Update(cliente);
+            return base.GetEntities().Where(co => !co.Eliminado).ToList();
         }
     }
 }

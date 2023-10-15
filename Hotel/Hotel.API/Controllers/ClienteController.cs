@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel.Domain.Entities;
+using Hotel.Infraestructure.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.IIS.Core;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +11,18 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        // GET: api/<ClienteController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly IClienteRepository clienteRepository;
 
-        // GET api/<ClienteController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        public ClienteController(IClienteRepository clienteRepository) //inyecion de depencia (DIP)
         {
-            return "value";
+            this.clienteRepository = clienteRepository;
         }
-
-        // POST api/<ClienteController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+   
+        [HttpGet("Get Cliente By ClienteId")]
+        public IActionResult GetClienteByClienteId(int clienteId)
         {
-        }
-
-        // PUT api/<ClienteController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ClienteController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var clientes = this.clienteRepository.GetClienteByClienteId(clienteId);
+            return Ok(clientes);
         }
     }
 }

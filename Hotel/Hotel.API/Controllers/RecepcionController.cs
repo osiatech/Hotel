@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel.Domain.Entities;
+using Hotel.Infraestructure.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,18 +10,26 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class RecepcionController : ControllerBase
     {
-        // GET: api/<RecepcionController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IRecepcionRepository recepcionRepository;
+
+        public RecepcionController(IRecepcionRepository recepcionRepository)
         {
-            return new string[] { "value1", "value2" };
+            this.recepcionRepository = recepcionRepository;
         }
 
-        // GET api/<RecepcionController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        
+        [HttpGet("Get Recepcion By ClienteId")]
+        public IActionResult GetRecepcionByClienteId(int IdCliente)
         {
-            return "value";
+            var recepciones = this.recepcionRepository.GetRecepcionByClienteId(IdCliente);
+            return Ok(recepciones);
+        }
+
+        [HttpGet("Get Recepcion By HabitacionId")]
+        public IActionResult GetRecepcionByHabitacionId(int habitacionId)
+        {
+            var recepciones = this.recepcionRepository.GetRecepcionByHabitacionId(habitacionId);
+            return Ok(recepciones);
         }
 
         // POST api/<RecepcionController>

@@ -1,10 +1,14 @@
 ﻿
 using Hotel.Domain.Core;
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Hotel.Domain.Entities
 {
+    
     public class Recepcion : BaseEntity
     {
+        [Key]
         public int IdRecepcion {  get; set; }
         public int? IdCliente { get; set; }
         public int? IdHabitacion { get; set; }
@@ -18,6 +22,6 @@ namespace Hotel.Domain.Entities
         public decimal? CostoPenalidad { get; set; }
         public string? Observacion {  get; set; }
         public Boolean? Estado {  get; set; }
-        public bool Deleted { get; set; }
+        public bool Eliminado { get; set; }
     }
 }
