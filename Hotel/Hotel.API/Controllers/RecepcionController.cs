@@ -31,5 +31,7 @@ namespace Hotel.API.Controllers
             var recepciones = this.recepcionRepository.GetRecepcionByHabitacionId(habitacionId);
             return Ok(recepciones);
         }
+
+        
     }
 }

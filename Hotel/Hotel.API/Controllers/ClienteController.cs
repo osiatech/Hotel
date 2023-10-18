@@ -24,5 +24,11 @@ namespace Hotel.API.Controllers
             var clientes = this.clienteRepository.GetClienteByClienteId(clienteId);
             return Ok(clientes);
         }
+
+        //[HttpGet("Get Clientes")]
+        //public IActionResult GetClientes()
+        //{
+            /*var clientes = this.clienteRepository.GetEntities().Select(cd => new )*/
+        //}//
     }
 }
