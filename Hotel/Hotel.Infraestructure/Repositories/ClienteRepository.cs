@@ -17,9 +17,9 @@ namespace Hotel.Infraestructure.Repositories
         {
             this.context = context;
         }
-        public List<Cliente> GetClienteByClienteId(int clienteId)
+        public List<Cliente> GetClienteByClienteId(int IdCliente)
         {
-           var clientes = this.context.Cliente.Where(cd => cd.IdCliente == clienteId
+           var clientes = this.context.Cliente.Where(cd => cd.IdCliente == IdCliente
             ).ToList();
             return clientes;
         }

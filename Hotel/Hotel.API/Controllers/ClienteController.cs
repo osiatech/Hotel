@@ -26,7 +26,7 @@ namespace Hotel.API.Controllers
             return Ok(clientes);
         }
 
-        [HttpGet("Get Clientes")]
+        [HttpGet("Get All Clientes")]
         public IActionResult GetClientes()
         {
             var clientes = this.clienteRepository.GetEntities().Select(cd => new
@@ -45,7 +45,7 @@ namespace Hotel.API.Controllers
         }
 
 
-        [HttpPost("Save Clientes")]
+        [HttpPost("Save Cliente")]
         public IActionResult Post([FromBody] ClienteAddModel clienteAdd)
         {
             Cliente cliente = new Cliente()
@@ -64,7 +64,7 @@ namespace Hotel.API.Controllers
             return Ok();
         }
 
-        [HttpPost("Update Clientes")]
+        [HttpPost("Update Cliente")]
         public IActionResult Put([FromBody] ClienteUpdateModel clienteUpdate)
         {
             Cliente cliente = new Cliente()

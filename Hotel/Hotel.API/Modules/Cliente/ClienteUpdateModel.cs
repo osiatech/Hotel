@@ -4,6 +4,6 @@ namespace Hotel.API.Modules.Cliente
 {
     public class ClienteUpdateModel : ClienteBaseModel
     {
-        public int ClienteId { get; set; }
+        public int IdCliente{ get; set; }
     }
 }
