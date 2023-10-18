@@ -1,6 +1,8 @@
-﻿namespace Hotel.API.Modules.Recepcion
+﻿using Hotel.API.Models.Core;
+
+namespace Hotel.API.Modules.Recepcion
 {
-    public class RecepcionAddModel
+    public class RecepcionAddModel : RecepcionBaseModel
     {
     }
 }

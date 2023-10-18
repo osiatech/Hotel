@@ -2,7 +2,7 @@
 
 namespace Hotel.API.Models.Core
 {
-    public class ClienteBaseModel : ModelBase
+    public class ClienteBaseModel : BaseModel
     {
         [Key]
         public int IdCliente { get; set; }
