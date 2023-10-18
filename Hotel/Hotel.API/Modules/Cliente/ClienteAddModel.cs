@@ -1,6 +1,9 @@
-﻿namespace Hotel.API.Modules.Cliente
+﻿using Hotel.API.Models.Core;
+
+namespace Hotel.API.Modules.Cliente
 {
-    public class ClienteAddModel
+    public class ClienteAddModel : ClienteBaseModel
     {
+
     }
 }
