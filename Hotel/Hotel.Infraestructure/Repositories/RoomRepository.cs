@@ -1,57 +1,32 @@
 ﻿
 
-using Microsoft.EntityFrameworkCore;
 using Hotel.Domain.Entities;
-using Hotel.Domain.Repository;
 using Hotel.Infraestructure.Context;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using Hotel.Infraestructure.Core;
+using Hotel.Infraestructure.Interfaces;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class RoomRepository : IRoomRepository
+    public class RoomRepository : BaseRepository<Room>, IRoom
     {
         private readonly HotelContext context;
 
-        public RoomRepository(HotelContext context)
+        public RoomRepository(HotelContext context) : base(context)
         {
             this.context = context;
         }
 
-        public bool Exists(Expression<Func<Room, bool>> filter)
+        public List<Room> GetRoomsByRoomId(int roomId)
         {
-
-            return this.context.Rooms.Any(filter);
-
+            return this.context.Rooms.Where(roo => roo.IdRoom == roomId).ToList();
         }
 
-        public Room GetRoom(int Id)
+        public override List<Room> GetEntities()
         {
-
-            return this.context.Rooms.Find(Id);
+            return base.GetEntities().Where(ro => !ro.Deleted).ToList();
         }
 
-        public List<Room> GetRooms()
-        {
-
-            return this.context.Rooms.Where(rm => !rm.Deleted).ToList();
-        }
-
-        public void Remove(Room room)
-        {
-            this.context.Remove(room);
-        }
-
-        public void Save(Room room)
-        {
-            this.context.Rooms.Add(room);
-        }
-
-        public void Update(Room room)
-        {
-            this.context.Update(room);
-        }
     }
 }

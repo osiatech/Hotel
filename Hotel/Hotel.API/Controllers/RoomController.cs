@@ -1,9 +1,9 @@
 ﻿
 using Hotel.Domain.Entities;
-using Hotel.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Hotel.Infraestructure.Interfaces;
+using Hotel.API.Models.Module_Room;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Hotel.API.Controllers
 {
@@ -11,44 +11,87 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private readonly IRoomRepository roomRepository;
+        private readonly IRoom roomRepository;
 
-        public RoomController(IRoomRepository roomRepository)
+        public RoomController(IRoom roomRepository)
         {
             this.roomRepository = roomRepository;
         }
 
+        [HttpGet("GetRoomsByRoomId")]
+        public IActionResult GetRoomsByRoomId(int roomId)
+        {
+            var rooms = this.roomRepository.GetRoomsByRoomId(roomId);
+            return Ok(rooms);
+        }
+
         // GET: api/<RoomController>
         [HttpGet]
-        public IEnumerable<Room> Get()
+        public IActionResult GetRooms()
         {
-            var rooms = this.roomRepository.GetRooms();
-            return rooms;
+            var rooms = this.roomRepository.GetEntities().Select(room => new RoomGetAllModel()
+            {
+                RoomId = room.IdRoom,
+                ChanageDate = room.CreationDate,
+                ChangeUser = room.CreationUser,
+                Number = room.Number,
+                Details = room.Details,
+                Price = room.Price,
+                Status = room.Status,
+                RegistryDate = room.RegistryDate
+            }).ToList();
+
+            return Ok(rooms);
         }
 
         // GET api/<RoomController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetRoom")]
+        public IActionResult GetRoom(int id)
         {
-            return "value";
+            var room = this.roomRepository.GetEntity(id);
+            return Ok(room);
         }
+
+        [HttpPost("SaveRoom")]
+        public IActionResult Post([FromBody] RoomAddModel roomAdd)
+        {
+
+            Room room = new Room()
+            {
+                CreationDate = roomAdd.ChanageDate,
+                CreationUser = roomAdd.ChangeUser,
+                Number = roomAdd.Number,
+                Details = roomAdd.Details,
+                Price = roomAdd.Price,
+                Status = roomAdd.Status,
+                RegistryDate = roomAdd.RegistryDate
+            };
+
+            this.roomRepository.Save(room);
+
+            return Ok();
+        }
+
 
         // POST api/<RoomController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("UpdateRoom")]
+        public IActionResult Put([FromBody] RoomUpdateModel roomUpdate)
         {
-        }
+            Room room = new Room()
+            {
+                IdRoom = roomUpdate.RoomId,
+                CreationDate = roomUpdate.ChanageDate,
+                CreationUser = roomUpdate.ChangeUser,
+                Number = roomUpdate.Number,
+                Details = roomUpdate.Details,
+                Price = roomUpdate.Price,
+                Status = roomUpdate.Status,
+                RegistryDate = roomUpdate.RegistryDate
+            };
 
-        // PUT api/<RoomController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+            this.roomRepository.Update(room);
 
-        // DELETE api/<RoomController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok();
         }
     }
 }

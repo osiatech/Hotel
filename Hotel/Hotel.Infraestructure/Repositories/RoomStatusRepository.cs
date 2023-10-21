@@ -1,57 +1,31 @@
 ﻿
-using Microsoft.EntityFrameworkCore.Internal;
 using Hotel.Domain.Entities;
-using Hotel.Domain.Repository;
 using Hotel.Infraestructure.Context;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-
+using Hotel.Infraestructure.Core;
+using Hotel.Infraestructure.Interfaces;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class RoomStatusRepository : IRoomStatusRepository
+    public class RoomStatusRepository : BaseRepository<RoomStatus>, IRoomStatus
     {
         private readonly HotelContext context;
 
-        public RoomStatusRepository(HotelContext context)
+        public RoomStatusRepository(HotelContext context) : base(context)
         {
             this.context = context;
         }
 
-        public bool Exists(Expression<Func<RoomStatus, bool>> filter)
+        public List<RoomStatus> GetRoomStatusByRoomStatusId(int roomStatusId)
         {
-
-            return this.context.RoomStatus.Any(filter);
-
+            return this.context.RoomStatus.Where(rs => rs.IdRoomStatus == roomStatusId && !rs.Deleted).ToList();
         }
 
-        public RoomStatus GetRoomStatus(int Id)
+        public override List<RoomStatus> GetEntities()
         {
-
-            return this.context.RoomStatus.Find(Id);
+            return base.GetEntities().Where(rs => !rs.Deleted).ToList();
         }
 
-        public List<RoomStatus> GetRoomStatus()
-        {
-
-            return this.context.RoomStatus.Where(rms => !rms.Deleted).ToList();
-        }
-
-        public void Remove(RoomStatus roomStatus)
-        {
-            this.context.Remove(roomStatus);
-        }
-
-        public void Save(RoomStatus roomStatus)
-        {
-            this.context.RoomStatus.Add(roomStatus);
-        }
-
-        public void Update(RoomStatus roomStatus)
-        {
-            this.context.Update(roomStatus);
-        }
     }
 }

@@ -7,7 +7,7 @@ namespace Hotel.Domain.Core
     public abstract class BaseEntity
     {
         [Column("FechaCreacion")]
-        public DateTime? CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
         [Column("IdUsuarioCreacion")]
         public int CreationUser { get; set; }
         [Column("FechaMod")]

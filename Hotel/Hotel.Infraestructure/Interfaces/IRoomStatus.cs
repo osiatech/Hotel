@@ -9,7 +9,7 @@ namespace Hotel.Infraestructure.Interfaces
     public interface IRoomStatus : IBaseRepository<RoomStatus>
     {
 
-        List<RoomStatus> GetRoomStatusByRoomStatusId(int roomStatus);
+        List<RoomStatus> GetRoomStatusByRoomStatusId(int roomStatusId);
 
     }
 }

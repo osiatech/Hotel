@@ -11,7 +11,8 @@ namespace Hotel.Domain.Entities
     public class UserRol : BaseEntity
     {
         [Key]
-        public int IdRolUsuario { get; set; }
+        [Column("IdRolUsuario")]
+        public int IdUserRol { get; set; }
         [Column("Descripcion")]
         public string? Description { get; set; }
         [Column("Estado")]

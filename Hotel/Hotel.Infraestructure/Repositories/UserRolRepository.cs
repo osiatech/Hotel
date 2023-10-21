@@ -1,56 +1,32 @@
 ﻿
-using Microsoft.EntityFrameworkCore.Internal;
 using Hotel.Domain.Entities;
 using Hotel.Domain.Repository;
 using Hotel.Infraestructure.Context;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using Hotel.Infraestructure.Core;
+using Hotel.Infraestructure.Interfaces;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class UserRolRepository : IUserRolRepository
+    public class UserRolRepository : BaseRepository<UserRol>, IUserRol
     {
         private readonly HotelContext context;
 
-        public UserRolRepository(HotelContext context)
+        public UserRolRepository(HotelContext context) : base(context)
         {
             this.context = context;
         }
 
-        public bool Exists(Expression<Func<UserRol, bool>> filter)
+        public List<UserRol> GetUserRolsByUserRolId(int userRolId)
         {
-
-            return this.context.UserRols.Any(filter);
-
+            return this.context.UserRols.Where(ur => ur.IdUserRol == userRolId && !ur.Deleted).ToList();
         }
 
-        public UserRol GetUserRol(int Id)
+        public override List<UserRol> GetEntities()
         {
-
-            return this.context.UserRols.Find(Id);
+            return base.GetEntities().Where(rs => !rs.Deleted).ToList();
         }
 
-        public List<UserRol> GetUserRols()
-        {
-
-            return this.context.UserRols.Where(ur => !ur.Deleted).ToList();
-        }
-
-        public void Remove(UserRol userRol)
-        {
-            this.context.Remove(userRol);
-        }
-
-        public void Save(UserRol userRol)
-        {
-            this.context.UserRols.Add(userRol);
-        }
-
-        public void Update(UserRol userRol)
-        {
-            this.context.Update(userRol);
-        }
     }
 }
