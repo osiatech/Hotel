@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotel.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,7 @@ namespace Hotel.Domain.Repository
         public void Remove(TEntity entity);
         public List<TEntity> GetEntities();
         public TEntity GetEntity(int id);
+       
     }
 
 }

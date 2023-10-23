@@ -1,53 +1,28 @@
 ﻿using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Internal;
+using Hotel.Infraestructure.Core;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class UsuarioRepositories : IUsuarioRepository
+    public class UsuarioRepositories : BaseRepository<Usuario>, IUsuarioRepository
     {
         private readonly HotelContext context;
-        public UsuarioRepositories(HotelContext context)
+        public UsuarioRepositories(HotelContext context) : base(context)
         {
             this.context = context;
         }
-        public bool Exist(Expression<Func<Usuario, bool>> filter)
-        {
-            return this.context.Usuarios.Any(filter);
-        }
 
-        public Usuario GetUsuario(int id)
+        public List<Usuario> GetUsuarioByUsuarioId(int UsuarioId)
         {
-            return this.context.Usuarios.Find(id);
+            var usuarios = this.context.Usuario.Where(us => us.IdUsuario == UsuarioId).ToList();
+            return usuarios;
         }
-
-        public List<Usuario> GetUsuarios()
+        public override List<Usuario> GetEntities()
         {
-            return this.context.Usuarios.Where(us => !us.Deleted).ToList();
-        }
-
-        public void Remove(Usuario usuario)
-        {
-            this.context.Remove(usuario);
-        }
-
-        public void Save(Usuario usuario)
-        {
-            this.context.Usuarios.Add(usuario);
-        }
-
-        public void Update(Usuario usuario)
-        {
-            this.context.Update(usuario);
+            return base.GetEntities().Where(us => !us.Eliminado).ToList();
         }
     }
-
-
 }
-    

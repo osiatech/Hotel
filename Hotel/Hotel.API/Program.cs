@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HotelContext")));
 // Dependencia de los repositorios //
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepositories>();
+builder.Services.AddTransient<IPisoRepository, PisoRepositories>();
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepositories>();
 builder.Services.AddControllers();
 
 // Dependencia de los app services //

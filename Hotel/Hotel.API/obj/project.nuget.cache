@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "saz3sWeEcCIFXb1Ap8ODgAPTNCFXgBXeAG68hUOPQd0O3e5ZEXUPgxcbWiZy9IN3fibRxlunOQQygP+kjPXApA==",
+  "dgSpecHash": "6HG8hgXlQ6xoknOP1xeZWYxsdYA5FDhd4NOsGSkxE8RatIqv5APq1YrUOAZjEefK8gUSbhthz5Rw9qKXCxSNKA==",
   "success": true,
-  "projectFilePath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
+  "projectFilePath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joang\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\joang\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",

@@ -1,50 +1,29 @@
 ﻿using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Internal;
+using Hotel.Infraestructure.Core;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class CategoriaRepositories : ICategoriaRepository
+    public class CategoriaRepositories : BaseRepository <Categoria>,ICategoriaRepository
     {
         private readonly HotelContext context;
-        public CategoriaRepositories (HotelContext context)
+        public CategoriaRepositories (HotelContext context) : base (context)
         {
             this.context = context;
         }
-        public bool Exist(Expression<Func<Categoria, bool>> filter)
+      
+        public List<Categoria> GetCategoriaByCategoriaId(int CategoriaId)
         {
-            return this.context.Categorias.Any(filter);
+            var categorias = this.context.Categoria.Where(ct => ct.IdCategoria == CategoriaId).ToList();
+            return categorias;
         }
-
-        public List<Categoria> GetCategorias()
+        public override List<Categoria> GetEntities()
         {
-            return this.context.Categorias.Where(ct => !ct.Deleted).ToList();
+            return base.GetEntities().Where(ct => !ct.Eliminado).ToList();
         }
-
-        public Categoria GetCategorias(int id)
-        {
-            return this.context.Categorias.Find(id);
-        }
-
-        public void Remove(Categoria categoria)
-        {
-            this.context.Remove(categoria);
-        }
-
-        public void Save(Categoria categoria)
-        {
-            this.context.Categorias.Add(categoria);
-        }
-
-        public void Update(Categoria categoria)
-        {
-            this.context.Update(categoria);
-        }
-    }
+    }    
 }
+

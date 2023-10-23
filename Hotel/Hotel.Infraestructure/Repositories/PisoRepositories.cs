@@ -1,51 +1,30 @@
 ﻿using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Internal;
+using Hotel.Infraestructure.Core;
+
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class PisoRepositories : IPisoRepository
-
+    public class PisoRepositories : BaseRepository<Piso>, IPisoRepository
     {
         private readonly HotelContext context;
-        public PisoRepositories(HotelContext context) 
-        {  this.context = context;
-        }
-        public bool Exist(Expression<Func<Piso, bool>> filter)
+        public PisoRepositories(HotelContext context) : base(context)
         {
-            return this.context.Pisos.Any(filter);
+            this.context = context;
         }
 
-        public Piso GetPiso(int id)
+        public List<Piso> GetPisoByPisoId(int PisoId)
         {
-            return this.context.Pisos.Find(id);
-        }
+            var pisos = this.context.Piso.Where(ps => ps.IdPiso == PisoId).ToList();
+            return pisos;
 
-        public List<Piso> GetPisos()
-        {
-            
-            return this.context.Pisos.Where(ps => !ps.Deleted).ToList();
         }
-
-        public void Remove(Piso piso)
+        public override List<Piso> GetEntities()
         {
-            this.context.Remove(piso);
-        }
-
-        public void Save(Piso piso)
-        {
-            this.context.Pisos.Add(piso);
-        }
-
-        public void Update(Piso piso)
-        {
-            this.context.Update(piso);
+            return base.GetEntities().Where(ps => !ps.Eliminado).ToList();
         }
     }
 }

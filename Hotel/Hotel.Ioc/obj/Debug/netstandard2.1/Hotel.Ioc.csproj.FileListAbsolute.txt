@@ -7,3 +7,12 @@ C:\Proyects\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.AssemblyInf
 C:\Proyects\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.CoreCompileInputs.cache
 C:\Proyects\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.dll
 C:\Proyects\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Ioc.deps.json
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Ioc.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Ioc.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.AssemblyInfoInputs.cache
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.AssemblyInfo.cs
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.CoreCompileInputs.cache
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.pdb

@@ -1,8 +1,8 @@
-﻿using Hotel.Domain.Entities;
-using Hotel.Infraestructure.Interfaces;
+﻿
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Hotel.Infraestructure.Interfaces;
+using Hotel.API.Models.Module_Categoria;
+using Hotel.Domain.Entities;
 
 namespace Hotel.API.Controllers
 {
@@ -13,43 +13,76 @@ namespace Hotel.API.Controllers
         private readonly ICategoriaRepository categoriaRepository;
 
         public CategoriaController(ICategoriaRepository categoriaRepository)
-
         {
             this.categoriaRepository = categoriaRepository;
         }
 
-
-        // GET: api/<CategoriaController>
-        [HttpGet]
-        public IEnumerable<Categoria> Get()
+        [HttpGet("GetCategoriaByCategoriaId")]
+        public IActionResult GetCategoriaByCategoriaId(int categoriaId)
         {
-            var categorias = this.categoriaRepository.GetCategorias();
-            return categorias;
+            var categoria = this.categoriaRepository.GetCategoriaByCategoriaId(categoriaId);
+            return Ok(categoria);
+        }
+
+        // GET: api/<UsuarioController>
+        [HttpGet]
+        public IActionResult GetCategoria()
+        {
+            var categorias = this.categoriaRepository.GetEntities().Select(categoria => new CategoriaGetAllModel()
+            {
+                CategoriaId = categoria.IdCategoria,
+                ChanageDate = categoria.FechaRegistro,
+                ChangeUser = categoria.IdUsuarioCreacion,
+                Descripcion= categoria.Descripcion,
+                Estado = categoria.Estado,
+                
+            }).ToList();
+
+            return Ok(categorias);
         }
 
         // GET api/<CategoriaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetCategoria")]
+        public IActionResult GetCategoria(int id)
         {
-            return "value";
+            var categoria = this.categoriaRepository.GetEntity(id);
+            return Ok(categoria);
         }
+
+        [HttpPost("SaveCategoria")]
+        public IActionResult Post([FromBody] CategoriaAddModel categoriaAdd)
+        {
+
+            Categoria categoria = new Categoria()
+            {
+              
+                FechaCreacion = categoriaAdd.ChanageDate,
+                IdUsuarioCreacion = categoriaAdd.ChangeUser,
+                Descripcion = categoriaAdd.Descripcion,
+                Estado = categoriaAdd.Estado
+            };
+
+            this.categoriaRepository.Save(categoria);
+
+            return Ok();
+        }
+
 
         // POST api/<CategoriaController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("UpdateCategoria")]
+        public IActionResult Put([FromBody] CategoriaUpdateModel categoriaUpdate)
         {
-        }
+            Categoria categoria = new Categoria()
+            {
+                IdCategoria = categoriaUpdate.CategoriaId,
+                FechaCreacion = categoriaUpdate.ChanageDate,
+                IdUsuarioCreacion = categoriaUpdate.ChangeUser,
+                
+            };
 
-        // PUT api/<CategoriaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+            this.categoriaRepository.Update(categoria);
 
-        // DELETE api/<CategoriaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok();
         }
     }
 }

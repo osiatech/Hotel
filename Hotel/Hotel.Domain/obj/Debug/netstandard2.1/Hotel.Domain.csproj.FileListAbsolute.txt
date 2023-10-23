@@ -7,3 +7,13 @@ C:\Proyects\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.Assem
 C:\Proyects\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.CoreCompileInputs.cache
 C:\Proyects\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
 C:\Proyects\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.deps.json
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfoInputs.cache
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfo.cs
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.CoreCompileInputs.cache
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.AssemblyReference.cache

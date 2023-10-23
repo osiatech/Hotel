@@ -1782,6 +1782,9 @@
       "Hotel.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0"
+        },
         "compile": {
           "bin/placeholder/Hotel.Domain.dll": {}
         },
@@ -6336,24 +6339,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joang\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\joang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyects\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
+      "projectUniqueName": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
       "projectName": "Hotel.API",
-      "projectPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
+      "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.API\\Hotel.API.csproj",
       "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.API\\obj\\",
+      "outputPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
         "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6361,15 +6359,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
-              "projectPath": "C:\\Proyects\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj"
+            "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj"
             }
           }
         }
@@ -6408,7 +6405,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
