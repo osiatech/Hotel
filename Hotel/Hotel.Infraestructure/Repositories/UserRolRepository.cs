@@ -25,7 +25,7 @@ namespace Hotel.Infraestructure.Repositories
 
         public override List<UserRol> GetEntities()
         {
-            return base.GetEntities().Where(rs => !rs.Deleted).ToList();
+            return base.GetEntities().Where(ur => !ur.Deleted).ToList();
         }
 
     }

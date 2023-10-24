@@ -20,12 +20,12 @@ namespace Hotel.Infraestructure.Repositories
 
         public List<Room> GetRoomsByRoomId(int roomId)
         {
-            return this.context.Rooms.Where(roo => roo.IdRoom == roomId).ToList();
+            return this.context.Rooms.Where(roo => roo.IdRoom == roomId && !roo.Deleted).ToList();
         }
 
         public override List<Room> GetEntities()
         {
-            return base.GetEntities().ToList();
+            return base.GetEntities().Where(roo => !roo.Deleted).ToList();
         }
 
     }

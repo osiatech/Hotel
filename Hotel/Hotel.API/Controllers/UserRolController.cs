@@ -40,7 +40,7 @@ namespace Hotel.API.Controllers
             return Ok(userRols);
         }
 
-        // GET api/<RoomController>/5
+        // GET api/<UserRolController>/5
         [HttpGet("GetUserRol")]
         public IActionResult GetUserRol(int id)
         {
