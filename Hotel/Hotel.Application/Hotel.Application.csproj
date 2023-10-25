@@ -5,4 +5,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Constracts\" />
+    <Folder Include="Dtos\Cliente\" />
+    <Folder Include="Dtos\Recepcion\" />
+    <Folder Include="DtoBase\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hotel.Infraestructure\Hotel.Infraestructure.csproj" />
+  </ItemGroup>
+
 </Project>

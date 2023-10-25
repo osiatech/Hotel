@@ -1,8 +1,6 @@
 ﻿
 using Hotel.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 
 namespace Hotel.Infraestructure.Context
 {

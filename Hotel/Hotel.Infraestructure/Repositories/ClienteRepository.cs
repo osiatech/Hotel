@@ -2,11 +2,9 @@
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+
 
 namespace Hotel.Infraestructure.Repositories
 {

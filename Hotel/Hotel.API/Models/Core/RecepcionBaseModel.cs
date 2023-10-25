@@ -5,7 +5,6 @@ namespace Hotel.API.Models.Core
     public class RecepcionBaseModel : BaseModel
     {
         [Key]
-        public int IdRecepcion { get; set; }
         public int? IdCliente { get; set; }
         public int? IdHabitacion { get; set; }
         public DateTime? FechaEntrada { get; set; }
@@ -17,7 +16,7 @@ namespace Hotel.API.Models.Core
         public decimal? TotalPagado { get; set; }
         public decimal? CostoPenalidad { get; set; }
         public string? Observacion { get; set; }
-        public Boolean? Estado { get; set; }
+        public bool? Estado { get; set; }
         public bool Eliminado { get; set; }
     }
 }

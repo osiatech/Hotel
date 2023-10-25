@@ -1,6 +1,5 @@
 ﻿
 using Hotel.Domain.Core;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Domain.Entities

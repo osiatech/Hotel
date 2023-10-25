@@ -21,7 +21,7 @@ namespace Hotel.Domain.Entities
         public decimal? TotalPagado { get; set; }
         public decimal? CostoPenalidad { get; set; }
         public string? Observacion {  get; set; }
-        public Boolean? Estado {  get; set; }
+        public bool? Estado {  get; set; }
         public bool Eliminado { get; set; }
     }
 }

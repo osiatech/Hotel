@@ -2,7 +2,6 @@
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.IIS.Core;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,7 +51,6 @@ namespace Hotel.API.Controllers
             {
                 FechaRegistro = clienteAdd.ChangeDate,
                 IdUsuarioCreacion = clienteAdd.ChangeUser,
-                IdCliente = clienteAdd.IdCliente,
                 TipoDocumento = clienteAdd.TipoDocumento,
                 Documento = clienteAdd.Documento,
                 NombreCompleto = clienteAdd.NombreCompleto,
@@ -60,18 +58,19 @@ namespace Hotel.API.Controllers
                 Estado = clienteAdd.Estado,
                 Eliminado = clienteAdd.Eliminado
             };
+
             this.clienteRepository.Save(cliente);
             return Ok();
         }
 
-        [HttpPost("Update Cliente")]
+        [HttpPut("Update Cliente")]
         public IActionResult Put([FromBody] ClienteUpdateModel clienteUpdate)
         {
             Cliente cliente = new Cliente()
             {
+                IdCliente = clienteUpdate.IdCliente,
                 FechaRegistro = clienteUpdate.ChangeDate,
                 IdUsuarioCreacion = clienteUpdate.ChangeUser,
-                IdCliente = clienteUpdate.IdCliente,
                 TipoDocumento = clienteUpdate.TipoDocumento,
                 Documento = clienteUpdate.Documento,
                 NombreCompleto = clienteUpdate.NombreCompleto,
