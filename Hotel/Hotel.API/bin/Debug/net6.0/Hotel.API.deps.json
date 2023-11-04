@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Hotel.API/1.0.0": {
         "dependencies": {
-          "Hotel.Infraestructure": "1.0.0",
+          "Hotel.Application": "1.0.0",
+          "Hotel.Ioc": "1.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -979,6 +980,14 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "Hotel.Application/1.0.0": {
+        "dependencies": {
+          "Hotel.Infraestructure": "1.0.0"
+        },
+        "runtime": {
+          "Hotel.Application.dll": {}
+        }
+      },
       "Hotel.Domain/1.0.0": {
         "dependencies": {
           "System.ComponentModel.Annotations": "4.7.0"
@@ -995,6 +1004,15 @@
         },
         "runtime": {
           "Hotel.Infraestructure.dll": {}
+        }
+      },
+      "Hotel.Ioc/1.0.0": {
+        "dependencies": {
+          "Hotel.Application": "1.0.0",
+          "Hotel.Infraestructure": "1.0.0"
+        },
+        "runtime": {
+          "Hotel.Ioc.dll": {}
         }
       }
     }
@@ -1733,12 +1751,22 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
+    "Hotel.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Hotel.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Hotel.Infraestructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Hotel.Ioc/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

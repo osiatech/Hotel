@@ -1,6 +1,10 @@
 ﻿
 
 using Hotel.API.Modules.Recepcion;
+using Hotel.Application.Contracts;
+using Hotel.Application.DtoBase.Cliente;
+using Hotel.Application.Dtos.Cliente;
+using Hotel.Application.Dtos.Recepcion;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -13,101 +17,87 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class RecepcionController : ControllerBase
     {
-        private readonly IRecepcionRepository recepcionRepository;
+        private readonly IRecepcionService recepcionService;
 
-        public RecepcionController(IRecepcionRepository recepcionRepository)
+        public RecepcionController(IRecepcionService recepcionService)
         {
-            this.recepcionRepository = recepcionRepository;
+            this.recepcionService = recepcionService;
         }
-
         
         [HttpGet("Get Recepcion By ClienteId")]
         public IActionResult GetRecepcionByClienteId(int IdCliente)
         {
-            var recepciones = this.recepcionRepository.GetRecepcionByClienteId(IdCliente);
-            return Ok(recepciones);
+            var serviceResult = this.recepcionService.GetById(IdCliente);
+
+            if (!serviceResult.Success)
+            {
+                return BadRequest(serviceResult);
+            }
+
+            return Ok(serviceResult);
         }
 
         [HttpGet("Get Recepcion By HabitacionId")]
         public IActionResult GetRecepcionByHabitacionId(int habitacionId)
         {
-            var recepciones = this.recepcionRepository.GetRecepcionByHabitacionId(habitacionId);
-            return Ok(recepciones);
+            var serviceResult = this.recepcionService.GetById(habitacionId);
+
+            if (!serviceResult.Success)
+            {
+                return BadRequest(serviceResult);
+            }
+
+            return Ok(serviceResult);
         }
 
         [HttpGet("Get All Recepciones")]
         public IActionResult GetClientes()
         {
-            var recepciones = this.recepcionRepository.GetEntities().Select(cd => new
-            RecepcionGetAllModel()
+            var serviceResult = this.recepcionService.GetAll();
+
+            if (!serviceResult.Success)
             {
-                IdRecepcion = cd.IdRecepcion,
-                IdCliente = cd.IdCliente,
-                IdHabitacion = cd.IdHabitacion,
-                FechaEntrada = cd.FechaEntrada,
-                FechaSalida = cd.FechaSalida,
-                FechaSalidaConfirmacion = cd.FechaSalidaConfirmacion,
-                PrecioInicial = cd.PrecioInicial,
-                Adelanto = cd.Adelanto,
-                PrecioRestante = cd.PrecioRestante,
-                TotalPagado = cd.TotalPagado,
-                CostoPenalidad = cd.CostoPenalidad,
-                Observacion = cd.Observacion,
-                Estado = cd.Estado,
-                Eliminado = cd.Eliminado
-            }).ToList();
-            return Ok(recepciones);
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
         }
 
         [HttpPost("Save Recepcion")]
-        public IActionResult Post([FromBody] RecepcionAddModel recepcionAdd)
+        public IActionResult Post([FromBody] RecepcionDtoSave recepcionDtoSave)
         {
-            Recepcion recepcion = new Recepcion()
+            //var serviceResult = this.recepcionService.Save(new Application.Dtos.Recepcion.RecepcionDtoSave() { });
+            var serviceResult = this.recepcionService.Save(recepcionDtoSave);
+
+            if (serviceResult.Success)
             {
-                FechaRegistro = recepcionAdd.ChangeDate,
-                IdUsuarioCreacion = recepcionAdd.ChangeUser,
-                IdCliente = recepcionAdd.IdCliente,
-                IdHabitacion = recepcionAdd.IdHabitacion,
-                FechaEntrada = recepcionAdd.FechaEntrada,
-                FechaSalida = recepcionAdd.FechaSalida,
-                FechaSalidaConfirmacion = recepcionAdd.FechaSalidaConfirmacion,
-                PrecioInicial = recepcionAdd.PrecioInicial,
-                Adelanto = recepcionAdd.Adelanto,
-                PrecioRestante = recepcionAdd.PrecioRestante,
-                TotalPagado = recepcionAdd.TotalPagado,
-                CostoPenalidad = recepcionAdd.CostoPenalidad,
-                Observacion = recepcionAdd.Observacion,
-                Estado = recepcionAdd.Estado,
-                Eliminado = recepcionAdd.Eliminado
-            };
-            this.recepcionRepository.Save(recepcion);
-            return Ok();
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
         }
 
         [HttpPut("Update Recepcion")]
-        public IActionResult Put([FromBody] RecepcionUpdateModel recepcionUpdate)
+        public IActionResult Put([FromBody] RecepcionDtoUpdate recepcionDtoUpdate)
         {
-            Recepcion recepcion = new Recepcion()
+            var serviceResult = this.recepcionService.Update(recepcionDtoUpdate);
+
+            if (!serviceResult.Success)
             {
-                IdRecepcion = recepcionUpdate.IdRecepcion,
-                FechaRegistro = recepcionUpdate.ChangeDate,
-                IdUsuarioCreacion = recepcionUpdate.ChangeUser,
-                IdCliente = recepcionUpdate.IdCliente,
-                IdHabitacion = recepcionUpdate.IdHabitacion,
-                FechaEntrada = recepcionUpdate.FechaEntrada,
-                FechaSalida = recepcionUpdate.FechaSalida,
-                FechaSalidaConfirmacion = recepcionUpdate.FechaSalidaConfirmacion,
-                PrecioInicial = recepcionUpdate.PrecioInicial,
-                Adelanto = recepcionUpdate.Adelanto,
-                PrecioRestante = recepcionUpdate.PrecioRestante,
-                TotalPagado = recepcionUpdate.TotalPagado,
-                CostoPenalidad = recepcionUpdate.CostoPenalidad,
-                Observacion = recepcionUpdate.Observacion,
-                Estado = recepcionUpdate.Estado,
-                Eliminado = recepcionUpdate.Eliminado
-            };
-            this.recepcionRepository.Update(recepcion);
-            return Ok();
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
         }
+
+        [HttpPut("Remove Recepcion")]
+        public IActionResult Remove([FromBody] RecepcionDtoRemove recepcionDtoRemove)
+        {
+            var serviceResult = this.recepcionService.Remove(recepcionDtoRemove);
+
+            if (!serviceResult.Success)
+            {
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
+        }
+
     }
 }

@@ -7,3 +7,9 @@ C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hot
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.CoreCompileInputs.cache
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.dll
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Infraestructure.dll
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Infraestructure.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.AssemblyReference.cache
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.CopyComplete

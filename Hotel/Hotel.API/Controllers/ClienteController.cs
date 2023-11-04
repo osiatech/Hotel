@@ -1,6 +1,7 @@
-﻿using Hotel.API.Modules.Cliente;
-using Hotel.Domain.Entities;
-using Hotel.Infraestructure.Interfaces;
+﻿
+using Hotel.Application.Contracts;
+using Hotel.Application.DtoBase.Cliente;
+using Hotel.Application.Dtos.Cliente;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,75 +12,73 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        private readonly IClienteRepository clienteRepository;
+        private readonly IClienteService clienteService;
 
-        public ClienteController(IClienteRepository clienteRepository) //inyecion de depencia (DIP)
+        public ClienteController(IClienteService clienteService) //inyecion de depencia (DIP)
         {
-            this.clienteRepository = clienteRepository;
+            this.clienteService = clienteService;
         }
 
         [HttpGet("Get Cliente By ClienteId")]
         public IActionResult GetClienteByClienteId(int IdCliente)
         {
-            var clientes = this.clienteRepository.GetClienteByClienteId(IdCliente);
-            return Ok(clientes);
+            var serviceResult = this.clienteService.GetById(IdCliente);
+           
+            if(!serviceResult.Success)
+            {
+                return BadRequest(serviceResult);
+            }
+
+            return Ok(serviceResult);
         }
 
         [HttpGet("Get All Clientes")]
         public IActionResult GetClientes()
         {
-            var clientes = this.clienteRepository.GetEntities().Select(cd => new
-            ClienteGetAllModel()
+            var serviceResult = this.clienteService.GetAll();
+
+            if(!serviceResult.Success)
             {
-                IdCliente = cd.IdCliente,
-                ChangeDate = cd.FechaRegistro,
-                TipoDocumento = cd.TipoDocumento,
-                Documento = cd.Documento,
-                NombreCompleto = cd.NombreCompleto,
-                Correo = cd.Correo,
-                Estado = cd.Estado,
-                Eliminado = cd.Eliminado,
-            }).ToList();
-            return Ok(clientes);
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
         }
 
-
         [HttpPost("Save Cliente")]
-        public IActionResult Post([FromBody] ClienteAddModel clienteAdd)
+        public IActionResult Post([FromBody] ClienteDtoSave clienteDtoSave)
         {
-            Cliente cliente = new Cliente()
-            {
-                FechaRegistro = clienteAdd.ChangeDate,
-                IdUsuarioCreacion = clienteAdd.ChangeUser,
-                TipoDocumento = clienteAdd.TipoDocumento,
-                Documento = clienteAdd.Documento,
-                NombreCompleto = clienteAdd.NombreCompleto,
-                Correo = clienteAdd.Correo,
-                Estado = clienteAdd.Estado,
-                Eliminado = clienteAdd.Eliminado
-            };
+            //var serviceResult = this.clienteService.Save(new Application.Dtos.Cliente.ClienteDtoSave() { });
+            var serviceResult = this.clienteService.Save(clienteDtoSave);
 
-            this.clienteRepository.Save(cliente);
-            return Ok();
+            if(!serviceResult.Success)
+            {
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
         }
 
         [HttpPut("Update Cliente")]
-        public IActionResult Put([FromBody] ClienteUpdateModel clienteUpdate)
+        public IActionResult Put([FromBody] ClienteDtoUpdate clienteDtoUpdate)
         {
-            Cliente cliente = new Cliente()
+            var serviceResult = this.clienteService.Update(clienteDtoUpdate);
+
+            if(!serviceResult.Success)
             {
-                IdCliente = clienteUpdate.IdCliente,
-                FechaRegistro = clienteUpdate.ChangeDate,
-                IdUsuarioCreacion = clienteUpdate.ChangeUser,
-                TipoDocumento = clienteUpdate.TipoDocumento,
-                Documento = clienteUpdate.Documento,
-                NombreCompleto = clienteUpdate.NombreCompleto,
-                Correo = clienteUpdate.Correo,
-                Estado = clienteUpdate.Estado,
-                Eliminado = clienteUpdate.Eliminado
-            };
-            this.clienteRepository.Update(cliente);
-            return Ok();
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
         }
-    }  
+
+        [HttpPut("Remove Cliente")]
+        public IActionResult Remove([FromBody] ClienteDtoRemove clienteDtoRemove)
+        {
+            var serviceResult = this.clienteService.Remove(clienteDtoRemove);
+
+            if (!serviceResult.Success)
+            {
+                return BadRequest(serviceResult);
+            }
+            return Ok(serviceResult);
+        }
+    }
 }

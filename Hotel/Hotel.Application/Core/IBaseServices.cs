@@ -1,12 +1,12 @@
 ﻿
 namespace Hotel.Application.Core
 {
-    public interface IBaseServices <TDtoAdd, TDtoUpdate, TDtoRemove>
+    public interface IBaseServices <TDtoSave, TDtoUpdate, TDtoRemove>
     {
+        public ServiceResult Save(TDtoSave dtoSave);
+        public ServiceResult Update(TDtoUpdate dtoUpdate);
+        public ServiceResult Remove(TDtoRemove dtoRemove);
         public ServiceResult GetAll();
         public ServiceResult GetById(int id);
-        public ServiceResult Save(TDtoAdd dtoAdd);
-        public ServiceResult Update(TDtoAdd dtoUpdate);
-        public ServiceResult Remove(TDtoRemove dtoRemove);
     }
 }

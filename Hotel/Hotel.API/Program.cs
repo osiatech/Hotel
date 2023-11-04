@@ -1,6 +1,9 @@
+using Hotel.Application.Contracts;
+using Hotel.Application.Services;
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Infraestructure.Repositories;
+using Hotel.Ioc.Dependencies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +15,15 @@ builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(buil
 
 // Dependencias de los repositorios
 
-builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
-builder.Services.AddTransient<IRecepcionRepository, RecepcionRepository>();
+//builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
+//builder.Services.AddTransient<IRecepcionRepository, RecepcionRepository>();
+
+builder.Services.AddClienteDependency();
+builder.Services.AddRecepcionDependency();
+
+
+
+
 
 // Dependencias de los app services //
 
