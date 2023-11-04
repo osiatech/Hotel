@@ -1,12 +1,7 @@
 ﻿
 
-using Hotel.API.Modules.Recepcion;
 using Hotel.Application.Contracts;
-using Hotel.Application.DtoBase.Cliente;
-using Hotel.Application.Dtos.Cliente;
 using Hotel.Application.Dtos.Recepcion;
-using Hotel.Domain.Entities;
-using Hotel.Infraestructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -51,7 +46,7 @@ namespace Hotel.API.Controllers
         }
 
         [HttpGet("Get All Recepciones")]
-        public IActionResult GetClientes()
+        public IActionResult GetRecepciones()
         {
             var serviceResult = this.recepcionService.GetAll();
 
@@ -68,7 +63,7 @@ namespace Hotel.API.Controllers
             //var serviceResult = this.recepcionService.Save(new Application.Dtos.Recepcion.RecepcionDtoSave() { });
             var serviceResult = this.recepcionService.Save(recepcionDtoSave);
 
-            if (serviceResult.Success)
+            if (!serviceResult.Success)
             {
                 return BadRequest(serviceResult);
             }
@@ -98,6 +93,5 @@ namespace Hotel.API.Controllers
             }
             return Ok(serviceResult);
         }
-
     }
 }

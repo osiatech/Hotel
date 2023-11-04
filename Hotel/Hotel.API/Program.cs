@@ -15,8 +15,8 @@ builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(buil
 
 // Dependencias de los repositorios
 
-//builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
-//builder.Services.AddTransient<IRecepcionRepository, RecepcionRepository>();
+builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
+builder.Services.AddTransient<IRecepcionRepository, RecepcionRepository>();
 
 builder.Services.AddClienteDependency();
 builder.Services.AddRecepcionDependency();

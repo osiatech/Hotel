@@ -7,7 +7,6 @@ using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Hotel.Application.Services
@@ -121,7 +120,7 @@ namespace Hotel.Application.Services
             }
             catch (Exception exception)
             {
-                serviceResult.Success = true;
+                serviceResult.Success = false;
                 serviceResult.Message = "OCURRIO UN ERROR REMOVIENDO LA RECEPCION.";
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }

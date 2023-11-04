@@ -6,6 +6,7 @@ using Hotel.Application.Dtos.Cliente;
 using Hotel.Application.Response;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -17,11 +18,13 @@ namespace Hotel.Application.Services
 
         private readonly IClienteRepository clienteRepository;
         private readonly ILogger<ClienteService> logger;
+        private readonly IConfiguration configuration;
 
-        public ClienteService(IClienteRepository clienteRepository, ILogger<ClienteService> logger)
+        public ClienteService(IClienteRepository clienteRepository, ILogger<ClienteService> logger, IConfiguration configuration)
         {
             this.clienteRepository = clienteRepository;
             this.logger = logger;
+            this.configuration = configuration;
         }
 
         public ServiceResult GetAll()
@@ -104,7 +107,7 @@ namespace Hotel.Application.Services
             }
             catch(Exception exception)
             {
-                serviceResult.Success = true;
+                serviceResult.Success = false;
                 serviceResult.Message = "OCURRIO UN ERROR REMOVIENDO AL CLIENTE.";
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
@@ -120,6 +123,25 @@ namespace Hotel.Application.Services
 
             try
             {
+
+                //  *********** Validaciones **********
+
+                if(string.IsNullOrEmpty(dtoSave.NombreCompleto))
+                {
+                    serviceResult.Message = "EL NOMBRE DEL CLIENTE ES REQUEDIDO.";
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if(dtoSave.NombreCompleto.Length > 50)
+                {
+                    serviceResult.Message = "LA LONGITUD DE NOMBRE COMPLETO DEBE DE SER DE 50 CARACTERES";
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+
+
                 Cliente cliente = new Cliente()
                 {
                     FechaCreacion = dtoSave.ChangeDate,
