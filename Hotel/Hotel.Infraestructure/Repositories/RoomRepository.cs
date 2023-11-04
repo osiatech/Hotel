@@ -18,14 +18,44 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
 
-        public List<Room> GetRoomsByRoomId(int roomId)
+        public override void Save(Room entity)
         {
-            return this.context.Rooms.Where(roo => roo.IdRoom == roomId && !roo.Deleted).ToList();
+            context.Rooms.Add(entity);
+            context.SaveChanges();
         }
 
+        public override void Update(Room entity)
+        {
+            var roomToUpdate = base.GetEntity(entity.IdRoom);
+
+            roomToUpdate.Details = entity.Details;
+            roomToUpdate.Status = entity.Status;
+            roomToUpdate.RegistryDate = entity.RegistryDate;
+            roomToUpdate.ModifyDate = entity.ModifyDate;
+            roomToUpdate.IdUserModify = entity.IdUserModify;
+
+            context.Rooms.Update(roomToUpdate);
+            context.SaveChanges();
+
+        }
+
+        public override void Remove(Room entity)
+        {
+            var roomToRemove = base.GetEntity(entity.IdRoom);
+
+            roomToRemove.IdRoom = entity.IdRoom;
+            roomToRemove.Deleted = entity.Deleted;
+            roomToRemove.DeletedDate = entity.DeletedDate;
+            roomToRemove.IdUserDeleted = entity.IdUserDeleted;
+
+            this.context.Rooms.Update(roomToRemove);
+            this.context.SaveChanges();
+        }
         public override List<Room> GetEntities()
         {
-            return base.GetEntities().Where(roo => !roo.Deleted).ToList();
+            return this.context.Rooms.Where(roo => !roo.Deleted)
+                                        .OrderByDescending(roo => roo.CreationDate)
+                                        .ToList();
         }
 
     }

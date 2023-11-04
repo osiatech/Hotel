@@ -7,6 +7,5 @@ namespace Hotel.Infraestructure.Interfaces
 {
     public interface IRoom : IBaseRepository<Room>
     {
-        List<Room> GetRoomsByRoomId(int roomId);
     }
 }
