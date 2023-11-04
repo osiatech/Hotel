@@ -11,6 +11,12 @@ namespace Hotel.Domain.Entities
         [Key]
         [Column("IdHabitacion")]
         public int IdRoom { get; set; }
+        [Column("IdEstadoHabitacion")]
+        public int? IdRoomStatus { get; set; }
+        [Column("IdPiso")]
+        public int? IdFlat { get; set; }
+        [Column("IdCategoria")]
+        public int? IdCategory { get; set; }
         [Column("Numero")]
         public string? Number { get; set; }
         [Column("Detalle")]

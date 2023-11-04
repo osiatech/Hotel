@@ -13,6 +13,8 @@ builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(buil
 
 builder.Services.AddRoomStatusDependecy();
 
+builder.Services.AddRoomDependecy();
+
 builder.Services.AddUserRolDependecy();
 
 

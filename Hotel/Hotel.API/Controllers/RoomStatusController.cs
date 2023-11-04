@@ -1,10 +1,8 @@
-﻿using Hotel.API.Models.Module_RoomStatus;
+﻿
 using Hotel.Application.Contracts;
 using Hotel.Application.Core;
 using Hotel.Application.Dtos.RoomStatus;
 using Hotel.Application.Exceptions;
-using Hotel.Domain.Entities;
-using Hotel.Infraestructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.API.Controllers
