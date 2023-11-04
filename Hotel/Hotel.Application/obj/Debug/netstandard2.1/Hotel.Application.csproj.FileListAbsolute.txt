@@ -8,3 +8,8 @@ C:\Projects\HotelProject\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.
 C:\Projects\HotelProject\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.CoreCompileInputs.cache
 C:\Projects\HotelProject\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.dll
 C:\Projects\HotelProject\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.pdb
+C:\Projects\HotelProject\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Projects\HotelProject\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Infraestructure.dll
+C:\Projects\HotelProject\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Infraestructure.pdb
+C:\Projects\HotelProject\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Projects\HotelProject\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.CopyComplete

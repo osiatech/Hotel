@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hotel.Domain.Core
@@ -9,13 +8,13 @@ namespace Hotel.Domain.Core
         [Column("FechaCreacion")]
         public DateTime CreationDate { get; set; }
         [Column("IdUsuarioCreacion")]
-        public int CreationUser { get; set; }
+        public int IdCreationUser { get; set; }
         [Column("FechaMod")]
         public DateTime? ModifyDate { get; set; }
         [Column("IdUsuarioMod")]
-        public int? UserModify { get; set; }
+        public int? IdUserModify { get; set; }
         [Column("IdUsuarioElimino")]
-        public int? UserDeleted { get; set; }
+        public int? IdUserDeleted { get; set; }
         [Column("FechaElimino")]
         public DateTime? DeletedDate { get; set; }
         [Column("Eliminado")]

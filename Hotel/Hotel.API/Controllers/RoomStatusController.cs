@@ -1,4 +1,8 @@
 ﻿using Hotel.API.Models.Module_RoomStatus;
+using Hotel.Application.Contracts;
+using Hotel.Application.Core;
+using Hotel.Application.Dtos.RoomStatus;
+using Hotel.Application.Exceptions;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,81 +13,80 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class RoomStatusController : ControllerBase
     {
-        private readonly IRoomStatus roomStatusRepository;
+        private readonly IRoomStatusService roomStatusService;
 
-        public RoomStatusController(IRoomStatus roomStatusRepository)
+        public RoomStatusController(IRoomStatusService roomStatusService)
         {
-            this.roomStatusRepository = roomStatusRepository;
+            this.roomStatusService = roomStatusService;
         }
 
 
-        [HttpGet("GetRoomStatusByRoomStatusId")]
-        public IActionResult GetRoomStatusByRoomStatusId(int IdRoomStatus)
+        [HttpGet("GetRoomStatuses")]
+        public IActionResult Get()
         {
-            var roomStatus = this.roomStatusRepository.GetRoomStatusByRoomStatusId(IdRoomStatus);
-            return Ok(roomStatus);
+            var result = this.roomStatusService.GetAll();
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
-        // GET: api/<RoomStatusController>
-        [HttpGet]
-        public IActionResult GetRoomsStatus()
-        {
-            var roomStatus = this.roomStatusRepository.GetEntities().Select(roomStatus => new RoomStatusGetAllModel()
-            {
-                RoomStatusId = roomStatus.IdRoomStatus,
-                ChanageDate = roomStatus.CreationDate,
-                ChangeUser = roomStatus.CreationUser,
-                Description = roomStatus.Description,
-                Status = roomStatus.Status,
-                RegistryDate = roomStatus.RegistryDate
-            }).ToList();
-
-            return Ok(roomStatus);
-        }
-
-        // GET api/<RoomStatusController>/5
         [HttpGet("GetRoomStatus")]
-        public IActionResult GetRoomStatus(int id)
+        public IActionResult Get(int id)
         {
-            var roomStatus = this.roomStatusRepository.GetEntity(id);
-            return Ok(roomStatus);
+            var result = this.roomStatusService.GetById(id);
+            {
+                if (!result.Success)
+                    return BadRequest(result);
+
+                return Ok(result);
+            }
         }
 
         [HttpPost("SaveRoomStatus")]
-        public IActionResult Post([FromBody] RoomStatusAddModel roomStatusAdd)
+        public IActionResult Post([FromBody] RoomStatusDtoAdd roomStatusDtoAdd)
         {
+            ServiceResult result = new ServiceResult();
 
-            RoomStatus roomStatus = new RoomStatus()
+            try
             {
-                CreationDate = roomStatusAdd.ChanageDate,
-                CreationUser = roomStatusAdd.ChangeUser,
-                Description = roomStatusAdd.Description,
-                Status = roomStatusAdd.Status,
-                RegistryDate = roomStatusAdd.RegistryDate
-            };
+                result = roomStatusService.Save(roomStatusDtoAdd);
 
-            this.roomStatusRepository.Save(roomStatus);
+                if (!result.Success)
+                    return BadRequest(result);
 
-            return Ok();
+            }
+            catch (RoomStatusServiceException srsex)
+            {
+
+                result.Message = srsex.Message;
+                result.Success = false;
+            }
+
+            return Ok(result);
         }
 
-        // POST api/<RoomStatusController>
         [HttpPost("UpdateRoomStatus")]
-        public IActionResult Put([FromBody] RoomStatusUpdateModel roomStatusUpdate)
+        public IActionResult Put([FromBody] RoomStatusDtoUpdate roomStatusDtoUpdate)
         {
-            RoomStatus roomStatus = new RoomStatus()
-            {
-                IdRoomStatus = roomStatusUpdate.RoomStatusId,
-                CreationDate = roomStatusUpdate.ChanageDate,
-                CreationUser = roomStatusUpdate.ChangeUser,
-                Description = roomStatusUpdate.Description,
-                Status = roomStatusUpdate.Status,
-                RegistryDate = roomStatusUpdate.RegistryDate
-            };
+            var result = this.roomStatusService.Update(roomStatusDtoUpdate);
+            if (!result.Success)
+                return BadRequest(result);
 
-            this.roomStatusRepository.Update(roomStatus);
 
-            return Ok();
+            return Ok(result);
+        }
+
+        [HttpPost("RemoveRoomStatus")]
+        public IActionResult Remove([FromBody] RoomStatusDtoRemove roomStatusDtoRemove)
+        {
+            var result = this.roomStatusService.Remove(roomStatusDtoRemove);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }

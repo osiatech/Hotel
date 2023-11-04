@@ -18,15 +18,45 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
 
-        public List<UserRol> GetUserRolsByUserRolId(int userRolId)
+        public override void Save(UserRol entity)
         {
-            return this.context.UserRols.Where(ur => ur.IdUserRol == userRolId && !ur.Deleted).ToList();
+            context.UserRols.Add(entity);
+            context.SaveChanges();
+        }
+
+        public override void Update(UserRol entity)
+        {
+            var userRolToUpdate = base.GetEntity(entity.IdUserRol);
+
+            userRolToUpdate.Description = entity.Description;
+            userRolToUpdate.Status = entity.Status;
+            userRolToUpdate.RegistryDate = entity.RegistryDate;
+            userRolToUpdate.ModifyDate = entity.ModifyDate;
+            userRolToUpdate.IdUserModify = entity.IdUserModify;
+
+            context.UserRols.Update(userRolToUpdate);
+            context.SaveChanges();
+
+        }
+
+        public override void Remove(UserRol entity)
+        {
+            var userRolToRemove = base.GetEntity(entity.IdUserRol);
+
+            userRolToRemove.IdUserRol = entity.IdUserRol;
+            userRolToRemove.Deleted = entity.Deleted;
+            userRolToRemove.DeletedDate = entity.DeletedDate;
+            userRolToRemove.IdUserDeleted = entity.IdUserDeleted;
+
+            this.context.UserRols.Update(userRolToRemove);
+            this.context.SaveChanges();
         }
 
         public override List<UserRol> GetEntities()
         {
-            return base.GetEntities().Where(ur => !ur.Deleted).ToList();
+            return this.context.UserRols.Where(ur => !ur.Deleted)
+                                        .OrderByDescending(ur => ur.CreationDate)
+                                        .ToList();
         }
-
     }
 }

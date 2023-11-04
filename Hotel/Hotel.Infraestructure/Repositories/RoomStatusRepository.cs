@@ -17,14 +17,45 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
 
-        public List<RoomStatus> GetRoomStatusByRoomStatusId(int roomStatusId)
+        public override void Save(RoomStatus entity)
         {
-            return this.context.RoomStatus.Where(rs => rs.IdRoomStatus == roomStatusId && !rs.Deleted).ToList();
+            context.RoomStatus.Add(entity);
+            context.SaveChanges();
+        }
+
+        public override void Update(RoomStatus entity)
+        {
+            var roomStatusToUpdate = base.GetEntity(entity.IdRoomStatus);
+
+            roomStatusToUpdate.Description = entity.Description;
+            roomStatusToUpdate.Status = entity.Status;
+            roomStatusToUpdate.RegistryDate = entity.RegistryDate;
+            roomStatusToUpdate.ModifyDate = entity.ModifyDate;
+            roomStatusToUpdate.IdUserModify = entity.IdUserModify;
+
+            context.RoomStatus.Update(roomStatusToUpdate);
+            context.SaveChanges();
+
+        }
+
+        public override void Remove(RoomStatus entity)
+        {
+            var roomStatusToRemove = base.GetEntity(entity.IdRoomStatus);
+
+            roomStatusToRemove.IdRoomStatus = entity.IdRoomStatus;
+            roomStatusToRemove.Deleted = entity.Deleted;
+            roomStatusToRemove.DeletedDate = entity.DeletedDate;
+            roomStatusToRemove.IdUserDeleted = entity.IdUserDeleted;
+
+            this.context.RoomStatus.Update(roomStatusToRemove);
+            this.context.SaveChanges();
         }
 
         public override List<RoomStatus> GetEntities()
         {
-            return base.GetEntities().Where(rs => !rs.Deleted).ToList();
+            return this.context.RoomStatus.Where(rs => !rs.Deleted)
+                                        .OrderByDescending(rs => rs.CreationDate)
+                                        .ToList();
         }
 
     }

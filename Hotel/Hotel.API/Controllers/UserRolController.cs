@@ -1,4 +1,8 @@
 ﻿using Hotel.API.Models.Module_UserRol;
+using Hotel.Application.Contracts;
+using Hotel.Application.Core;
+using Hotel.Application.Dtos.UserRol;
+using Hotel.Application.Exceptions;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,80 +13,78 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class UserRolController : ControllerBase
     {
-        private readonly IUserRol userRolRepository;
+        private readonly IUserRolService userRolService;
 
-        public UserRolController(IUserRol userRolRepository)
+        public UserRolController(IUserRolService userRolService)
         {
-            this.userRolRepository = userRolRepository;
+            this.userRolService = userRolService;
         }
 
-        [HttpGet("GetUserRolByUserRolId")]
-        public IActionResult GetUserRolsByUserRolId(int userRolId)
+        [HttpGet("GetUserRols")]
+        public IActionResult Get()
         {
-            var userRol = this.userRolRepository.GetUserRolsByUserRolId(userRolId);
-            return Ok(userRol);
+            var result = this.userRolService.GetAll();
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
-        // GET: api/<UserRolController>
-        [HttpGet]
-        public IActionResult GetUserRols()
-        {
-            var userRols = this.userRolRepository.GetEntities().Select(userRol => new UserRolGetAllModel()
-            {
-                UserRolId = userRol.IdUserRol,
-                ChanageDate = userRol.CreationDate,
-                ChangeUser = userRol.CreationUser,
-                Description = userRol.Description,
-                Status = userRol.Status,
-                RegistryDate = userRol.RegistryDate
-            }).ToList();
-
-            return Ok(userRols);
-        }
-
-        // GET api/<UserRolController>/5
         [HttpGet("GetUserRol")]
-        public IActionResult GetUserRol(int id)
+        public IActionResult Get(int id)
         {
-            var userRol = this.userRolRepository.GetEntity(id);
-            return Ok(userRol);
+            var result = this.userRolService.GetById(id);
+            {
+                if (!result.Success)
+                    return BadRequest(result);
+
+                return Ok(result);
+            }
         }
 
         [HttpPost("SaveUserRol")]
-        public IActionResult Post([FromBody] UserRolAddModel userRolAdd)
+        public IActionResult Post([FromBody] UserRolDtoAdd userRolDtoAdd)
         {
+            ServiceResult result = new ServiceResult();
 
-            UserRol userRol = new UserRol()
+            try
             {
-                CreationDate = userRolAdd.ChanageDate,
-                CreationUser = userRolAdd.ChangeUser,
-                Description = userRolAdd.Description,
-                Status = userRolAdd.Status,
-                RegistryDate = userRolAdd.RegistryDate
-            };
+                result = userRolService.Save(userRolDtoAdd);
 
-            this.userRolRepository.Save(userRol);
+                if (!result.Success)
+                    return BadRequest(result);
 
-            return Ok();
+            }
+            catch (UserRolServiceException ursex)
+            {
+
+                result.Message = ursex.Message;
+                result.Success = false;
+            }
+
+            return Ok(result);
         }
 
-        // POST api/<UserRolController>
         [HttpPost("UpdateUserRol")]
-        public IActionResult Put([FromBody] UserRolUpdateModel userRolUpdate)
+        public IActionResult Put([FromBody] UserRolDtoUpdate userRolDtoUpdate)
         {
-            UserRol userRol = new UserRol()
-            {
-                IdUserRol = userRolUpdate.UserRolId,
-                CreationDate = userRolUpdate.ChanageDate,
-                CreationUser = userRolUpdate.ChangeUser,
-                Description = userRolUpdate.Description,
-                Status = userRolUpdate.Status,
-                RegistryDate = userRolUpdate.RegistryDate
-            };
+            var result = this.userRolService.Update(userRolDtoUpdate);
+            if (!result.Success)
+                return BadRequest(result);
 
-            this.userRolRepository.Update(userRol);
+            return Ok(result);
+        }
 
-            return Ok();
+        [HttpPost("RemoveUserRol")]
+        public IActionResult Remove([FromBody] UserRolDtoRemove userRolDtoRemove)
+        {
+            var result = this.userRolService.Remove(userRolDtoRemove);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }

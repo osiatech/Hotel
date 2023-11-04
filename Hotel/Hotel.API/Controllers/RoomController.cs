@@ -33,7 +33,7 @@ namespace Hotel.API.Controllers
             {
                 RoomId = room.IdRoom,
                 ChanageDate = room.CreationDate,
-                ChangeUser = room.CreationUser,
+                ChangeUser = room.IdCreationUser,
                 Number = room.Number,
                 Details = room.Details,
                 Price = room.Price,
@@ -59,7 +59,7 @@ namespace Hotel.API.Controllers
             Room room = new Room()
             {
                 CreationDate = roomAdd.ChanageDate,
-                CreationUser = roomAdd.ChangeUser,
+                IdCreationUser = roomAdd.ChangeUser,
                 Number = roomAdd.Number,
                 Details = roomAdd.Details,
                 Price = roomAdd.Price,
@@ -81,7 +81,7 @@ namespace Hotel.API.Controllers
             {
                 IdRoom = roomUpdate.RoomId,
                 CreationDate = roomUpdate.ChanageDate,
-                CreationUser = roomUpdate.ChangeUser,
+                IdCreationUser = roomUpdate.ChangeUser,
                 Number = roomUpdate.Number,
                 Details = roomUpdate.Details,
                 Price = roomUpdate.Price,
