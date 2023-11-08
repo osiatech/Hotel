@@ -147,6 +147,25 @@
           }
         }
       },
+      "Microsoft.Exchange.WebServices/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/40/Microsoft.Exchange.WebServices.Auth.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/40/Microsoft.Exchange.WebServices.dll": {
+            "related": ".Auth.pdb;.Auth.xml;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/40/Microsoft.Exchange.WebServices.Auth.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/40/Microsoft.Exchange.WebServices.dll": {
+            "related": ".Auth.pdb;.Auth.xml;.pdb;.xml"
+          }
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
         "type": "package",
         "build": {
@@ -1779,6 +1798,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Hotel.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Hotel.Infraestructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Hotel.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Hotel.Application.dll": {}
+        }
+      },
       "Hotel.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1805,6 +1837,20 @@
         },
         "runtime": {
           "bin/placeholder/Hotel.Infraestructure.dll": {}
+        }
+      },
+      "Hotel.Ioc/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Hotel.Application": "1.0.0",
+          "Hotel.Infraestructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Hotel.Ioc.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Hotel.Ioc.dll": {}
         }
       }
     }
@@ -2049,6 +2095,26 @@
         "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
         "microsoft.entityframeworkcore.sqlserver.3.1.32.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
+      ]
+    },
+    "Microsoft.Exchange.WebServices/2.2.0": {
+      "sha512": "NlkaTD0uWtg9VbiWq0VDWMBPzHFknH3tmstrxt0acrT09LBGqATTjRpsGOODz6tUdX7/dehBinxsf75U5Uw/+A==",
+      "type": "package",
+      "path": "microsoft.exchange.webservices/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "doc/License Terms.rtf",
+        "doc/README.htm",
+        "doc/Redist.txt",
+        "lib/40/Microsoft.Exchange.WebServices.Auth.dll",
+        "lib/40/Microsoft.Exchange.WebServices.Auth.pdb",
+        "lib/40/Microsoft.Exchange.WebServices.Auth.xml",
+        "lib/40/Microsoft.Exchange.WebServices.dll",
+        "lib/40/Microsoft.Exchange.WebServices.pdb",
+        "lib/40/Microsoft.Exchange.WebServices.xml",
+        "microsoft.exchange.webservices.2.2.0.nupkg.sha512",
+        "microsoft.exchange.webservices.nuspec"
       ]
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
@@ -6321,6 +6387,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Hotel.Application/1.0.0": {
+      "type": "project",
+      "path": "../Hotel.Application/Hotel.Application.csproj",
+      "msbuildProject": "../Hotel.Application/Hotel.Application.csproj"
+    },
     "Hotel.Domain/1.0.0": {
       "type": "project",
       "path": "../Hotel.Domain/Hotel.Domain.csproj",
@@ -6330,11 +6401,18 @@
       "type": "project",
       "path": "../Hotel.Infraestructure/Hotel.Infraestructure.csproj",
       "msbuildProject": "../Hotel.Infraestructure/Hotel.Infraestructure.csproj"
+    },
+    "Hotel.Ioc/1.0.0": {
+      "type": "project",
+      "path": "../Hotel.Ioc/Hotel.Ioc.csproj",
+      "msbuildProject": "../Hotel.Ioc/Hotel.Ioc.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Hotel.Infraestructure >= 1.0.0",
+      "Hotel.Application >= 1.0.0",
+      "Hotel.Ioc >= 1.0.0",
+      "Microsoft.Exchange.WebServices >= 2.2.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -6365,8 +6443,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
-              "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj"
+            "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj": {
+              "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj"
+            },
+            "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj": {
+              "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj"
             }
           }
         }
@@ -6381,6 +6462,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.Exchange.WebServices": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.5.0, )"
@@ -6408,5 +6493,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"Microsoft.Exchange.WebServices 2.2.0\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "Microsoft.Exchange.WebServices",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

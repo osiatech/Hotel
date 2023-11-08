@@ -28,8 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
-                "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj"
+              "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj": {
+                "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj"
+              },
+              "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj": {
+                "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj"
               }
             }
           }
@@ -44,6 +47,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.Exchange.WebServices": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -65,6 +72,65 @@
               "privateAssets": "none"
             },
             "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj",
+        "projectName": "Hotel.Application",
+        "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj",
+        "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
               "privateAssets": "all"
             }
           },
@@ -182,6 +248,68 @@
               "version": "[3.1.32, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
+        "projectName": "Hotel.Ioc",
+        "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\Hotel.Ioc.csproj",
+        "packagesPath": "C:\\Users\\joang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Ioc\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\joang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj": {
+                "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Application\\Hotel.Application.csproj"
+              },
+              "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\joang\\source\\repos\\Hotel\\Hotel\\Hotel.Infraestructure\\Hotel.Infraestructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "imports": [
             "net461",
             "net462",

@@ -47,11 +47,17 @@ namespace Hotel.Infraestructure.Core
         public virtual void Save(TEntity entity)
         {
             this.entities.Add(entity);
+            this.SaveChange();
         }
 
         public virtual void Update(TEntity entity)
         {
             this.entities.Update(entity);
+        }
+
+        public virtual void SaveChange()
+        {
+            context.SaveChanges();
         }
     }
 }

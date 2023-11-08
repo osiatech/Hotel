@@ -1,8 +1,10 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using Hotel.Infraestructure.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using Hotel.API.Models.Module_Categoria;
 using Hotel.Domain.Entities;
+using Hotel.Application.Contracts;
+using Hotel.Infraestructure.Repositories;
+using Hotel.Application.Dtos.Categoria;
+using Hotel.Application.Core;
 
 namespace Hotel.API.Controllers
 {
@@ -10,79 +12,72 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-        private readonly ICategoriaRepository categoriaRepository;
+        private readonly ICategoriaService categoriaService;
 
-        public CategoriaController(ICategoriaRepository categoriaRepository)
+        public CategoriaController(ICategoriaService categoriaService)
         {
-            this.categoriaRepository = categoriaRepository;
+            this.categoriaService = categoriaService;
         }
 
         [HttpGet("GetCategoriaByCategoriaId")]
-        public IActionResult GetCategoriaByCategoriaId(int categoriaId)
+        public IActionResult Get(int categoriaId)
         {
-            var categoria = this.categoriaRepository.GetCategoriaByCategoriaId(categoriaId);
-            return Ok(categoria);
-        }
-
-        // GET: api/<UsuarioController>
-        [HttpGet]
-        public IActionResult GetCategoria()
-        {
-            var categorias = this.categoriaRepository.GetEntities().Select(categoria => new CategoriaGetAllModel()
+            var result = this.categoriaService.GetById(categoriaId);
+            if (!result.Success)
             {
-                CategoriaId = categoria.IdCategoria,
-                ChanageDate = categoria.FechaRegistro,
-                ChangeUser = categoria.IdUsuarioCreacion,
-                Descripcion= categoria.Descripcion,
-                Estado = categoria.Estado,
-                
-            }).ToList();
-
-            return Ok(categorias);
+                return BadRequest(result);
+            }
+            return Ok(result.Data);
         }
+
+      
 
         // GET api/<CategoriaController>/5
         [HttpGet("GetCategoria")]
-        public IActionResult GetCategoria(int id)
+        public IActionResult GetCategoria()
         {
-            var categoria = this.categoriaRepository.GetEntity(id);
-            return Ok(categoria);
+            var result = this.categoriaService.GetAll();
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
 
         [HttpPost("SaveCategoria")]
-        public IActionResult Post([FromBody] CategoriaAddModel categoriaAdd)
+        public IActionResult Post([FromBody] CategoriaDtoAdd categoriaAdd)
         {
+            ServiceResult result = new ServiceResult();
 
-            Categoria categoria = new Categoria()
+
+             if(!result.Success)
             {
-              
-                FechaCreacion = categoriaAdd.ChanageDate,
-                IdUsuarioCreacion = categoriaAdd.ChangeUser,
-                Descripcion = categoriaAdd.Descripcion,
-                Estado = categoriaAdd.Estado
-            };
-
-            this.categoriaRepository.Save(categoria);
-
-            return Ok();
+                return BadRequest(result);
+            }
+            return Ok(categoriaService.Save(categoriaAdd));
         }
-
-
         // POST api/<CategoriaController>
         [HttpPost("UpdateCategoria")]
-        public IActionResult Put([FromBody] CategoriaUpdateModel categoriaUpdate)
+        public IActionResult Put([FromBody] CategoriaDtoUpdate categoriaDtoUpdate)
         {
-            Categoria categoria = new Categoria()
+            var result = this.categoriaService.Update(categoriaDtoUpdate);
+
+            if (!result.Success)
             {
-                IdCategoria = categoriaUpdate.CategoriaId,
-                FechaCreacion = categoriaUpdate.ChanageDate,
-                IdUsuarioCreacion = categoriaUpdate.ChangeUser,
-                
-            };
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+        [HttpPost("RemoveCategoria")]
+        public IActionResult Remove([FromBody] CategoriaDtoRemove categoriaDtoRemove)
+        {
+            var result = this.categoriaService.Remove(categoriaDtoRemove);
 
-            this.categoriaRepository.Update(categoria);
+            if (!result.Success)
+                return BadRequest(result);
 
-            return Ok();
+            return Ok(result);
         }
     }
 }

@@ -13,6 +13,5 @@ namespace Hotel.Domain.Entities
         public String? Descripcion { get; set; }
         public Boolean? Estado { get; set; }
         
-       
     }
 }

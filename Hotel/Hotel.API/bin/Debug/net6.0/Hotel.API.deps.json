@@ -8,7 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "Hotel.API/1.0.0": {
         "dependencies": {
-          "Hotel.Infraestructure": "1.0.0",
+          "Hotel.Application": "1.0.0",
+          "Hotel.Ioc": "1.0.0",
+          "Microsoft.Exchange.WebServices": "2.2.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -114,6 +116,18 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
             "assemblyVersion": "3.1.32.0",
             "fileVersion": "3.100.3222.56605"
+          }
+        }
+      },
+      "Microsoft.Exchange.WebServices/2.2.0": {
+        "runtime": {
+          "lib/40/Microsoft.Exchange.WebServices.Auth.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.913.0"
+          },
+          "lib/40/Microsoft.Exchange.WebServices.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.913.15"
           }
         }
       },
@@ -979,6 +993,14 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "Hotel.Application/1.0.0": {
+        "dependencies": {
+          "Hotel.Infraestructure": "1.0.0"
+        },
+        "runtime": {
+          "Hotel.Application.dll": {}
+        }
+      },
       "Hotel.Domain/1.0.0": {
         "dependencies": {
           "System.ComponentModel.Annotations": "4.7.0"
@@ -995,6 +1017,15 @@
         },
         "runtime": {
           "Hotel.Infraestructure.dll": {}
+        }
+      },
+      "Hotel.Ioc/1.0.0": {
+        "dependencies": {
+          "Hotel.Application": "1.0.0",
+          "Hotel.Infraestructure": "1.0.0"
+        },
+        "runtime": {
+          "Hotel.Ioc.dll": {}
         }
       }
     }
@@ -1067,6 +1098,13 @@
       "sha512": "sha512-f+FdDq9TirUG/qESHtEps9ZLR0FSwESczGrHr6Q7rzkqdarHZS444cCZcJaUgpdKO0a990U/juNogB67BbzHTA==",
       "path": "microsoft.entityframeworkcore.sqlserver/3.1.32",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.3.1.32.nupkg.sha512"
+    },
+    "Microsoft.Exchange.WebServices/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NlkaTD0uWtg9VbiWq0VDWMBPzHFknH3tmstrxt0acrT09LBGqATTjRpsGOODz6tUdX7/dehBinxsf75U5Uw/+A==",
+      "path": "microsoft.exchange.webservices/2.2.0",
+      "hashPath": "microsoft.exchange.webservices.2.2.0.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",
@@ -1733,12 +1771,22 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
+    "Hotel.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Hotel.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Hotel.Infraestructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Hotel.Ioc/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

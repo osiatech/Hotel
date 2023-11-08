@@ -13,5 +13,6 @@ namespace Hotel.Domain.Core
         public DateTime? FechaElimino { get; set; }
         public bool Eliminado { get; set; }
         public DateTime? FechaCreacion { get; set; }
+        public int IdUsuarioElimino { get; set; }
     }
 }

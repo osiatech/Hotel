@@ -16,3 +16,11 @@ C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel
 C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.CoreCompileInputs.cache
 C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.dll
 C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Application.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Infraestructure.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Application.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Infraestructure.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.AssemblyReference.cache
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Ioc\obj\Debug\netstandard2.1\Hotel.Ioc.csproj.CopyComplete

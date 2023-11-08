@@ -15,7 +15,7 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
       
-        public List<Categoria> GetCategoriaByCategoriaId(int CategoriaId)
+        public List<Categoria> Get(int CategoriaId)
         {
             var categorias = this.context.Categoria.Where(ct => ct.IdCategoria == CategoriaId).ToList();
             return categorias;

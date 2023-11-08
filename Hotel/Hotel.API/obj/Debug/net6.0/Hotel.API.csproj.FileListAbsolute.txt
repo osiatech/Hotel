@@ -124,3 +124,9 @@ C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\obj\Debug\net6.0\refint\Hotel.
 C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\obj\Debug\net6.0\Hotel.API.pdb
 C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\obj\Debug\net6.0\Hotel.API.genruntimeconfig.cache
 C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\obj\Debug\net6.0\ref\Hotel.API.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Microsoft.Exchange.WebServices.Auth.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Microsoft.Exchange.WebServices.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Application.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Ioc.dll
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Application.pdb
+C:\Users\joang\source\repos\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Ioc.pdb
