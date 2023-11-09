@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Hotel.Infraestructure.Interfaces;
-using Hotel.Domain.Entities;
 using Hotel.API.Models.Module_Piso;
+using Hotel.Domain.Entities;
+using Hotel.Application.Contracts;
+using Hotel.Infraestructure.Repositories;
+using Hotel.Application.Dtos.Piso;
+using Hotel.Application.Core;
+using Hotel.Application.Services;
+using Hotel.Application.Dtos.Categoria;
 
 namespace Hotel.API.Controllers
 {
@@ -9,79 +14,77 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class PisoController : ControllerBase
     {
-        private readonly IPisoRepository pisoRepository;
+        private readonly IPisoService pisoService;
 
-        public PisoController(IPisoRepository pisoRepository)
+        public PisoController(IPisoService pisoService)
         {
-            this.pisoRepository = pisoRepository;
+            this.pisoService = pisoService;
         }
 
         [HttpGet("GetPisoByPisoId")]
         public IActionResult GetPisoaByPisoId(int pisoId)
         {
-            var piso = this.pisoRepository.GetPisoByPisoId(pisoId);
-            return Ok(piso);
+            {
+                var result = this.pisoService.GetById(pisoId);
+                if (!result.Success)
+                {
+                    return BadRequest(result);
+                }
+                return Ok(result.Data);
+            }
         }
 
         // GET: api/<UsuarioController>
         [HttpGet]
         public IActionResult GetPiso()
         {
-            var piso = this.pisoRepository.GetEntities().Select(piso => new PisoGetAllModel()
+            var result = this.pisoService.GetAll();
+
+            if (!result.Success)
             {
-                PisoId = piso.IdPiso,
-                ChanageDate = piso.FechaRegistro,
-                ChangeUser = piso.IdUsuarioCreacion,
-                Descripcion = piso.Descripcion,
-                Estado = piso.Estado,
-
-            }).ToList();
-
-            return Ok(piso);
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
 
-        // GET api/<CategoriaController>/5
-        [HttpGet("GetPiso")]
-        public IActionResult GetPiso(int id)
-        {
-            var piso = this.pisoRepository.GetEntity(id);
-            return Ok(piso);
-        }
+      
 
         [HttpPost("SavePiso")]
-        public IActionResult Post([FromBody] PisoAddModel pisoAdd)
+        public IActionResult Post([FromBody] PisoDtoAdd pisoAdd)
         {
+            ServiceResult result = new ServiceResult();
 
-            Piso piso = new Piso()
+
+            if (!result.Success)
             {
-
-                FechaCreacion = pisoAdd.ChanageDate,
-                IdUsuarioCreacion = pisoAdd.ChangeUser,
-                Descripcion = pisoAdd.Descripcion,
-                Estado = pisoAdd.Estado
-            };
-
-            this.pisoRepository.Save(piso);
-
-            return Ok();
+                return BadRequest(result);
+            }
+            return Ok(pisoService.Save(pisoAdd));
         }
 
 
         // POST api/<PisoController>
         [HttpPost("UpdatePiso")]
-        public IActionResult Put([FromBody] PisoUpdateModel pisoUpdate)
+        public IActionResult Put([FromBody] PisoDtoUpdate pisoDtoUpdate)
         {
-            Piso piso = new Piso()
+            var result = this.pisoService.Update(pisoDtoUpdate);
+
+            if (!result.Success)
             {
-                IdPiso = pisoUpdate.PisoId,
-                FechaCreacion = pisoUpdate.ChanageDate,
-                IdUsuarioCreacion = pisoUpdate.ChangeUser,
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
 
-            };
+        [HttpPost("RemovePiso")]
+        public IActionResult Remove([FromBody] PisoDtoRemove pisoDtoRemove)
+        {
+            var result = this.pisoService.Remove(pisoDtoRemove);
 
-            this.pisoRepository.Update(piso);
+            if (!result.Success)
+                return BadRequest(result);
 
-            return Ok();
+            return Ok(result);
         }
     }
 }

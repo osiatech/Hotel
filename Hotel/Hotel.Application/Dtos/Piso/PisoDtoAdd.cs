@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Hotel.Application.Dtos.Piso
 {
-    public class PisoDtoAdd : DtoBase 
+    public class PisoDtoAdd : PisoDto
     {
-        public string? Descripcion { get; set; }
+        public int PisoId { get; set; }
     }
 }

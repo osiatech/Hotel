@@ -42,6 +42,7 @@ namespace Hotel.Infraestructure.Core
         public virtual void Remove(TEntity entity)
         {
             this.entities.Remove(entity);
+            this.SaveChange();
         }
 
         public virtual void Save(TEntity entity)
@@ -53,6 +54,7 @@ namespace Hotel.Infraestructure.Core
         public virtual void Update(TEntity entity)
         {
             this.entities.Update(entity);
+            this.SaveChange();
         }
 
         public virtual void SaveChange()

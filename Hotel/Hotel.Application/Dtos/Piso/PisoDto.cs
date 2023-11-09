@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.Dtos.Categoria
+namespace Hotel.Application.Dtos.Piso
 {
-    public class CategoriaDto: DtoBase
+    public class PisoDto : DtoBase
     {
         public string? Descripcion { get; set; }
         public bool? Estado { get; set; }

@@ -90,12 +90,14 @@ namespace Hotel.Application.Services
             try
             {
                 Categoria categoria = new Categoria()
-                { IdCategoria = dtoRemove.Id, Eliminado = dtoRemove.Eliminado,
+                { IdCategoria = dtoRemove.Id,
+                    Eliminado = dtoRemove.Eliminado,
                     FechaElimino=dtoRemove.ChangeDate,
                     IdUsuarioElimino = dtoRemove.ChangeUser
                 };
                 this.categoriaRepository.Remove(categoria);
-                
+                result.Message = "Categoria Borrada Exitosamente.";
+
             }
             catch (Exception ex)
             {
@@ -114,14 +116,16 @@ namespace Hotel.Application.Services
             {
                 Categoria categoria = new Categoria()
                 {
-                    IdUsuarioCreacion = dtoAdd.ChangeUser,
-                   FechaCreacion = dtoAdd.FechaCreacion,
+                    IdUsuarioMod = dtoAdd.ChangeUser,
+                    FechaCreacion = dtoAdd.FechaCreacion,
                     FechaRegistro = dtoAdd.FechaRegistro,
                     Descripcion = dtoAdd.Descripcion,
-                    Estado = dtoAdd.Estado
-                    
+                    Estado = dtoAdd.Estado,
+                    FechaMod = DateTime.Now
+
+
                 };
-               
+
                 this.categoriaRepository.Save(categoria);
                 result.Message = "Categoria Agregada Exitosamente.";
                 result.Data = categoria;
@@ -145,7 +149,7 @@ namespace Hotel.Application.Services
                 Categoria categoria = new Categoria()
                 {
                     IdCategoria = dtoUpdate.IdCategoria,
-                    FechaCreacion = dtoUpdate.FechaCreacion,
+                    FechaRegistro = dtoUpdate.FechaRegistro,
                     Descripcion = dtoUpdate.Descripcion,
                     Estado = dtoUpdate.Estado,
                     FechaMod = dtoUpdate.ChangeDate,
@@ -156,8 +160,9 @@ namespace Hotel.Application.Services
                 };
 
                 this.categoriaRepository.Update(categoria);
+                result.Message = "Categoria Actualizada Exitosamente.";
 
-                
+
             }
             catch (Exception ex)
             {

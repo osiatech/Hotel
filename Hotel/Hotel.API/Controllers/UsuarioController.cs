@@ -2,6 +2,11 @@
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Domain.Entities;
 using Hotel.API.Models.Module_Usuario;
+using Hotel.Application.Contracts;
+using Hotel.Application.Services;
+using Hotel.Application.Core;
+using Hotel.Application.Dtos.Usuario;
+using Hotel.Application.Dtos.Categoria;
 
 namespace Hotel.API.Controllers
 {
@@ -9,86 +14,78 @@ namespace Hotel.API.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioRepository usuarioRepository;
+        private readonly IUsuarioService usuarioService;
 
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        public UsuarioController(IUsuarioService usuarioService)
         {
-            this.usuarioRepository = usuarioRepository;
+            this.usuarioService = usuarioService;
         }
 
         [HttpGet("GetUsuarioByUsuarioId")]
         public IActionResult GetUsuarioaByUsuarioId(int usuarioId)
         {
-            var usuario = this.usuarioRepository.GetUsuarioByUsuarioId(usuarioId);
-            return Ok(usuario);
+            var result = this.usuarioService.GetById(usuarioId);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result.Data);
         }
 
         // GET: api/<UsuarioController>
         [HttpGet]
         public IActionResult GetUsuario()
         {
-            var usuario = this.usuarioRepository.GetEntities().Select(usuario => new UsuarioGetAllModel()
+            var result = this.usuarioService.GetAll();
+
+            if (!result.Success)
             {
-                UsuarioId = usuario.IdUsuario,
-                ChanageDate = usuario.FechaRegistro,
-                ChangeUser = usuario.IdUsuarioCreacion,
-                NombreCompleto = usuario.NombreCompleto,
-                Estado = usuario.Estado,
-                Correo = usuario.Correo,
-                Clave = usuario.Clave,
-                IdRolUsuario = usuario.IdRolUsuario,
-                
+                return BadRequest(result);
+            }
+            return Ok(result);
 
-            }).ToList();
-
-            return Ok(usuario);
+            
         }
 
-        // GET api/<UsuarioController>/5
-        [HttpGet("GetUsuario")]
-        public IActionResult GetUsuario(int id)
-        {
-            var usuario = this.usuarioRepository.GetEntity(id);
-            return Ok(usuario);
-        }
+       
 
         [HttpPost("SaveUsuario")]
-        public IActionResult Post([FromBody] UsuarioAddModel usuarioAdd)
+        public IActionResult Post([FromBody] UsuarioDtoAdd usuarioAdd)
         {
 
-            Usuario usuario = new Usuario()
+            ServiceResult result = new ServiceResult();
+
+
+            if (!result.Success)
             {
-
-                FechaCreacion = usuarioAdd.ChanageDate,
-                IdUsuarioCreacion = usuarioAdd.ChangeUser,
-                NombreCompleto = usuarioAdd.NombreCompleto,
-                Estado = usuarioAdd.Estado,
-                Correo = usuarioAdd.Correo,
-                Clave = usuarioAdd.Clave,
-                IdRolUsuario = usuarioAdd.IdRolUsuario,
-            };
-
-            this.usuarioRepository.Save(usuario);
-
-            return Ok();
+                return BadRequest(result);
+            }
+            return Ok(usuarioService.Save(usuarioAdd));
         }
 
 
         // POST api/<UsuarioController>
         [HttpPost("UpdateUsuario")]
-        public IActionResult Put([FromBody] UsuarioUpdateModel usuarioUpdate)
+        public IActionResult Put([FromBody] UsuarioDtoUpdate usuarioDtoUpdate)
         {
-            Usuario usuario = new Usuario()
+            var result = this.usuarioService.Update(usuarioDtoUpdate);
+
+            if (!result.Success)
             {
-                IdUsuario = usuarioUpdate.UsuarioId,
-                FechaCreacion = usuarioUpdate.ChanageDate,
-                IdUsuarioCreacion = usuarioUpdate.ChangeUser,
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
 
-            };
+        [HttpPost("RemoveUsuario")]
+        public IActionResult Remove([FromBody] UsuarioDtoRemove usuarioDtoRemove)
+        {
+            var result = this.usuarioService.Remove(usuarioDtoRemove);
 
-            this.usuarioRepository.Update(usuario);
+            if (!result.Success)
+                return BadRequest(result);
 
-            return Ok();
+            return Ok(result);
         }
     }
 }

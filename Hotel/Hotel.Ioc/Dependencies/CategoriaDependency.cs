@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Hotel.IOC.Dependencies
 {
-    public static class PisoDependency
+    public static class CategoriaDependency
     {
         public static void AddCategoriaDependency(this IServiceCollection services)
         {
