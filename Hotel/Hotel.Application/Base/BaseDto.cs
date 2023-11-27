@@ -4,8 +4,7 @@ namespace Hotel.Application.DtoBase
 {
     public abstract class BaseDto
     {
-        public int ChangeUser { get; set; }
-        public DateTime ChangeDate { get; set; }
-        public int IdUsuarioElimino { get; set; }
+        public int? ChangeUser { get; set; }
+        public DateTime? ChangeDate { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using Hotel.Application.DtoBase;
+using System;
 
 namespace Hotel.Application.Dtos.Recepcion
 {
@@ -7,5 +8,7 @@ namespace Hotel.Application.Dtos.Recepcion
     {
         public int IdRecepcion { get; set; }
         public bool Eliminado { get; set; }
+        public int IdUsuarioElimino { get; set; }
+        public DateTime? FechaElimino { get; set; }
     }
 }

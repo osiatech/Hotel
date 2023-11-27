@@ -29,28 +29,29 @@ namespace Hotel.Application.Services
 
         public ServiceResult GetAll()
         {
-
             ServiceResult serviceResult = new ServiceResult();
 
             try
             {
                 var clientes = this.clienteRepository.GetEntities().
-                    Select(ct => new ClienteDtoGetAll()
+                    Select(cliente => new ClienteDtoGetAll()
                     {
-                        IdCliente = ct.IdCliente,
-                        TipoDocumento = ct.TipoDocumento,
-                        Documento = ct.Documento,
-                        Estado = ct.Estado,
-                        Eliminado = ct.Eliminado,
-                        ChangeDate = ct.FechaRegistro
+                        IdCliente = cliente.IdCliente,
+                        NombreCompleto = cliente.NombreCompleto,
+                        TipoDocumento = cliente.TipoDocumento,
+                        Documento = cliente.Documento,
+                        Correo = cliente.Correo,
+                        Eliminado = cliente.Eliminado,
+                        ChangeDate = cliente.FechaMod,
+                        ChangeUser = cliente.IdUsuarioMod
                     });
                 serviceResult.Data = clientes;
-                serviceResult.Message = "CLIENTES OBTENIDOS EXITOSAMENTE";
+                serviceResult.Message = this.configuration["Cliente.Success.Messages:GetAll.Success.Message"];
             }
             catch(Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "ERROR OBTENIENDO LOS CLIENTES.";
+                serviceResult.Message = this.configuration["Cliente.Error.Messages:GetAll.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
@@ -58,7 +59,6 @@ namespace Hotel.Application.Services
 
         public ServiceResult GetById(int id)
         {
-
             ServiceResult serviceResult = new ServiceResult();
 
             try
@@ -68,20 +68,22 @@ namespace Hotel.Application.Services
                 ClienteDtoGetAll clienteModel = new ClienteDtoGetAll()
                 {
                     IdCliente = cliente.IdCliente,
+                    NombreCompleto = cliente.NombreCompleto,
                     TipoDocumento = cliente.TipoDocumento,
                     Documento = cliente.Documento,
-                    Estado = cliente.Estado,
+                    Correo = cliente.Correo,
                     Eliminado = cliente.Eliminado,
-                    ChangeDate = cliente.FechaRegistro
+                    ChangeDate = cliente.FechaMod,
+                    ChangeUser = cliente.IdUsuarioMod
                 };
                 serviceResult.Data = clienteModel;
-                serviceResult.Message = "CLIENTE OBTENIDO EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Cliente.Success.Messages:GetById.Success.Message"];
             }
 
             catch(Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR OBTENIENDO AL CLIENTE.";
+                serviceResult.Message = this.configuration["Cliente.Error.Messages:GetById.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
 
@@ -90,7 +92,6 @@ namespace Hotel.Application.Services
 
         public ServiceResult Remove(ClienteDtoRemove dtoRemove)
         {
-
             ServiceResult serviceResult = new ServiceResult();
 
             try
@@ -99,16 +100,16 @@ namespace Hotel.Application.Services
                 {
                     IdCliente = dtoRemove.IdCliente,
                     Eliminado = dtoRemove.Eliminado,
-                    FechaElimino = dtoRemove.ChangeDate,
+                    FechaElimino = dtoRemove.FechaElimino,
                     IdUsuarioElimino = dtoRemove.IdUsuarioElimino
                 };
                 this.clienteRepository.Remove(cliente);
-                serviceResult.Message = "CLIENTE REMOVIDO EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Cliente.Success.Messages:Remove.Success.Message"];
             }
             catch(Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR REMOVIENDO AL CLIENTE.";
+                serviceResult.Message = this.configuration["Cliente.Error.Messages:Remove.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
@@ -124,28 +125,75 @@ namespace Hotel.Application.Services
             try
             {
 
-                //  *********** Validaciones **********
+                //  ************* Validaciones **************
 
                 if(string.IsNullOrEmpty(dtoSave.NombreCompleto))
                 {
-                    serviceResult.Message = "EL NOMBRE DEL CLIENTE ES REQUEDIDO.";
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.NombreCompleto.Requerido"];
                     serviceResult.Success = false;
                     return serviceResult;
                 }
 
                 if(dtoSave.NombreCompleto.Length > 50)
                 {
-                    serviceResult.Message = "LA LONGITUD DE NOMBRE COMPLETO DEBE DE SER DE 50 CARACTERES";
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.NombreCompleto.Longitud"];
                     serviceResult.Success = false;
                     return serviceResult;
                 }
 
+                if(string.IsNullOrEmpty(dtoSave.TipoDocumento))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.TipoDocumento.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
 
+                if(dtoSave.TipoDocumento.Length > 15)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.TipoDocumento.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if(string.IsNullOrEmpty(dtoSave.Documento))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Documento.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if(dtoSave.Documento.Length > 15)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Documento.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if(string.IsNullOrEmpty(dtoSave.Correo))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Correo.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if(!dtoSave.FechaRegistro.HasValue)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.FechaRegistro.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if(dtoSave.Correo.Length > 50)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Correo.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
 
                 Cliente cliente = new Cliente()
                 {
                     FechaCreacion = dtoSave.ChangeDate,
-                    IdUsuarioCreacion = (int)dtoSave.IdUsuarioMod,
+                    IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
                     FechaRegistro = dtoSave.FechaRegistro,
                     NombreCompleto = dtoSave.NombreCompleto,
                     TipoDocumento = dtoSave.TipoDocumento,
@@ -156,7 +204,7 @@ namespace Hotel.Application.Services
 
                 this.clienteRepository.Save(cliente);
 
-                serviceResult.Message = "CLIENTE AGREGADO EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Cliente.Success.Messages:Save.Success.Message"];
 
                 clienteResponse.IdCliente = cliente.IdCliente;
 
@@ -164,7 +212,7 @@ namespace Hotel.Application.Services
             catch(Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR AGREGANDO AL CLIENTE.";
+                serviceResult.Message = this.configuration["Cliente.Error.Messages:Save.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
@@ -172,26 +220,86 @@ namespace Hotel.Application.Services
 
         public ServiceResult Update(ClienteDtoUpdate dtoUpdate)
         {
-
             ServiceResult serviceResult = new ServiceResult();
 
             try
             {
+
+                //  ************* Validaciones **************
+
+                if (string.IsNullOrEmpty(dtoUpdate.NombreCompleto))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.NombreCompleto.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (dtoUpdate.NombreCompleto.Length > 50)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.NombreCompleto.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (string.IsNullOrEmpty(dtoUpdate.TipoDocumento))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.TipoDocumento.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (dtoUpdate.TipoDocumento.Length > 15)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.TipoDocumento.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (string.IsNullOrEmpty(dtoUpdate.Documento))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Documento.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (dtoUpdate.Documento.Length > 15)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Documento.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (string.IsNullOrEmpty(dtoUpdate.Correo))
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Correo.Requerido"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
+                if (dtoUpdate.Correo.Length > 50)
+                {
+                    serviceResult.Message = this.configuration["ValidationMessages:Cliente.Correo.Longitud"];
+                    serviceResult.Success = false;
+                    return serviceResult;
+                }
+
                 Cliente cliente = new Cliente()
                 {
-                    FechaRegistro = dtoUpdate.FechaRegistro,
-                    FechaMod = dtoUpdate.ChangeDate,
-                    IdUsuarioMod = dtoUpdate.ChangeUser,
-                    NombreCompleto = dtoUpdate.NombreCompleto,
                     IdCliente = dtoUpdate.IdCliente,
+                    NombreCompleto = dtoUpdate.NombreCompleto,
+                    TipoDocumento = dtoUpdate.TipoDocumento,
+                    Documento = dtoUpdate.Documento,
+                    Correo = dtoUpdate.Correo,
+                    FechaMod = dtoUpdate.ChangeDate,
+                    IdUsuarioMod = dtoUpdate.ChangeUser
                 };
                 this.clienteRepository.Update(cliente);
-                serviceResult.Message = "CLIENTE ACTUALIZADO EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Cliente.Success.Messages:Update.Success.Message"];
             }
             catch(Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR ACTUALIZANDO AL CIENTE.";
+                serviceResult.Message = this.configuration["Cliente.Error.Messages:Update.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;

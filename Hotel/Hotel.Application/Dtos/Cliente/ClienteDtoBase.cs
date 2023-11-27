@@ -1,4 +1,5 @@
 ﻿
+using Hotel.Application.Core;
 using Hotel.Application.DtoBase;
 using System;
 
@@ -11,10 +12,6 @@ namespace Hotel.Application.Dtos.Cliente
         public string? Documento {  get; set; }
         public string? Correo {  get; set; }
         public bool? Estado { get; set; }
-        public int IdUsuarioCreacion { get; set; }
-        public DateTime? FechaMod { get; set; }
-        public int? IdUsuarioMod { get; set; }
-        public DateTime? FechaElimino { get; set; }
         public bool Eliminado { get; set; }
     }
 }

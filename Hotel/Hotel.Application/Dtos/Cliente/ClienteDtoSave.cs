@@ -5,6 +5,7 @@ namespace Hotel.Application.Dtos.Cliente
 {
     public class ClienteDtoSave : ClienteDtoBase
     {
-        public DateTime FechaRegistro {  get; set; }
+        public DateTime? FechaRegistro { get; set; }
+        public int IdUsuarioCreacion { get; set; }
     }
 }

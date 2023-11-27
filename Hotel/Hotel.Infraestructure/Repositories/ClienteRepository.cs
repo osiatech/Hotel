@@ -43,7 +43,9 @@ namespace Hotel.Infraestructure.Repositories
             var clienteToUpdate = base.GetEntity(entity.IdCliente);
 
             clienteToUpdate.NombreCompleto = entity.NombreCompleto;
-            clienteToUpdate.FechaRegistro = entity.FechaRegistro;
+            clienteToUpdate.Documento = entity.Documento;
+            clienteToUpdate.TipoDocumento = entity.TipoDocumento;
+            clienteToUpdate.Correo = entity.Correo;
             clienteToUpdate.FechaMod = entity.FechaMod;
             clienteToUpdate.IdUsuarioMod = entity.IdUsuarioMod;
 

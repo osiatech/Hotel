@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
 
 namespace Hotel.API.Models.Core
 {
     public class RecepcionBaseModel : BaseModel
     {
-        [Key]
         public int? IdCliente { get; set; }
         public int? IdHabitacion { get; set; }
         public DateTime? FechaEntrada { get; set; }

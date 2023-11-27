@@ -2,8 +2,10 @@
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;
+using Hotel.Infraestructure.Models.Recepcion;
 using System.Collections.Generic;
 using System.Linq;
+
 
 namespace Hotel.Infraestructure.Repositories
 {
@@ -17,75 +19,90 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
 
-        public List<Recepcion> GetRecepcionByClienteId(int clienteId)
-        {
-            var recepcion = this.context.RECEPCION.Where(recepcion => recepcion.IdCliente == clienteId).ToList();
-            return recepcion;
-        }
-
-        public List<Recepcion> GetRecepcionByHabitacionId(int habitacionId)
-        {
-            var recepcion = this.context.RECEPCION.Where(recepcion =>recepcion.IdHabitacion == habitacionId).ToList();
-            return recepcion;
-        }
-
         public override List<Recepcion> GetEntities()
         {
-            return this.context.RECEPCION.Where(recepcion => !recepcion.Eliminado).OrderByDescending(
-                recepcion => recepcion.FechaCreacion).ToList();
+            return base.GetEntities().Where(recepcion => !recepcion.Eliminado).ToList();
         }
 
         public override void Save(Recepcion entity)
         {
-            context.RECEPCION.Add(entity);
-            context.SaveChanges();
+            base.Save(entity);
+            this.context.SaveChanges();
         }
 
         public override void Update(Recepcion entity)
         {
+            Recepcion recepcion = this.GetEntity(entity.IdRecepcion);
 
-            var recepcionToUpdate = base.GetEntity(entity.IdRecepcion);
+            recepcion.IdCliente = entity.IdCliente;
+            recepcion.IdHabitacion = entity.IdHabitacion;
 
-            recepcionToUpdate.IdCliente = entity.IdCliente;
-            recepcionToUpdate.IdHabitacion = entity.IdHabitacion;
+            recepcion.PrecioInicial = entity.PrecioInicial;
+            recepcion.Adelanto = entity.Adelanto;
+            recepcion.PrecioRestante = entity.PrecioRestante;
+            recepcion.TotalPagado = entity.TotalPagado;
+            recepcion.CostoPenalidad = entity.CostoPenalidad;
+            recepcion.Observacion = entity.Observacion;
 
-            recepcionToUpdate.PrecioInicial = entity.PrecioInicial;
-            recepcionToUpdate.Adelanto = entity.Adelanto;
-            recepcionToUpdate.PrecioRestante = entity.PrecioRestante;
-            recepcionToUpdate.TotalPagado = entity.TotalPagado;
-            recepcionToUpdate.CostoPenalidad = entity.CostoPenalidad;
-            recepcionToUpdate.Observacion = entity.Observacion;
-            recepcionToUpdate.Estado = entity.Estado;
-
-            recepcionToUpdate.FechaRegistro = entity.FechaRegistro;
-            recepcionToUpdate.FechaMod = entity.FechaMod;
-            recepcionToUpdate.IdUsuarioMod = entity.IdUsuarioMod;
-
-            context.RECEPCION.Update(recepcionToUpdate);
-            context.SaveChanges();
+            this.context.RECEPCION.Update(recepcion);
+            this.context.SaveChanges();
         }
 
         public override void Remove(Recepcion entity)
         {
 
-            var recepcionToRemove = base.GetEntity(entity.IdRecepcion);
+            var recepcion = this.GetEntity(entity.IdRecepcion);
 
-            recepcionToRemove.IdRecepcion = entity.IdRecepcion;
+            recepcion.IdRecepcion = entity.IdRecepcion;
+            recepcion.Eliminado = entity.Eliminado;
+            recepcion.FechaElimino = entity.FechaElimino;
+            recepcion.IdUsuarioElimino = entity.IdUsuarioElimino;
 
-            recepcionToRemove.PrecioInicial = entity.PrecioInicial;
-            recepcionToRemove.Adelanto = entity.Adelanto;
-            recepcionToRemove.PrecioRestante = entity.PrecioRestante;
-            recepcionToRemove.TotalPagado = entity.TotalPagado;
-            recepcionToRemove.CostoPenalidad = entity.CostoPenalidad;
-            recepcionToRemove.Observacion = entity.Observacion;
-            recepcionToRemove.Estado = entity.Estado;
-
-            recepcionToRemove.FechaRegistro = entity.FechaRegistro;
-            recepcionToRemove.FechaMod = entity.FechaMod;
-            recepcionToRemove.IdUsuarioMod = entity.IdUsuarioMod;
-
-            this.context.Update(recepcionToRemove);
+            this.context.RECEPCION.Update(recepcion);
             this.context.SaveChanges();
+        }
+
+        public List<RecepcionClienteModel> GetRecepcionByClienteId(int IdCliente)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<RecepcionHabitacionModel> GetRecepcionByHabitacionId(int habitacionId)
+        {
+            return this.GetRecepcionesHabitaciones().Where(rh => rh.IdHabitacion == habitacionId).ToList();
+        }
+
+        public List<RecepcionHabitacionModel> GetRecepcionesHabitaciones()
+        {
+            var recepciones = (from recepcion in this.GetEntities()
+                               join habitacion in this.context.Habitacion
+                               on recepcion.IdHabitacion equals habitacion.IdHabitacion
+                               where !recepcion.Eliminado
+                               select new RecepcionHabitacionModel()
+                               {
+                                   IdRecepcion = recepcion.IdRecepcion,
+                                   IdHabitacion = recepcion.IdHabitacion,
+                                   IdCliente = recepcion.IdCliente,
+                                   PrecioInicial = recepcion.PrecioInicial,
+                                   Adelanto = recepcion.Adelanto,
+                                   PrecioRestante = recepcion.PrecioRestante,
+                                   TotalPagado = recepcion.TotalPagado,
+                                   CostoPenalidad = recepcion.CostoPenalidad,
+                                   Observacion = recepcion.Observacion,
+                                   Eliminado = recepcion.Eliminado
+                               }).ToList();
+            return recepciones;
+        }
+
+        public RecepcionHabitacionModel GetRecepcionHabitacion(int id)
+        {
+            return this.GetRecepcionesHabitaciones().SingleOrDefault(recepcion => recepcion.IdRecepcion == id);
+        }
+
+        public List<Recepcion> GetRecepcionesByHabitacion(int habitacionId)
+        {
+            return this.context.RECEPCION.Where(recepcion => recepcion.IdRecepcion ==
+            habitacionId && !recepcion.Eliminado).ToList(); 
         }
     }
 }

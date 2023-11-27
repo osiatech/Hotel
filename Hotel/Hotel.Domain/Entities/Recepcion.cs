@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Domain.Entities
 {
-    
     public class Recepcion : BaseEntity
     {
         [Key]
