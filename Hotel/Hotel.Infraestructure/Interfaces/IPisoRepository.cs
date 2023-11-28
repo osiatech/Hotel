@@ -6,6 +6,6 @@ namespace Hotel.Infraestructure.Interfaces
 {
     public interface IPisoRepository : IBaseRepository<Piso>
     {
-        public List<Piso> GetPisoByPisoId(int IdPiso);
+        
     }
 }

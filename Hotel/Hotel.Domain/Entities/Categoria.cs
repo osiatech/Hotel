@@ -8,10 +8,10 @@ namespace Hotel.Domain.Entities
 {
     public class Categoria : BaseEntity
     {
-        [Key]
+
         public int IdCategoria { get; set; }
         public String? Descripcion { get; set; }
         public Boolean? Estado { get; set; }
-        
+
     }
 }

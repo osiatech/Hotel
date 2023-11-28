@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Hotel",
+    "\\Hotel\\Hotel.API",
+    "\\Hotel\\Hotel.Application",
+    "\\Hotel\\Hotel.Application\\Services",
+    "\\Hotel\\Hotel.Application\\Validations",
+    "\\Hotel\\Hotel.Infraestructure",
+    "\\Hotel\\Hotel.Infraestructure\\Core",
+    "\\Hotel\\Hotel.Infraestructure\\Repositories"
   ],
-  "SelectedNode": "\\Hotel.sln",
+  "SelectedNode": "\\Hotel\\Hotel.sln",
   "PreviewInSolutionExplorer": false
 }

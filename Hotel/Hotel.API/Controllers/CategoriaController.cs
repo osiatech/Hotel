@@ -58,7 +58,7 @@ namespace Hotel.API.Controllers
             return Ok(categoriaService.Save(categoriaAdd));
         }
         // POST api/<CategoriaController>
-        [HttpPost("UpdateCategoria")]
+        [HttpPut("UpdateCategoria")]
         public IActionResult Put([FromBody] CategoriaDtoUpdate categoriaDtoUpdate)
         {
             var result = this.categoriaService.Update(categoriaDtoUpdate);

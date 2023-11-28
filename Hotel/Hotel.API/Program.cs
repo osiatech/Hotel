@@ -12,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // Agregar dependencia del contexto //
-builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HotelContext")));
+var connectionString = builder.Configuration.GetConnectionString("HotelContext");
+
+builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(connectionString));
 // Dependencia de los repositorios //
 builder.Services.AddCategoriaDependency();
 builder.Services.AddPisoDependency();

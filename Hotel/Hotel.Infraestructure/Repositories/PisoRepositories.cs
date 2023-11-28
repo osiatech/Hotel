@@ -16,12 +16,7 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
 
-        public List<Piso> GetPisoByPisoId(int PisoId)
-        {
-            var pisos = this.context.Piso.Where(ps => ps.IdPiso == PisoId).ToList();
-            return pisos;
-
-        }
+      
         public override List<Piso> GetEntities()
         {
             return base.GetEntities().Where(ps => !ps.Eliminado).ToList();

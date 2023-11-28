@@ -7,6 +7,11 @@ using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Application.Dtos.Categoria;
 using Hotel.Domain.Repository;
+using Microsoft.Extensions.Configuration;
+using Hotel.Application.Dtos;
+using Hotel.Application.Excepctions;
+using Hotel.Application.Validations;
+using Hotel.Application.Response;
 
 namespace Hotel.Application.Services
 {
@@ -14,12 +19,15 @@ namespace Hotel.Application.Services
     {
         private readonly ICategoriaRepository categoriaRepository;
         private readonly ILogger<ICategoriaService> logger;
+        private readonly IConfiguration configuration;
 
         public CategoriaService(ICategoriaRepository categoriaRepository,
-                                                 ILogger<CategoriaService> logger)
+                                                 ILogger<CategoriaService> logger,
+                                                 IConfiguration configuration)
         {
             this.categoriaRepository = categoriaRepository;
             this.logger = logger;
+            this.configuration = configuration;
         }
         public ServiceResult GetAll()
         {
@@ -46,16 +54,16 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = $"Ocurrió un error al obtener las Categorias";
+                result.Message = this.configuration[$"ErrorCategoria : GetErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
-                
+
             }
             return result;
         }
 
         public ServiceResult GetById(int Id)
         {
-          ServiceResult result = new ServiceResult();
+            ServiceResult result = new ServiceResult();
             try
             {
                 var categoria = this.categoriaRepository.GetEntity(Id);
@@ -69,7 +77,7 @@ namespace Hotel.Application.Services
                     Estado = categoria.Estado
 
                 };
-               
+
                 result.Data = categoriaModel;
             }
 
@@ -77,7 +85,7 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = "Error al obtener la Categoria";
+                result.Message = this.configuration["ErrorCategoria : GetByIdErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
@@ -90,19 +98,20 @@ namespace Hotel.Application.Services
             try
             {
                 Categoria categoria = new Categoria()
-                { IdCategoria = dtoRemove.Id,
+                {
+                    IdCategoria = dtoRemove.Id,
                     Eliminado = dtoRemove.Eliminado,
-                    FechaElimino=dtoRemove.ChangeDate,
+                    FechaElimino = dtoRemove.ChangeDate,
                     IdUsuarioElimino = dtoRemove.ChangeUser
                 };
                 this.categoriaRepository.Remove(categoria);
-                result.Message = "Categoria Borrada Exitosamente.";
+                result.Message = this.configuration["MensajeSucess : RemoveSucess"];
 
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = "Error al Eliminar la Categoria";
+                result.Message = this.configuration["ErrorCategoria : AddErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
@@ -111,9 +120,15 @@ namespace Hotel.Application.Services
         public ServiceResult Save(CategoriaDtoAdd dtoAdd)
         {
             ServiceResult result = new ServiceResult();
-            //CategoriaResponse responseCategoria = new CategoriaResponse();
+
+            CategoriaResponse responseCategoria = new CategoriaResponse();
             try
             {
+
+                var validresult = dtoAdd.IsCategoriaValid(this.configuration);
+
+
+
                 Categoria categoria = new Categoria()
                 {
                     IdUsuarioMod = dtoAdd.ChangeUser,
@@ -127,14 +142,20 @@ namespace Hotel.Application.Services
                 };
 
                 this.categoriaRepository.Save(categoria);
-                result.Message = "Categoria Agregada Exitosamente.";
+                result.Message = this.configuration["MensajeSucess : AddSucess"];
                 result.Data = categoria;
-                
+
+            }
+            catch (CategoriaServiceException csex)
+            {
+                result.Success = false;
+                result.Message = csex.Message;
+                this.logger.LogError($"{result.Message}", csex.ToString());
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = "Error al guardar la Categoria";
+                result.Message = this.configuration["ErrorCategoria: AddErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
@@ -143,9 +164,17 @@ namespace Hotel.Application.Services
 
         public ServiceResult Update(CategoriaDtoUpdate dtoUpdate)
         {
-           ServiceResult result = new ServiceResult();
+            ServiceResult result = new ServiceResult();
             try
             {
+                var validresult = dtoUpdate.IsCategoriaValid(this.configuration);
+
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
                 Categoria categoria = new Categoria()
                 {
                     IdCategoria = dtoUpdate.IdCategoria,
@@ -157,17 +186,18 @@ namespace Hotel.Application.Services
 
 
 
+
                 };
 
                 this.categoriaRepository.Update(categoria);
-                result.Message = "Categoria Actualizada Exitosamente.";
+                result.Message = this.configuration["MensajeSucess: UpdateSucess"];
 
 
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = "Error al actualizar la Categoria";
+                result.Message = "";
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;

@@ -64,7 +64,7 @@ namespace Hotel.API.Controllers
 
 
         // POST api/<PisoController>
-        [HttpPost("UpdatePiso")]
+        [HttpPut("UpdatePiso")]
         public IActionResult Put([FromBody] PisoDtoUpdate pisoDtoUpdate)
         {
             var result = this.pisoService.Update(pisoDtoUpdate);

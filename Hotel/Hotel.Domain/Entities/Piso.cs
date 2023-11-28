@@ -9,11 +9,11 @@ namespace Hotel.Domain.Entities
 {
     public class Piso : BaseEntity
     {
-        [Key]
-      public int IdPiso { get; set; }
+
+        public int IdPiso { get; set; }
         public String? Descripcion { get; set; }
         public Boolean? Estado { get; set; }
-       
-        
+
+
     }
 }

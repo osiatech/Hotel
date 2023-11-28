@@ -15,11 +15,7 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
 
-        public List<Usuario> GetUsuarioByUsuarioId(int UsuarioId)
-        {
-            var usuarios = this.context.Usuario.Where(us => us.IdUsuario == UsuarioId).ToList();
-            return usuarios;
-        }
+
         public override List<Usuario> GetEntities()
         {
             return base.GetEntities().Where(us => !us.Eliminado).ToList();

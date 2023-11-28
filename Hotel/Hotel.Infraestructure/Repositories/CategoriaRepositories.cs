@@ -15,11 +15,7 @@ namespace Hotel.Infraestructure.Repositories
             this.context = context;
         }
       
-        public List<Categoria> Get(int CategoriaId)
-        {
-            var categorias = this.context.Categoria.Where(ct => ct.IdCategoria == CategoriaId).ToList();
-            return categorias;
-        }
+       
         public override List<Categoria> GetEntities()
         {
             return base.GetEntities().Where(ct => !ct.Eliminado).ToList();
