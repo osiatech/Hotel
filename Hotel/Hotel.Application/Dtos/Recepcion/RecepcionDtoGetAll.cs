@@ -1,14 +1,11 @@
 ﻿
-
 using Hotel.Application.DtoBase;
-using System.ComponentModel.DataAnnotations;
 using System;
 
 namespace Hotel.Application.Dtos.Recepcion
 {
     public class RecepcionDtoGetAll : BaseDto
     {
-        [Key]
         public int IdRecepcion { get; set; }
         public int? IdCliente { get; set; }
         public int? IdHabitacion { get; set; }
@@ -21,9 +18,6 @@ namespace Hotel.Application.Dtos.Recepcion
         public decimal? TotalPagado { get; set; }
         public decimal? CostoPenalidad { get; set; }
         public string? Observacion { get; set; }
-        public bool? Estado { get; set; }
         public bool Eliminado { get; set; }
-        public DateTime FechaRegistro { get; set; }
-        public DateTime? FechaCreacion { get; set; }
     }
 }

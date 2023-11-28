@@ -9,6 +9,7 @@ namespace Hotel.Application.Contracts
 {
     public interface IRecepcionService : IBaseServices<RecepcionDtoSave, RecepcionDtoUpdate, RecepcionDtoRemove>
     {
-
+        public ServiceResult GetRecepcionByClienteId(int clinteId);
+        public ServiceResult GetRecepcionByHabitacionId(int habitacionId);
     }
 }

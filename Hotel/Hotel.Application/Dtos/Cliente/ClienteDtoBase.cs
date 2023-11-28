@@ -1,7 +1,5 @@
 ﻿
-using Hotel.Application.Core;
 using Hotel.Application.DtoBase;
-using System;
 
 namespace Hotel.Application.Dtos.Cliente
 {

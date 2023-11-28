@@ -8,7 +8,7 @@ namespace Hotel.Application.Dtos.Recepcion
     {
         public int IdRecepcion { get; set; }
         public bool Eliminado { get; set; }
-        public int IdUsuarioElimino { get; set; }
+        public int? IdUsuarioElimino { get; set; }
         public DateTime? FechaElimino { get; set; }
     }
 }

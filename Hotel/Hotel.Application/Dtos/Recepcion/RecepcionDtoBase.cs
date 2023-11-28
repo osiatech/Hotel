@@ -1,14 +1,10 @@
 ﻿
 using Hotel.Application.DtoBase;
-using System;
-using System.Data;
 
 namespace Hotel.Application.Dtos.Recepcion
 {
     public class RecepcionDtoBase : BaseDto
     {
-        public int? IdCliente { get; set; }
-        public int? IdHabitacion { get; set; }
         public decimal? PrecioInicial { get; set; }
         public decimal? Adelanto { get; set; }
         public decimal? PrecioRestante { get; set; }
@@ -16,14 +12,6 @@ namespace Hotel.Application.Dtos.Recepcion
         public decimal? CostoPenalidad { get; set; }
         public string? Observacion { get; set; }
         public bool? Estado { get; set; }
-        public int IdUsuarioCreacion { get; set; }
-        public DateTime? FechaMod { get; set; }
-        public int? IdUsuarioMod { get; set; }
-        public DateTime? FechaElimino { get; set; }
         public bool Eliminado { get; set; }
-        public DateTime? FechaEntrada { get; set; }
-        public DateTime? FechaSalida { get; set; }
-        public DateTime? FechaSalidaConfirmacion { get; set; }
-        public DateTime FechaRegistro { get; set; }
     }
 }

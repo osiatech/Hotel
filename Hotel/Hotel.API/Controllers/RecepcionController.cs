@@ -1,12 +1,9 @@
 ﻿
-
 using Hotel.Application.Contracts;
+using Hotel.Application.Core;
 using Hotel.Application.Dtos.Recepcion;
-using Hotel.Application.Services;
-using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.CompilerServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,7 +14,6 @@ namespace Hotel.API.Controllers
     public class RecepcionController : ControllerBase
     {
         private readonly IRecepcionService recepcionService;
-        private readonly RecepcionService recepcionService2;
         private readonly HotelContext context;
 
         public RecepcionController(IRecepcionService recepcionService, HotelContext context)
@@ -25,7 +21,6 @@ namespace Hotel.API.Controllers
             this.recepcionService = recepcionService;
             this.context = context;
         }
-       
 
         [HttpGet("Get All Recepciones")]
         public IActionResult GetRecepciones()
@@ -39,7 +34,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpGet("Get Recepcion By RecepcionId")]
+        [HttpGet("Get Recepcion By Recepcion id")]
         public IActionResult GetRecepcionByRecepcionId(int IdRecepcion)
         {
             var serviceResult = this.recepcionService.GetById(IdRecepcion);
@@ -52,19 +47,20 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpGet("Get Recepcion by ClienteId")]
-        public List<Recepcion> GetRecepcionByClienteId(int clienteId)
+        [HttpGet("Get Recepcion By Cliente id")]
+        public ServiceResult GetRecepcionByClienteId(int clienteId)
         {
-            var recepcion = this.context.RECEPCION.Where(rc => rc.IdCliente == clienteId).ToList();
-            return recepcion;
+            var serviceResult = this.recepcionService.GetRecepcionByClienteId(clienteId);
+            return serviceResult;
         }
 
-        [HttpGet("Get Recepcion by HabitacionId")]
-        public List<Recepcion> GetRecepcionByHabitacionId(int habitacionId)
+        [HttpGet("Get Recepcion By Habitacion id")]
+        public ServiceResult GetRecepcionByHabitacionId(int habitacionId)
         {
-            var recepciones = this.context.RECEPCION.Where(rh => rh.IdHabitacion == habitacionId).ToList();
-            return recepciones;
+            var serviceResult = this.recepcionService.GetRecepcionByHabitacionId(habitacionId);
+            return serviceResult;
         }
+
         [HttpPost("Save Recepcion")]
         public IActionResult Post([FromBody] RecepcionDtoSave recepcionDtoSave)
         {

@@ -1,6 +1,5 @@
 ﻿
 using Hotel.Application.DtoBase;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Application.Dtos.Cliente

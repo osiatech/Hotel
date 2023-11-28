@@ -191,15 +191,15 @@ namespace Hotel.Application.Services
                 }
 
                 Cliente cliente = new Cliente()
-                {
-                    FechaCreacion = dtoSave.ChangeDate,
-                    IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
-                    FechaRegistro = dtoSave.FechaRegistro,
+                {   
                     NombreCompleto = dtoSave.NombreCompleto,
                     TipoDocumento = dtoSave.TipoDocumento,
                     Documento = dtoSave.Documento,
                     Correo = dtoSave.Correo,
-                    Estado = dtoSave.Estado
+                    Estado = dtoSave.Estado,
+                    FechaCreacion = dtoSave.FechaCreacion,
+                    FechaRegistro = dtoSave.FechaRegistro,
+                    IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
                 };
 
                 this.clienteRepository.Save(cliente);
@@ -290,6 +290,8 @@ namespace Hotel.Application.Services
                     TipoDocumento = dtoUpdate.TipoDocumento,
                     Documento = dtoUpdate.Documento,
                     Correo = dtoUpdate.Correo,
+                    Eliminado = dtoUpdate.Eliminado,
+                    Estado = dtoUpdate.Estado,
                     FechaMod = dtoUpdate.ChangeDate,
                     IdUsuarioMod = dtoUpdate.ChangeUser
                 };

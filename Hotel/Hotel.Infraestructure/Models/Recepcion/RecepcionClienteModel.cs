@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Infraestructure.Models.Recepcion
@@ -17,6 +16,5 @@ namespace Hotel.Infraestructure.Models.Recepcion
         public int? Observacion { get; set; }
         public bool? Estado { get; set; }
         public bool Eliminado { get; set; }
-        public DateTime? FechaCreacion { get; set; }
     }
 }

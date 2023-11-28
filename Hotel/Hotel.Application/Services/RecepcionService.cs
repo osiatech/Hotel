@@ -1,7 +1,6 @@
 ﻿
 using Hotel.Application.Contracts;
 using Hotel.Application.Core;
-using Hotel.Application.Dtos.Cliente;
 using Hotel.Application.Dtos.Recepcion;
 using Hotel.Application.Response;
 using Hotel.Domain.Entities;
@@ -9,7 +8,6 @@ using Hotel.Infraestructure.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Hotel.Application.Services
@@ -18,7 +16,6 @@ namespace Hotel.Application.Services
     {
 
         private readonly IRecepcionRepository recepcionRepository;
-        private readonly IClienteRepository clienteRepository;
         private readonly ILogger<RecepcionService> logger;
         private readonly IConfiguration configuration;
 
@@ -26,8 +23,6 @@ namespace Hotel.Application.Services
         {
             this.recepcionRepository = recepcionRepository;
             this.logger = logger;
-            this.clienteRepository = clienteRepository;
-            this.clienteRepository = clienteRepository;
         }
 
         public ServiceResult GetAll()
@@ -38,23 +33,21 @@ namespace Hotel.Application.Services
             try
             {
                 var recepciones = this.recepcionRepository.GetEntities().
-                    Select(rp => new RecepcionDtoGetAll()
+                    Select(recepcion => new RecepcionDtoGetAll()
                     {
-                        IdRecepcion = rp.IdRecepcion,
-                        IdCliente = rp.IdCliente,
-                        IdHabitacion = rp.IdHabitacion,
-                        FechaEntrada = rp.FechaEntrada,
-                        FechaSalida = rp.FechaSalida,
-                        FechaSalidaConfirmacion = rp.FechaSalidaConfirmacion,
-                        PrecioInicial = rp.PrecioInicial,
-                        Adelanto = rp.Adelanto,
-                        PrecioRestante = rp.PrecioRestante,
-                        TotalPagado = rp.TotalPagado,
-                        CostoPenalidad = rp.CostoPenalidad,
-                        Observacion = rp.Observacion,
-                        Estado = rp.Estado,
-                        Eliminado = rp.Eliminado,
-                        ChangeDate = rp.FechaRegistro
+                        IdRecepcion = recepcion.IdRecepcion,
+                        IdCliente = recepcion.IdCliente,
+                        IdHabitacion = recepcion.IdHabitacion,
+                        FechaEntrada = recepcion.FechaEntrada,
+                        FechaSalida = recepcion.FechaSalida,
+                        FechaSalidaConfirmacion = recepcion.FechaSalidaConfirmacion,
+                        PrecioInicial = recepcion.PrecioInicial,
+                        Adelanto = recepcion.Adelanto,
+                        PrecioRestante = recepcion.PrecioRestante,
+                        TotalPagado = recepcion.TotalPagado,
+                        CostoPenalidad = recepcion.CostoPenalidad,
+                        Observacion = recepcion.Observacion,
+                        Eliminado = recepcion.Eliminado,
                     });
                 serviceResult.Data = recepciones;
                 serviceResult.Message = "RECEPCIONES OBTENIDAS EXITOSAMENTE";
@@ -87,7 +80,10 @@ namespace Hotel.Application.Services
                     TotalPagado = recepcion.TotalPagado,
                     CostoPenalidad = recepcion.CostoPenalidad,
                     Observacion = recepcion.Observacion,
-                    Eliminado = recepcion.Eliminado
+                    Eliminado = recepcion.Eliminado,
+                    FechaEntrada = recepcion.FechaEntrada,
+                    FechaSalida = recepcion.FechaSalida,
+                    FechaSalidaConfirmacion = recepcion.FechaSalidaConfirmacion
                 };
                 serviceResult.Data = recepcionModel;
             }
@@ -99,30 +95,15 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
-
-        public ServiceResult GetRecepcionByClienteId(int id)
+        public ServiceResult GetRecepcionByClienteId(int clienteId)
         {
             ServiceResult serviceResult = new ServiceResult();
 
             try
             {
-                var cliente = this.clienteRepository.GetEntity(id);
-                var recepcion = this.recepcionRepository.GetEntity(id);
-
-                RecepcionDtoGetAll recepcionModel = new RecepcionDtoGetAll()
-                {
-                    IdCliente = cliente.IdCliente,
-                    IdRecepcion = recepcion.IdRecepcion,
-                    IdHabitacion = recepcion.IdHabitacion,
-                    PrecioInicial = recepcion.PrecioInicial,
-                    Adelanto = recepcion.Adelanto,
-                    PrecioRestante = recepcion.PrecioRestante,
-                    TotalPagado = recepcion.TotalPagado,
-                    CostoPenalidad = recepcion.CostoPenalidad,
-                    Observacion = recepcion.Observacion,
-                    Eliminado = recepcion.Eliminado
-                };
-                serviceResult.Data = recepcionModel;
+                //var recepcion = this.context.RECEPCION.Where(rc => rc.IdCliente == clienteId).ToList();   
+                var recepcion = this.recepcionRepository.GetRecepcionByClienteId(clienteId);
+                serviceResult.Data = recepcion;
             }
             catch (Exception exception)
             {
@@ -132,6 +113,23 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
+        public ServiceResult GetRecepcionByHabitacionId(int habitacionId)
+        {
+            ServiceResult serviceResult = new ServiceResult();
+
+            try
+            {
+                //var recepcion = this.context.RECEPCION.Where(rc => rc.IdHabitacion == habitacionId).ToList();   
+                var recepcion = this.recepcionRepository.GetRecepcionByHabitacionId(habitacionId);
+                serviceResult.Data = recepcion;
+            }
+            catch (Exception exception)
+            {
+                serviceResult.Success = false;
+                serviceResult.Message = "ERROR AL OBTENER LA RECEPCION";
+            }
+            return serviceResult;
+        }
 
         public ServiceResult Remove(RecepcionDtoRemove dtoRemove)
         {
@@ -143,7 +141,7 @@ namespace Hotel.Application.Services
                 {
                     IdRecepcion = dtoRemove.IdRecepcion,
                     Eliminado = dtoRemove.Eliminado,
-                    FechaElimino = dtoRemove.ChangeDate,
+                    FechaElimino = dtoRemove.FechaElimino,
                     IdUsuarioElimino = dtoRemove.IdUsuarioElimino
                 };
                 this.recepcionRepository.Remove(recepcion);
@@ -168,6 +166,8 @@ namespace Hotel.Application.Services
             {
                 Recepcion recepcion = new Recepcion()
                 {
+                    IdCliente = dtoSave.IdCliente,
+                    IdHabitacion = dtoSave.IdHabitacion,
                     FechaEntrada = dtoSave.FechaEntrada,
                     FechaSalida = dtoSave.FechaSalida,
                     FechaSalidaConfirmacion = dtoSave.FechaSalidaConfirmacion,
@@ -175,9 +175,11 @@ namespace Hotel.Application.Services
                     IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
                     FechaRegistro = dtoSave.FechaRegistro,
                     PrecioInicial = dtoSave.PrecioInicial,
+                    Observacion = dtoSave.Observacion,
                     Adelanto = dtoSave.Adelanto,
                     PrecioRestante = dtoSave.PrecioRestante,
                     TotalPagado = dtoSave.TotalPagado,
+                    CostoPenalidad = dtoSave.CostoPenalidad,
                     Estado = dtoSave.Estado
                 };
 
@@ -206,13 +208,16 @@ namespace Hotel.Application.Services
                 Recepcion recepcion = new Recepcion()
                 {
                     IdRecepcion = dtoUpdate.IdRecepcion,
-                    IdCliente = dtoUpdate.IdCliente,
-                    IdHabitacion = dtoUpdate.IdHabitacion,
-                    FechaRegistro = dtoUpdate.FechaRegistro,
+                    PrecioInicial = dtoUpdate.PrecioInicial,
+                    Adelanto = dtoUpdate.Adelanto,
+                    PrecioRestante = dtoUpdate.PrecioRestante,
+                    TotalPagado = dtoUpdate.TotalPagado,
+                    CostoPenalidad = dtoUpdate.CostoPenalidad,
+                    Observacion = dtoUpdate.Observacion,
                     FechaMod = dtoUpdate.ChangeDate,
                     IdUsuarioMod = dtoUpdate.ChangeUser,
-                    PrecioInicial = dtoUpdate.PrecioInicial,
-                    Adelanto = dtoUpdate.Adelanto
+                    Estado = dtoUpdate.Estado,
+                    Eliminado = dtoUpdate.Eliminado
                 };
                 this.recepcionRepository.Update(recepcion);
                 serviceResult.Message = "RECEPCION ACTUALIZADA EXITOSAMENTE.";
