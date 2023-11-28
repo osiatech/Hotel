@@ -2,22 +2,22 @@
 using Hotel.Application.Core;
 using Hotel.Application.Dtos.UserRol;
 using Hotel.Application.Exceptions;
+using Hotel.Application.Extentions;
 using Hotel.Application.Response;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 
 namespace Hotel.Application.Services
 {
     public class UserRolService : IUserRolService
     {
         private readonly IUserRol userRolRepository;
-        private readonly ILogger<UserRolService> logger;
+        private readonly ILogger<IUserRolService> logger;
         private readonly IConfiguration configuration;
 
         public UserRolService(IUserRol userRolRepository,
@@ -35,22 +35,23 @@ namespace Hotel.Application.Services
 
             try
             {
-                var userRol = this.userRolRepository.GetEntities().Select(ur =>
-                                                                                new UserRolDtoGetAll()
-                                                                                {
-                                                                                    CreationDate = ur.CreationDate,
-                                                                                    UserRolId = ur.IdUserRol,
-                                                                                    Description = ur.Description,                                                    
-                                                                                    Status = ur.Status,
-                                                                                    RegistryDate = ur.RegistryDate
-                                                                                });
+                var userRol = this.userRolRepository.GetEntities().
+                    Select(ur => new UserRolDtoGetAll()
+                    {
+                        CreationDate = ur.CreationDate,
+                        IdUserRol = ur.IdUserRol,
+                        Description = ur.Description,                                                    
+                        Status = ur.Status,
+                        RegistryDate = ur.RegistryDate
+                    });
+
                 result.Data = userRol;
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = $"Ocurrió un error obteniendo los rols de los usuarios";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorRolUsuario:GetErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
         }
@@ -66,7 +67,6 @@ namespace Hotel.Application.Services
                 UserRolDtoGetAll userRolModel = new UserRolDtoGetAll()
                 {
                     CreationDate = userRol.CreationDate,
-                    UserRolId = userRol.IdUserRol,
                     Description = userRol.Description,
                     Status = userRol.Status,
                     RegistryDate = userRol.RegistryDate
@@ -78,8 +78,8 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = $"Ocurrió un error obteniendo el rol de usuario";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorRolUsuario:GetByIdErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
             }
 
             return result;
@@ -93,7 +93,7 @@ namespace Hotel.Application.Services
             {
                 UserRol userRol = new UserRol()
                 {
-                    IdUserRol = dtoRemove.UserRolId,
+                    IdUserRol = dtoRemove.IdUserRol,
                     Deleted = dtoRemove.Deleted,
                     DeletedDate = dtoRemove.ChangeDate,
                     IdUserDeleted = dtoRemove.ChangeUser
@@ -101,14 +101,14 @@ namespace Hotel.Application.Services
 
                 this.userRolRepository.Remove(userRol);
 
-                result.Message = "El rol de usuario fue removido.";
+                result.Message = this.configuration["MensajesRolUsuarioSuccess:RemoveSuccessMessage"];
             }
             catch (Exception ex)
             {
 
                 result.Success = true;
-                result.Message = $"Ocurrió un error removiendo el rol de usuario.";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorRolUsuario:RemoveErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
             return result;
@@ -121,12 +121,17 @@ namespace Hotel.Application.Services
 
             try
             {
+                var validresult = dtoAdd.IsUserRolValid(this.configuration);
 
-
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
 
                 UserRol userRol = new UserRol()
                 {
-                    IdUserRol = dtoAdd.UserRolId,
                     CreationDate = dtoAdd.ChangeDate,
                     IdCreationUser = dtoAdd.ChangeUser,
                     RegistryDate = dtoAdd.RegistryDate,
@@ -136,22 +141,22 @@ namespace Hotel.Application.Services
 
                 this.userRolRepository.Save(userRol);
 
-                result.Message = this.configuration["MensajesEstdianteSuccess:AddSuccessMessage"];
+                result.Message = this.configuration["MensajesRolUsuarioSuccess:AddSuccessMessage"];
                 result.UserRolId = userRol.IdUserRol;
             }
             catch (UserRolServiceException ursex)
             {
-                result.Success = true;
+                result.Success = false;
                 result.Message = ursex.Message;
-                this.logger.LogError(result.Message, ursex.ToString());
+                this.logger.LogError($"{result.Message}", ursex.ToString());
 
             }
             catch (Exception ex)
             {
 
-                result.Success = true;
-                result.Message = this.configuration["MensajesEstdianteSuccess:AddErrorMessage"];
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Success = false;
+                result.Message = this.configuration["ErrorUsrRol:AddErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
             return result;
@@ -163,17 +168,21 @@ namespace Hotel.Application.Services
 
             try
             {
+                var validresult = dtoUpdate.IsUserRolValid(this.configuration);
 
-
-
-
-
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
 
                 UserRol userRol = new UserRol()
                 {
-                    IdUserRol = dtoUpdate.UserRolId,
+                    IdUserRol = dtoUpdate.IdUserRol,
                     RegistryDate = dtoUpdate.RegistryDate,
                     Description = dtoUpdate.Description,
+                    Deleted = dtoUpdate.Deleted,
                     Status = dtoUpdate.Status,
                     ModifyDate = dtoUpdate.ChangeDate,
                     IdUserModify = dtoUpdate.ChangeUser
@@ -181,14 +190,14 @@ namespace Hotel.Application.Services
 
                 this.userRolRepository.Update(userRol);
 
-                result.Message = "El rol de usuario fue actualizado correctamente.";
+                result.Message = this.configuration["MensajesRolUsuarioSuccess:UpdateSuccessMessage"];
             }
             catch (Exception ex)
             {
 
                 result.Success = false;
-                result.Message = $"Ocurrió un error actualizando el rol de usuario.";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorRolUsuario:UpdateErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
         }

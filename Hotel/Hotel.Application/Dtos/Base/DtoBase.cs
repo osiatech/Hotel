@@ -9,6 +9,8 @@ namespace Hotel.Application.Dtos.Base
         public int ChangeUser { get; set; }
 
         [JsonProperty("changeDate")]
+        public int IdCreationUser { get; set; }
         public DateTime ChangeDate { get; set; }
+        public bool Deleted { get; set; }
     }
 }

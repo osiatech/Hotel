@@ -2,6 +2,7 @@
 using Hotel.Application.Core;
 using Hotel.Application.Dtos.RoomStatus;
 using Hotel.Application.Exceptions;
+using Hotel.Application.Extentions;
 using Hotel.Application.Response;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
@@ -15,7 +16,7 @@ namespace Hotel.Application.Services
     public class RoomStatusService : IRoomStatusService
     {
         private readonly IRoomStatus roomStatusRepository;
-        private readonly ILogger<RoomStatusService> logger;
+        private readonly ILogger<IRoomStatusService> logger;
         private readonly IConfiguration configuration;
 
         public RoomStatusService(IRoomStatus roomStatusRepository,
@@ -32,22 +33,23 @@ namespace Hotel.Application.Services
 
             try
             {
-                var roomStatus = this.roomStatusRepository.GetEntities().Select(rs =>
-                                                                                new RoomStatusDtoGetAll()
-                                                                                {
-                                                                                    CreationDate = rs.CreationDate,
-                                                                                    RoomStatusId = rs.IdRoomStatus,
-                                                                                    Description = rs.Description,
-                                                                                    Status = rs.Status,
-                                                                                    RegistryDate = rs.RegistryDate
-                                                                                });
+                var roomStatus = this.roomStatusRepository.GetEntities().
+                    Select(rs =>new RoomStatusDtoGetAll()
+                    {
+                        CreationDate = rs.CreationDate,
+                        IdRoomStatus = rs.IdRoomStatus,
+                        Description = rs.Description,
+                        Status = rs.Status,
+                        RegistryDate = rs.RegistryDate
+                    });
+
                 result.Data = roomStatus;
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = $"Ocurrió un error obteniendo los estados de las habitaciones";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorEstadoHabitacion:GetErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
         }
@@ -63,7 +65,7 @@ namespace Hotel.Application.Services
                 RoomStatusDtoGetAll roomStatusModel = new RoomStatusDtoGetAll()
                 {
                     CreationDate = roomStatus.CreationDate,
-                    RoomStatusId = roomStatus.IdRoomStatus,
+                    IdRoomStatus = roomStatus.IdRoomStatus,
                     Description = roomStatus.Description,
                     Status = roomStatus.Status,
                     RegistryDate = roomStatus.RegistryDate
@@ -75,8 +77,8 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = $"Ocurrió un error obteniendo el estado de la habitacion.";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorEstadoHabitacion:GetByIdErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
             }
 
             return result;
@@ -98,18 +100,19 @@ namespace Hotel.Application.Services
 
                 this.roomStatusRepository.Remove(roomStatus);
 
-                result.Message = "El estado de la habitacion fue removido.";
+                result.Message = this.configuration["MensajesEstadoHabitacionSuccess:RemoveSuccessMessage"];
             }
             catch (Exception ex)
             {
 
                 result.Success = true;
-                result.Message = $"Ocurrió un error removiendo el estado de la habitacion.";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Message = this.configuration["ErrorEstadoHabitacion:RemoveErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
             return result;
         }
+
         public ServiceResult Save(RoomStatusDtoAdd dtoAdd)
         {
 
@@ -117,20 +120,18 @@ namespace Hotel.Application.Services
 
             try
             {
-                if (string.IsNullOrEmpty(dtoAdd.Description))
-                    throw new RoomStatusServiceException(this.configuration["MensajeValidaciones:estadoHabitacionDescripcionLongitud"]);
+                var validresult = dtoAdd.IsRoomStatusValid(this.configuration);
 
-                if (dtoAdd.Description.Length > 50)
-                    throw new RoomStatusServiceException(this.configuration["MensajeValidaciones:estadoHabitacionDescripcionLongitud"]);
-
-                if (dtoAdd.RegistryDate == DateTime.MinValue)
-                    throw new RoomStatusServiceException(this.configuration["MensajeValidaciones:estadoHabitacionFechaRegistroRequerido"]);
-            
-                
-
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
 
                 RoomStatus roomStatus = new RoomStatus()
                 {
+                    IdRoomStatus = dtoAdd.IdRoomStatus,
                     CreationDate = dtoAdd.ChangeDate,
                     IdCreationUser = dtoAdd.ChangeUser,
                     RegistryDate = dtoAdd.RegistryDate,
@@ -145,21 +146,22 @@ namespace Hotel.Application.Services
             }
             catch (RoomStatusServiceException rssex)
             {
-                result.Success = true;
+                result.Success = false;
                 result.Message = rssex.Message;
-                this.logger.LogError(result.Message, rssex.ToString());
+                this.logger.LogError($"{result.Message}", rssex.ToString());
 
             }
             catch (Exception ex)
             {
 
-                result.Success = true;
-                result.Message = this.configuration["MensajesEstadoHabitacionSuccess:AddErrorMessage"];
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Success = false;
+                result.Message = this.configuration["ErrorEstadoHabitacion:AddErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
             return result;
         }
+
 
         public ServiceResult Update(RoomStatusDtoUpdate dtoUpdate)
         {
@@ -167,11 +169,14 @@ namespace Hotel.Application.Services
 
             try
             {
+                var validresult = dtoUpdate.IsRoomStatusValid(this.configuration);
 
-                // Validaciones //
-
-                
-
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
 
                 RoomStatus roomStatus = new RoomStatus()
                 {
@@ -185,14 +190,14 @@ namespace Hotel.Application.Services
 
                 this.roomStatusRepository.Update(roomStatus);
 
-                result.Message = "El estado de la habitacion fue actualizado correctamente.";
+                result.Message = this.configuration["MensajesEstadoHabitacionSuccess:UpdateSuccessMessage"];
             }
             catch (Exception ex)
             {
 
-                result.Success = true;
-                result.Message = $"Ocurrió un error actualizando el estado de la habitacion.";
-                this.logger.LogError(result.Message, ex.ToString());
+                result.Success = false;
+                result.Message = this.configuration["ErrorEstadoHabitacion:UpdateErrorMessage"];
+                this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
         }

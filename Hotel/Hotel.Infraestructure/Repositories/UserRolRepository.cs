@@ -29,6 +29,7 @@ namespace Hotel.Infraestructure.Repositories
             var userRolToUpdate = base.GetEntity(entity.IdUserRol);
 
             userRolToUpdate.Description = entity.Description;
+            userRolToUpdate.Deleted = entity.Deleted;
             userRolToUpdate.Status = entity.Status;
             userRolToUpdate.RegistryDate = entity.RegistryDate;
             userRolToUpdate.ModifyDate = entity.ModifyDate;

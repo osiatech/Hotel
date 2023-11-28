@@ -14,7 +14,8 @@ namespace Hotel.Infraestructure.Context
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomStatus> RoomStatus { get; set; }
         public DbSet<UserRol> UserRols { get; set; }
-        
+        //public DbSet<Category> Categories { get; set; }
+
     }
 }
 
