@@ -1,4 +1,5 @@
 ﻿
+using Hotel.Application.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,13 @@ namespace Hotel.Web.Controllers
 {
     public class ClienteController : Controller
     {
+        private readonly IClienteService clienteService;
+
+        public ClienteController(IClienteService clienteService)
+        {
+            this.clienteService = clienteService;
+        }
+
         // GET: ClienteController
         public ActionResult Index()
         {

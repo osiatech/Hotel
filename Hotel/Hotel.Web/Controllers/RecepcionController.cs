@@ -1,4 +1,5 @@
 ﻿
+using Hotel.Application.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,13 @@ namespace Hotel.Web.Controllers
 {
     public class RecepcionController : Controller
     {
+        private readonly IRecepcionService recepcionService;
+
+        public RecepcionController(IRecepcionService recepcionService)
+        {
+            this.recepcionService = recepcionService;
+        }
+
         // GET: RecepcionController
         public ActionResult Index()
         {
