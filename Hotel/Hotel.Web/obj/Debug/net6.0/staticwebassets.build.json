@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "BbMk7MMlvLsdG2L98q0vs+XqSQ+XwOFIYv6EGPYKY5U=",
+  "Hash": "PIJEqt6qfNUnzy328HDJ5F9ilhfsgA9gsiVpZi2MAM0=",
   "Source": "Hotel.Web",
   "BasePath": "_content/Hotel.Web",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Projects\\HotelProject\\Hotel\\Hotel.API\\Hotel.API.csproj",
+      "Version": 2,
+      "Source": "Hotel.API",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "Hotel.Web\\wwwroot",
