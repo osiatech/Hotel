@@ -19,10 +19,11 @@ namespace Hotel.Application.Services
         private readonly ILogger<RecepcionService> logger;
         private readonly IConfiguration configuration;
 
-        public RecepcionService(IRecepcionRepository recepcionRepository, ILogger<RecepcionService> logger, IClienteRepository clienteRepository)
+        public RecepcionService(IRecepcionRepository recepcionRepository, ILogger<RecepcionService> logger, IConfiguration configuration)
         {
             this.recepcionRepository = recepcionRepository;
             this.logger = logger;
+            this.configuration = configuration;
         }
 
         public ServiceResult GetAll()
@@ -50,12 +51,12 @@ namespace Hotel.Application.Services
                         Eliminado = recepcion.Eliminado,
                     });
                 serviceResult.Data = recepciones;
-                serviceResult.Message = "RECEPCIONES OBTENIDAS EXITOSAMENTE";
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:GetAll.Success.Message"];
             }
             catch (Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "ERROR OBTENIENDO LAS RECEPCIONES.";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetAll.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
@@ -86,11 +87,12 @@ namespace Hotel.Application.Services
                     FechaSalidaConfirmacion = recepcion.FechaSalidaConfirmacion
                 };
                 serviceResult.Data = recepcionModel;
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:GetById.Success.Message"];
             }
             catch(Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "ERROR AL OBTENER LA RECEPCION";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetById.Error.Message"];
             }
             return serviceResult;
         }
@@ -104,11 +106,12 @@ namespace Hotel.Application.Services
                 //var recepcion = this.context.RECEPCION.Where(rc => rc.IdCliente == clienteId).ToList();   
                 var recepcion = this.recepcionRepository.GetRecepcionByClienteId(clienteId);
                 serviceResult.Data = recepcion;
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:GetRecepcionByClienteId.Success.Message"];
             }
             catch (Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "ERROR AL OBTENER LA RECEPCION";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetRecepcionByClienteId.Error.Messages"];
             }
             return serviceResult;
         }
@@ -122,11 +125,12 @@ namespace Hotel.Application.Services
                 //var recepcion = this.context.RECEPCION.Where(rc => rc.IdHabitacion == habitacionId).ToList();   
                 var recepcion = this.recepcionRepository.GetRecepcionByHabitacionId(habitacionId);
                 serviceResult.Data = recepcion;
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:GetRecepcionByHabitacionId.Success.Message"];
             }
             catch (Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "ERROR AL OBTENER LA RECEPCION";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetRecepcionByHabitacionId.Error.Message"];
             }
             return serviceResult;
         }
@@ -145,12 +149,12 @@ namespace Hotel.Application.Services
                     IdUsuarioElimino = dtoRemove.IdUsuarioElimino
                 };
                 this.recepcionRepository.Remove(recepcion);
-                serviceResult.Message = "RECEPCION REMOVIDA EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:Remove.Success.Message"];
             }
             catch (Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR REMOVIENDO LA RECEPCION.";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:Remove.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
@@ -180,12 +184,13 @@ namespace Hotel.Application.Services
                     PrecioRestante = dtoSave.PrecioRestante,
                     TotalPagado = dtoSave.TotalPagado,
                     CostoPenalidad = dtoSave.CostoPenalidad,
-                    Estado = dtoSave.Estado
+                    Estado = dtoSave.Estado,
+                    Eliminado = dtoSave.Eliminado
                 };
 
                 this.recepcionRepository.Save(recepcion);
 
-                serviceResult.Message = "RECEPCION AGREGADA EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:Save.Success.Message"];
 
                 recepcionResponse.IdRecepcion = recepcion.IdRecepcion;
 
@@ -193,7 +198,7 @@ namespace Hotel.Application.Services
             catch (Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR AGREGANDO LA RECEPCION.";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:Save.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
@@ -220,12 +225,12 @@ namespace Hotel.Application.Services
                     Eliminado = dtoUpdate.Eliminado
                 };
                 this.recepcionRepository.Update(recepcion);
-                serviceResult.Message = "RECEPCION ACTUALIZADA EXITOSAMENTE.";
+                serviceResult.Message = this.configuration["Recepcion.Success.Messages:Update.Success.Message"];
             }
             catch (Exception exception)
             {
                 serviceResult.Success = false;
-                serviceResult.Message = "OCURRIO UN ERROR ACTUALIZANDO LA RECEPCION.";
+                serviceResult.Message = this.configuration["Recepcion.Error.Messages:Update.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
