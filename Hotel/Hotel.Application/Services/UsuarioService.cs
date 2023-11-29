@@ -38,7 +38,7 @@ namespace Hotel.Application.Services
                     Estado = usuario.Estado,
                     NombreCompleto = usuario.NombreCompleto,
                     Correo = usuario.Correo,
-                    IdRolUsuario = (int)usuario.IdRolUsuario,
+                    //IdRolUsuario = (int)usuario.IdRolUsuario,
                     Clave = usuario.Clave,
 
 

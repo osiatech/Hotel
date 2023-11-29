@@ -1802,7 +1802,8 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "Hotel.Infraestructure": "1.0.0"
+          "Hotel.Infraestructure": "1.0.0",
+          "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
           "bin/placeholder/Hotel.Application.dll": {}

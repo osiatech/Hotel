@@ -5,6 +5,7 @@ using Hotel.Application.Contracts;
 using Hotel.Infraestructure.Repositories;
 using Hotel.Application.Dtos.Categoria;
 using Hotel.Application.Core;
+using Hotel.Application.Excepctions;
 
 namespace Hotel.API.Controllers
 {
@@ -48,14 +49,26 @@ namespace Hotel.API.Controllers
         [HttpPost("SaveCategoria")]
         public IActionResult Post([FromBody] CategoriaDtoAdd categoriaAdd)
         {
+
+
+
             ServiceResult result = new ServiceResult();
 
-
-             if(!result.Success)
+            try
             {
-                return BadRequest(result);
+                result = categoriaService.Save(categoriaAdd);
+
+                if (!result.Success)
+                    return BadRequest(result);
+
             }
-            return Ok(categoriaService.Save(categoriaAdd));
+            catch (CategoriaServiceException csex)
+            {
+
+                result.Message = csex.Message;
+                result.Success = false;
+            }
+            return Ok(result);
         }
         // POST api/<CategoriaController>
         [HttpPut("UpdateCategoria")]
@@ -64,9 +77,9 @@ namespace Hotel.API.Controllers
             var result = this.categoriaService.Update(categoriaDtoUpdate);
 
             if (!result.Success)
-            {
+            
                 return BadRequest(result);
-            }
+            
             return Ok(result);
         }
         [HttpPost("RemoveCategoria")]

@@ -15,11 +15,46 @@ namespace Hotel.Infraestructure.Repositories
         {
             this.context = context;
         }
+        public override void Save(Piso entity)
+        {
+            context.Piso.Add(entity);
+            context.SaveChanges();
+        }
 
-      
+        public override void Update(Piso entity)
+        {
+            var pisoToUpdate = base.GetEntity(entity.IdPiso);
+
+            pisoToUpdate.FechaRegistro = entity.FechaRegistro;
+            pisoToUpdate.Descripcion = entity.Descripcion;
+            pisoToUpdate.Estado = entity.Estado;
+            pisoToUpdate.FechaMod = entity.FechaMod;
+            pisoToUpdate.IdUsuarioMod = entity.IdUsuarioMod;
+
+            context.Piso.Update(pisoToUpdate);
+            context.SaveChanges();
+
+        }
+
+        public override void Remove(Piso entity)
+        {
+
+            var pisoToRemove = base.GetEntity(entity.IdPiso);
+
+            pisoToRemove.IdPiso = entity.IdPiso;
+            pisoToRemove.Eliminado = entity.Eliminado;
+            pisoToRemove.FechaElimino = entity.FechaElimino;
+            pisoToRemove.IdUsuarioElimino = entity.IdUsuarioElimino;
+
+            this.context.Update(pisoToRemove);
+            this.context.SaveChanges();
+        }
+
+
         public override List<Piso> GetEntities()
         {
-            return base.GetEntities().Where(ps => !ps.Eliminado).ToList();
+            return this.context.Piso.Where(ps => !ps.Eliminado).OrderByDescending(ps => ps.FechaCreacion).ToList(); 
+            
         }
     }
 }

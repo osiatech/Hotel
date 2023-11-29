@@ -7,21 +7,25 @@ using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Application.Dtos.Piso;
 using Hotel.Domain.Repository;
-
+using Microsoft.Extensions.Configuration;
+using Hotel.Application.Response;
+using Hotel.Application.Validations;
 
 namespace Hotel.Application.Services
 {
     public class PisoService : IPisoService
     {
         private readonly IPisoRepository pisoRepository;
-    private readonly ILogger<IPisoService> logger;
+        private readonly ILogger<IPisoService> logger;
+        private readonly IConfiguration configuration;
 
-    public PisoService(IPisoRepository pisoRepository,
-                                             ILogger<PisoService> logger)
-    {
-        this.pisoRepository = pisoRepository;
-        this.logger = logger;
-    }
+        public PisoService(IPisoRepository pisoRepository,
+                                             ILogger<PisoService> logger, IConfiguration configuration)
+        {
+            this.pisoRepository = pisoRepository;
+            this.logger = logger;
+            this.configuration = configuration;
+        }
 
         public ServiceResult GetAll()
         {
@@ -47,7 +51,7 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = $"Ocurrió un error al obtener los Pisos";
+                result.Message = this.configuration[$"ErrorPiso:GetErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
@@ -78,7 +82,7 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = "Error al obtener el Piso";
+                result.Message = this.configuration[$"ErrorPiso:GetByIdErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
@@ -97,13 +101,13 @@ namespace Hotel.Application.Services
                     IdUsuarioElimino = dtoRemove.ChangeUser
                 };
                 this.pisoRepository.Remove(piso);
-                result.Message = "Piso Borrado Exitosamente.";
+                result.Message = this.configuration["MensajePisoSucess:RemoveSucess"];
 
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = "Error al Eliminar el Piso";
+                result.Message = this.configuration["ErrorPiso:AddErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
@@ -112,9 +116,19 @@ namespace Hotel.Application.Services
         public ServiceResult Save(PisoDtoAdd dtoAdd)
         {
             ServiceResult result = new ServiceResult();
-            //PisoResponse responsePiso = new PisoResponse();
+            PisoResponse responsePiso = new PisoResponse();
+
             try
             {
+                var validresult = dtoAdd.IsPisoValid(this.configuration);
+
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
+
                 Piso piso = new Piso()
                 {
                     IdUsuarioMod = dtoAdd.ChangeUser,
@@ -128,14 +142,14 @@ namespace Hotel.Application.Services
                 };
 
                 this.pisoRepository.Save(piso);
-                result.Message = "Piso Agregado Exitosamente.";
+                result.Message = this.configuration["MensajePisoSucess:AddSucess"];
                 result.Data = piso;
 
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = "Error al guardar el Piso";
+                result.Message = this.configuration["ErrorPiso:AddErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
@@ -147,6 +161,15 @@ namespace Hotel.Application.Services
             ServiceResult result = new ServiceResult();
             try
             {
+                var validresult = dtoUpdate.IsPisoValid(this.configuration);
+
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
+
                 Piso piso = new Piso()
                 {
                     IdPiso = dtoUpdate.IdPiso,
@@ -161,7 +184,7 @@ namespace Hotel.Application.Services
                 };
 
                 this.pisoRepository.Update(piso);
-                result.Message = "Piso Actualizado Exitosamente.";
+                result.Message = this.configuration["MensajePisoSucess:UpdateSucess"];
 
 
             }

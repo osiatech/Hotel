@@ -13,6 +13,7 @@ using Hotel.Application.Excepctions;
 using Hotel.Application.Validations;
 using Hotel.Application.Response;
 
+
 namespace Hotel.Application.Services
 {
     public class CategoriaService : ICategoriaService
@@ -54,7 +55,7 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = this.configuration[$"ErrorCategoria : GetErrorMessage"];
+                result.Message = this.configuration[$"ErrorCategoria:GetErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
@@ -85,7 +86,7 @@ namespace Hotel.Application.Services
             {
 
                 result.Success = false;
-                result.Message = this.configuration["ErrorCategoria : GetByIdErrorMessage"];
+                result.Message = this.configuration["ErrorCategoria:GetByIdErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
@@ -105,13 +106,13 @@ namespace Hotel.Application.Services
                     IdUsuarioElimino = dtoRemove.ChangeUser
                 };
                 this.categoriaRepository.Remove(categoria);
-                result.Message = this.configuration["MensajeSucess : RemoveSucess"];
+                result.Message = this.configuration["MensajeCategoriaSucess:RemoveSucess"];
 
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = this.configuration["ErrorCategoria : AddErrorMessage"];
+                result.Message = this.configuration["ErrorCategoria:AddErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;
@@ -127,11 +128,16 @@ namespace Hotel.Application.Services
 
                 var validresult = dtoAdd.IsCategoriaValid(this.configuration);
 
-
+                if (!validresult.Success)
+                {
+                    result.Message = validresult.Message;
+                    result.Success = validresult.Success;
+                    return result;
+                }
 
                 Categoria categoria = new Categoria()
                 {
-                    IdUsuarioMod = dtoAdd.ChangeUser,
+                    IdUsuarioCreacion = dtoAdd.ChangeUser,
                     FechaCreacion = dtoAdd.FechaCreacion,
                     FechaRegistro = dtoAdd.FechaRegistro,
                     Descripcion = dtoAdd.Descripcion,
@@ -142,7 +148,7 @@ namespace Hotel.Application.Services
                 };
 
                 this.categoriaRepository.Save(categoria);
-                result.Message = this.configuration["MensajeSucess : AddSucess"];
+                result.Message = this.configuration["MensajeCategoriaSucess:AddSucess"];
                 result.Data = categoria;
 
             }
@@ -155,7 +161,7 @@ namespace Hotel.Application.Services
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = this.configuration["ErrorCategoria: AddErrorMessage"];
+                result.Message = this.configuration["ErrorCategoria:AddErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
 
             }
@@ -190,14 +196,14 @@ namespace Hotel.Application.Services
                 };
 
                 this.categoriaRepository.Update(categoria);
-                result.Message = this.configuration["MensajeSucess: UpdateSucess"];
+                result.Message = this.configuration["MensajeCategoriaSucess:UpdateSucess"];
 
 
             }
             catch (Exception ex)
             {
                 result.Success = false;
-                result.Message = "";
+                result.Message = this.configuration["ErrorCategoria:UpdateErrorMessage"];
                 this.logger.LogError($"{result.Message}", ex.ToString());
             }
             return result;

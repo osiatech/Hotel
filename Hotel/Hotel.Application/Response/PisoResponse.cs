@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Application.Response
 {
-    public class CategoriaResponse : ServiceResult
+    public class PisoResponse : ServiceResult
     {
-        public int IdCategoria { get; set; }
-
+        public int IdPiso { get; set; }
     }
 }

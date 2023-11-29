@@ -9,7 +9,7 @@ namespace Hotel.Application.Dtos.Categoria
         public DateTime? FechaRegistro { get; set; }
         public string? Descripcion { get; set; }
         public bool? Estado { get; set; }
-        public int IdUsuarioCreacion { get; set; }
+        public int? IdCategoria { get; set; }
         public DateTime? FechaCreacion { get; set; }
     }
 }

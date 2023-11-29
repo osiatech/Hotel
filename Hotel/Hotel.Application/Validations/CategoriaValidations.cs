@@ -13,21 +13,22 @@ namespace Hotel.Application.Validations
         {
             ServiceResult serviceresult = new ServiceResult();
             if (string.IsNullOrEmpty(categoriaDto.Descripcion))
-            {
-                throw new CategoriaServiceException( configuration["MensajeValidaciones : categoriaDescripcionRequerido"]);
+            
+                throw new CategoriaServiceException( configuration["MensajeValidaciones:categoriaDescripcionRequerido"]);
                
 
-            }
+            
             if (categoriaDto.Descripcion.Length > 50)
-            {
-                throw new CategoriaServiceException(configuration["MensajeValidaciones : categoriaDescripcionLongitud"]);
+            
+                throw new CategoriaServiceException(configuration["MensajeValidaciones:categoriaDescripcionLongitud"]);
                
-            }
+            
+            
             if (!categoriaDto.FechaRegistro.HasValue)
-            {
-                throw new CategoriaServiceException(configuration["MensajeValidaciones: categoriaFechaRegistroRequerido"]);
+            
+                throw new CategoriaServiceException(configuration["MensajeValidaciones:categoriaFechaRegistroRequerido"]);
                
-            }
+            
             return serviceresult;
 
 
