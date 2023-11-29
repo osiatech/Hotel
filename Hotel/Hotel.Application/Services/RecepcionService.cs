@@ -93,6 +93,7 @@ namespace Hotel.Application.Services
             {
                 serviceResult.Success = false;
                 serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetById.Error.Message"];
+                this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
         }
@@ -112,6 +113,7 @@ namespace Hotel.Application.Services
             {
                 serviceResult.Success = false;
                 serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetRecepcionByClienteId.Error.Messages"];
+                this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
         }
@@ -131,6 +133,7 @@ namespace Hotel.Application.Services
             {
                 serviceResult.Success = false;
                 serviceResult.Message = this.configuration["Recepcion.Error.Messages:GetRecepcionByHabitacionId.Error.Message"];
+                this.logger.LogError(serviceResult.Message, exception.ToString());
             }
             return serviceResult;
         }
