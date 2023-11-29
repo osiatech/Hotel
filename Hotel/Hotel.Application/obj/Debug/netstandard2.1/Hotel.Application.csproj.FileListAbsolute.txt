@@ -13,3 +13,4 @@ C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hot
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\bin\Debug\netstandard2.1\Hotel.Domain.pdb
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.AssemblyReference.cache
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.csproj.CopyComplete
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Application\obj\Debug\netstandard2.1\Hotel.Application.sourcelink.json

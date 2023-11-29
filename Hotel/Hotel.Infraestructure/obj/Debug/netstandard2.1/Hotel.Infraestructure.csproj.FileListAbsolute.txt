@@ -11,3 +11,4 @@ C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Infraestructure\obj\Debug\netstandard2.1
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Infraestructure\obj\Debug\netstandard2.1\Hotel.Infraestructure.csproj.CopyComplete
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Infraestructure\obj\Debug\netstandard2.1\Hotel.Infraestructure.dll
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Infraestructure\obj\Debug\netstandard2.1\Hotel.Infraestructure.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Infraestructure\obj\Debug\netstandard2.1\Hotel.Infraestructure.sourcelink.json

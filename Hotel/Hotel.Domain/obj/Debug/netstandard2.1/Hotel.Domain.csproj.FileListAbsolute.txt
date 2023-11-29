@@ -8,3 +8,4 @@ C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Do
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.AssemblyReference.cache
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.sourcelink.json

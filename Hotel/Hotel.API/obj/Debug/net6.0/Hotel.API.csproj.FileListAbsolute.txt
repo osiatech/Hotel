@@ -65,3 +65,4 @@ C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Application.d
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Application.pdb
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Ioc.dll
 C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.API\bin\Debug\net6.0\Hotel.Ioc.pdb
+C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.API\obj\Debug\net6.0\Hotel.API.sourcelink.json
