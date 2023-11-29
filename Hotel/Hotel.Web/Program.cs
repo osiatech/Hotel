@@ -1,6 +1,13 @@
+using Hotel.Infraestructure.Context;
+using Microsoft.EntityFrameworkCore;
+using Hotel.Ioc.Dependencies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HotelContext")));
+builder.Services.AddCategoriaDependency();
+builder.Services.AddPisoDependency();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

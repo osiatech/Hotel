@@ -5,7 +5,7 @@ using Hotel.Infraestructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Hotel.IOC.Dependencies
+namespace Hotel.Ioc.Dependencies
 {
     public static class CategoriaDependency
     {

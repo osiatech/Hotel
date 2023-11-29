@@ -3,7 +3,6 @@ using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Infraestructure.Repositories;
 using Hotel.Ioc.Dependencies;
-using Hotel.IOC.Dependencies;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -14,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Agregar dependencia del contexto //
 var connectionString = builder.Configuration.GetConnectionString("HotelContext");
 
-builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HotelContext")));
 // Dependencia de los repositorios //
 builder.Services.AddCategoriaDependency();
 builder.Services.AddPisoDependency();
