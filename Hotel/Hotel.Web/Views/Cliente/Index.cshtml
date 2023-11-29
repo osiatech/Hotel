@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Clientes</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,28 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdCliente)
+                @Html.DisplayNameFor(model => model.NombreCompleto)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.TipoDocumento)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreCompleto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Documento)
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.Eliminado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChangeUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChangeDate)
+                @Html.DisplayNameFor(model => model.Correo)
             </th>
             <th></th>
         </tr>
@@ -43,33 +34,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCliente)
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.TipoDocumento)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Documento)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Eliminado)
+                @Html.DisplayFor(modelItem => item.Correo)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.ChangeUser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChangeDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.IdCliente }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.IdCliente }) |
             </td>
         </tr>
 }

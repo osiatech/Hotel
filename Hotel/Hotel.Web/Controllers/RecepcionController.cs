@@ -17,7 +17,14 @@ namespace Hotel.Web.Controllers
         // GET: RecepcionController
         public ActionResult Index()
         {
-            return View();
+            var serviceResult = this.recepcionService.GetAll();
+
+            if(!serviceResult.Success)
+            {
+                ViewBag.Message = serviceResult.Message; //ViewBag es parte de ASP.NET MVC. Este es una variable del tipo dynamic lo cual hace que se se vaya construyendo apartir de las diferentes propiedades que le pasemos o asignemos
+                return View();
+            }
+            return View(serviceResult.Data);
         }
 
         // GET: RecepcionController/Details/5

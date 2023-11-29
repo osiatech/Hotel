@@ -17,7 +17,14 @@ namespace Hotel.Web.Controllers
         // GET: ClienteController
         public ActionResult Index()
         {
-            return View();
+            var serviceResult = this.clienteService.GetAll();
+
+            if(!serviceResult.Success)
+            {
+                ViewBag.Messages = serviceResult.Message;
+                return View();
+            }
+            return View(serviceResult.Data);
         }
 
         // GET: ClienteController/Details/5

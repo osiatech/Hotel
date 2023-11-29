@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Recepciones</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,15 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdRecepcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdHabitacion)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaEntrada)
             </th>
@@ -48,30 +39,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Observacion)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Eliminado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChangeUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChangeDate)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdRecepcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdHabitacion)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaEntrada)
             </td>
@@ -100,18 +73,9 @@
                 @Html.DisplayFor(modelItem => item.Observacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Eliminado)
-            </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ChangeUser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChangeDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.IdRecepcion }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IdRecepcion }) |
             </td>
         </tr>
 }

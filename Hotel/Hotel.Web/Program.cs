@@ -1,7 +1,5 @@
 
 using Hotel.Infraestructure.Context;
-using Hotel.Infraestructure.Interfaces;
-using Hotel.Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Hotel.Ioc.Dependencies;
 
