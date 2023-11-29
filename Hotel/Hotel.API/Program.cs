@@ -1,8 +1,4 @@
 
-//using Hotel.Application.Contracts;
-//using Hotel.Application.Services;
-//using Hotel.Infraestructure.Interfaces;
-//using Hotel.Infraestructure.Repositories;
 using Hotel.Infraestructure.Context;
 using Hotel.Ioc.Dependencies;
 using Microsoft.EntityFrameworkCore;
