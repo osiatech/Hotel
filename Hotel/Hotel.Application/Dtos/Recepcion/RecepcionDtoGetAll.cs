@@ -19,5 +19,7 @@ namespace Hotel.Application.Dtos.Recepcion
         public decimal? CostoPenalidad { get; set; }
         public string? Observacion { get; set; }
         public bool Eliminado { get; set; }
+        public DateTime? FechaRegistro { get; set; }
+        public DateTime? FechaCreacion { get; set; }
     }
 }

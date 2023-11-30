@@ -43,7 +43,9 @@ namespace Hotel.Application.Services
                         Correo = cliente.Correo,
                         Eliminado = cliente.Eliminado,
                         ChangeDate = cliente.FechaMod,
-                        ChangeUser = cliente.IdUsuarioMod
+                        ChangeUser = cliente.IdUsuarioMod,
+                        FechaRegistro = cliente.FechaRegistro,
+                        FechaCreacion = cliente.FechaCreacion
                     });
                 serviceResult.Data = clientes;
                 serviceResult.Message = this.configuration["Cliente.Success.Messages:GetAll.Success.Message"];

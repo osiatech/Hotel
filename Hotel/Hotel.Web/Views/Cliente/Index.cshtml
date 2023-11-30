@@ -27,6 +27,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.Correo)
             </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -48,6 +56,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Correo)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+             </td>
+
+             <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+             </td>
 
             <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.IdCliente }) |

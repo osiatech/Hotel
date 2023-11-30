@@ -49,6 +49,8 @@ namespace Hotel.Application.Services
                         CostoPenalidad = recepcion.CostoPenalidad,
                         Observacion = recepcion.Observacion,
                         Eliminado = recepcion.Eliminado,
+                        FechaRegistro = recepcion.FechaRegistro,
+                        FechaCreacion = recepcion.FechaCreacion
                     });
                 serviceResult.Data = recepciones;
                 serviceResult.Message = this.configuration["Recepcion.Success.Messages:GetAll.Success.Message"];

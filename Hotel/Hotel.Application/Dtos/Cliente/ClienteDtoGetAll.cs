@@ -1,5 +1,6 @@
 ﻿
 using Hotel.Application.DtoBase;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Application.Dtos.Cliente
@@ -13,5 +14,7 @@ namespace Hotel.Application.Dtos.Cliente
         public string? Correo {  get; set; }
         public string? Documento { get; set; }
         public bool Eliminado { get; set; }
+        public DateTime? FechaRegistro { get; set; }
+        public DateTime? FechaCreacion { get; set; }
     }
 }
