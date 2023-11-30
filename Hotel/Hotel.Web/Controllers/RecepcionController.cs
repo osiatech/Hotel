@@ -30,7 +30,14 @@ namespace Hotel.Web.Controllers
         // GET: RecepcionController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var serviceResult = this.recepcionService.GetById(id);
+
+            if(!serviceResult.Success)
+            {
+                ViewBag.Message = serviceResult.Message;
+                return View();
+            }
+            return View(serviceResult.Data);
         }
 
         // GET: RecepcionController/Create

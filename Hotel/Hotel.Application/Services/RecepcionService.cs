@@ -86,7 +86,9 @@ namespace Hotel.Application.Services
                     Eliminado = recepcion.Eliminado,
                     FechaEntrada = recepcion.FechaEntrada,
                     FechaSalida = recepcion.FechaSalida,
-                    FechaSalidaConfirmacion = recepcion.FechaSalidaConfirmacion
+                    FechaSalidaConfirmacion = recepcion.FechaSalidaConfirmacion,
+                    FechaRegistro = recepcion.FechaRegistro,
+                    FechaCreacion = recepcion.FechaCreacion
                 };
                 serviceResult.Data = recepcionModel;
                 serviceResult.Message = this.configuration["Recepcion.Success.Messages:GetById.Success.Message"];
