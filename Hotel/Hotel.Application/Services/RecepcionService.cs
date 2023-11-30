@@ -229,7 +229,12 @@ namespace Hotel.Application.Services
                     FechaMod = dtoUpdate.ChangeDate,
                     IdUsuarioMod = dtoUpdate.ChangeUser,
                     Estado = dtoUpdate.Estado,
-                    Eliminado = dtoUpdate.Eliminado
+                    Eliminado = dtoUpdate.Eliminado,
+                    FechaEntrada = dtoUpdate.FechaEntrada,
+                    FechaSalida = dtoUpdate.FechaSalida,
+                    FechaSalidaConfirmacion = dtoUpdate.FechaSalidaConfirmacion,
+                    FechaRegistro = dtoUpdate.FechaRegistro
+                    
                 };
                 this.recepcionRepository.Update(recepcion);
                 serviceResult.Message = this.configuration["Recepcion.Success.Messages:Update.Success.Message"];

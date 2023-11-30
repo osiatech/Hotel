@@ -1,5 +1,6 @@
 ﻿
 using Hotel.Application.Contracts;
+using Hotel.Application.Dtos.Recepcion;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -64,7 +65,29 @@ namespace Hotel.Web.Controllers
         // GET: RecepcionController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var serviceResult = this.recepcionService.GetById(id);
+
+            if(!serviceResult.Success)
+            {
+                ViewBag.Message = serviceResult.Message;
+                return View();
+            }
+            var data = (RecepcionDtoGetAll)serviceResult.Data;
+            RecepcionDtoUpdate recepcionDtoUpdate = new RecepcionDtoUpdate()
+            {
+                IdRecepcion = data.IdRecepcion,
+                FechaEntrada = data.FechaEntrada,
+                FechaSalida = data.FechaSalida,
+                FechaSalidaConfirmacion = data.FechaSalidaConfirmacion,
+                PrecioInicial = data.PrecioInicial,
+                Adelanto = data.Adelanto,
+                PrecioRestante = data.PrecioRestante,
+                TotalPagado  = data.TotalPagado,
+                CostoPenalidad = data.CostoPenalidad,
+                Observacion = data.Observacion,
+                FechaRegistro = data.FechaRegistro
+            };
+            return View(recepcionDtoUpdate);
         }
 
         // POST: RecepcionController/Edit/5

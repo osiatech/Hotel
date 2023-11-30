@@ -297,7 +297,8 @@ namespace Hotel.Application.Services
                     Eliminado = dtoUpdate.Eliminado,
                     Estado = dtoUpdate.Estado,
                     FechaMod = dtoUpdate.ChangeDate,
-                    IdUsuarioMod = dtoUpdate.ChangeUser
+                    IdUsuarioMod = dtoUpdate.ChangeUser,
+                    FechaRegistro = dtoUpdate.FechaRegistro
                 };
                 this.clienteRepository.Update(cliente);
                 serviceResult.Message = this.configuration["Cliente.Success.Messages:Update.Success.Message"];

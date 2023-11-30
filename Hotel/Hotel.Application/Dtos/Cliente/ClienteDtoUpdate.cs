@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Application.Dtos.Cliente
@@ -7,5 +8,6 @@ namespace Hotel.Application.Dtos.Cliente
     {
         [Key]
         public int IdCliente { get; set; }
+        public DateTime? FechaRegistro { get; set; } 
     }    
  }
