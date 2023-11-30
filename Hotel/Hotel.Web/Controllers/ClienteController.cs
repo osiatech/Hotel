@@ -1,5 +1,6 @@
 ﻿
 using Hotel.Application.Contracts;
+using Hotel.Application.Core;
 using Hotel.Application.Dtos.Cliente;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,14 +51,23 @@ namespace Hotel.Web.Controllers
         // POST: ClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ClienteDtoSave clienteDtoSave)
         {
+            ServiceResult serviceResult = new ServiceResult();
             try
             {
+                serviceResult = this.clienteService.Save(clienteDtoSave);
+
+                if(!serviceResult.Success)
+                {
+                    ViewBag.Message =serviceResult.Message;
+                    return View();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = serviceResult.Message;
                 return View();
             }
         }
@@ -88,14 +98,23 @@ namespace Hotel.Web.Controllers
         // POST: ClienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ClienteDtoUpdate clienteDtoUpdate)
         {
+            ServiceResult serviceResult = new ServiceResult();
             try
             {
+                serviceResult = this.clienteService.Update(clienteDtoUpdate);
+
+                if(!serviceResult.Success)
+                {
+                    ViewBag.Message = serviceResult.Message;
+                    return View();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = serviceResult.Message;
                 return View();
             }
         }
