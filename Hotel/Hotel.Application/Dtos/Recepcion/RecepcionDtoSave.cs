@@ -5,8 +5,6 @@ namespace Hotel.Application.Dtos.Recepcion
 {
     public class RecepcionDtoSave : RecepcionDtoBase
     {
-        public int? IdCliente { get; set; } 
-        public int? IdHabitacion { get; set; }
         public DateTime? FechaRegistro { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public int? IdUsuarioCreacion { get; set; }

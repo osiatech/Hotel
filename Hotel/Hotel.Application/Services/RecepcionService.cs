@@ -177,22 +177,18 @@ namespace Hotel.Application.Services
             {
                 Recepcion recepcion = new Recepcion()
                 {
-                    IdCliente = dtoSave.IdCliente,
-                    IdHabitacion = dtoSave.IdHabitacion,
                     FechaEntrada = dtoSave.FechaEntrada,
                     FechaSalida = dtoSave.FechaSalida,
                     FechaSalidaConfirmacion = dtoSave.FechaSalidaConfirmacion,
-                    FechaCreacion = dtoSave.ChangeDate,
-                    IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
-                    FechaRegistro = dtoSave.FechaRegistro,
                     PrecioInicial = dtoSave.PrecioInicial,
                     Observacion = dtoSave.Observacion,
                     Adelanto = dtoSave.Adelanto,
                     PrecioRestante = dtoSave.PrecioRestante,
                     TotalPagado = dtoSave.TotalPagado,
                     CostoPenalidad = dtoSave.CostoPenalidad,
-                    Estado = dtoSave.Estado,
-                    Eliminado = dtoSave.Eliminado
+                    FechaCreacion = dtoSave.FechaCreacion,
+                    IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
+                    FechaRegistro = dtoSave.FechaRegistro,
                 };
 
                 this.recepcionRepository.Save(recepcion);

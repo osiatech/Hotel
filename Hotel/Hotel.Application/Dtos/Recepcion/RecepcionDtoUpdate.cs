@@ -12,5 +12,6 @@ namespace Hotel.Application.Dtos.Recepcion
         public DateTime? FechaEntrada { get; set; }
         public DateTime? FechaSalida { get; set; }
         public DateTime? FechaSalidaConfirmacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 using Hotel.Application.Contracts;
+using Hotel.Application.Core;
 using Hotel.Application.Dtos.Recepcion;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Web.Controllers
@@ -50,14 +50,24 @@ namespace Hotel.Web.Controllers
         // POST: RecepcionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(RecepcionDtoSave recepcionDtoSave)
         {
+            ServiceResult serviceResult = new ServiceResult();
             try
             {
+                serviceResult = this.recepcionService.Save(recepcionDtoSave);
+
+                if(!serviceResult.Success)
+                {
+                    ViewBag.Message = serviceResult.Message;
+                    return View();
+                }
                 return RedirectToAction(nameof(Index));
+
             }
             catch
             {
+                ViewBag.Message = serviceResult.Message;
                 return View();
             }
         }
@@ -85,7 +95,8 @@ namespace Hotel.Web.Controllers
                 TotalPagado  = data.TotalPagado,
                 CostoPenalidad = data.CostoPenalidad,
                 Observacion = data.Observacion,
-                FechaRegistro = data.FechaRegistro
+                FechaRegistro = data.FechaRegistro,
+                FechaCreacion = data.FechaCreacion
             };
             return View(recepcionDtoUpdate);
         }
@@ -93,35 +104,23 @@ namespace Hotel.Web.Controllers
         // POST: RecepcionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(RecepcionDtoUpdate recepcionDtoUpdate)
         {
+            ServiceResult serviceResult = new ServiceResult();
             try
             {
+                serviceResult = this.recepcionService.Update(recepcionDtoUpdate);
+
+                if(!serviceResult.Success)
+                {
+                    ViewBag.Message = serviceResult.Message;
+                    return View();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
-            }
-        }
-
-        // GET: RecepcionController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: RecepcionController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
+                ViewBag.Message = serviceResult.Message;
                 return View();
             }
         }
