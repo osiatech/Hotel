@@ -48,7 +48,6 @@ namespace Hotel.Application.Services
                         TotalPagado = recepcion.TotalPagado,
                         CostoPenalidad = recepcion.CostoPenalidad,
                         Observacion = recepcion.Observacion,
-                        Eliminado = recepcion.Eliminado,
                         FechaRegistro = recepcion.FechaRegistro,
                         FechaCreacion = recepcion.FechaCreacion
                     });
@@ -83,7 +82,6 @@ namespace Hotel.Application.Services
                     TotalPagado = recepcion.TotalPagado,
                     CostoPenalidad = recepcion.CostoPenalidad,
                     Observacion = recepcion.Observacion,
-                    Eliminado = recepcion.Eliminado,
                     FechaEntrada = recepcion.FechaEntrada,
                     FechaSalida = recepcion.FechaSalida,
                     FechaSalidaConfirmacion = recepcion.FechaSalidaConfirmacion,
@@ -186,9 +184,9 @@ namespace Hotel.Application.Services
                     PrecioRestante = dtoSave.PrecioRestante,
                     TotalPagado = dtoSave.TotalPagado,
                     CostoPenalidad = dtoSave.CostoPenalidad,
-                    FechaCreacion = dtoSave.FechaCreacion,
                     IdUsuarioCreacion = dtoSave.IdUsuarioCreacion,
                     FechaRegistro = dtoSave.FechaRegistro,
+                    FechaCreacion = dtoSave.FechaCreacion
                 };
 
                 this.recepcionRepository.Save(recepcion);
@@ -224,12 +222,11 @@ namespace Hotel.Application.Services
                     Observacion = dtoUpdate.Observacion,
                     FechaMod = dtoUpdate.ChangeDate,
                     IdUsuarioMod = dtoUpdate.ChangeUser,
-                    Estado = dtoUpdate.Estado,
-                    Eliminado = dtoUpdate.Eliminado,
                     FechaEntrada = dtoUpdate.FechaEntrada,
                     FechaSalida = dtoUpdate.FechaSalida,
                     FechaSalidaConfirmacion = dtoUpdate.FechaSalidaConfirmacion,
-                    FechaRegistro = dtoUpdate.FechaRegistro
+                    FechaRegistro = dtoUpdate.FechaRegistro,
+                    FechaCreacion = dtoUpdate.FechaCreacion
                     
                 };
                 this.recepcionRepository.Update(recepcion);

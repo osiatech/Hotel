@@ -13,7 +13,6 @@ namespace Hotel.Application.Dtos.Cliente
         public string? NombreCompleto { get; set; }
         public string? Correo {  get; set; }
         public string? Documento { get; set; }
-        public bool Eliminado { get; set; }
         public DateTime? FechaRegistro { get; set; }
         public DateTime? FechaCreacion { get; set; }
     }

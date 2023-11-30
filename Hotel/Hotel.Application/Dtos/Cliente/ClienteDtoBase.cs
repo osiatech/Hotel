@@ -1,5 +1,6 @@
 ﻿
 using Hotel.Application.DtoBase;
+using System;
 
 namespace Hotel.Application.Dtos.Cliente
 {
@@ -9,7 +10,6 @@ namespace Hotel.Application.Dtos.Cliente
         public string? TipoDocumento { get; set; }
         public string? Documento {  get; set; }
         public string? Correo {  get; set; }
-        public bool? Estado { get; set; }
-        public bool Eliminado { get; set; }
+        public DateTime? FechaRegistro { get; set; }
     }
 }
