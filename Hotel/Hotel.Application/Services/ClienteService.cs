@@ -3,6 +3,7 @@ using Hotel.Application.Contracts;
 using Hotel.Application.Core;
 using Hotel.Application.DtoBase.Cliente;
 using Hotel.Application.Dtos.Cliente;
+using Hotel.Application.Extentions;
 using Hotel.Application.Response;
 using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Interfaces;
@@ -120,6 +121,15 @@ namespace Hotel.Application.Services
 
             try
             {
+                //*************Validaciones************************
+                var clienteDataValidations = dtoSave.ClienteDataValidations(this.configuration);
+
+                if(!clienteDataValidations.Success)
+                {
+                    clienteResponse.Success = clienteDataValidations.Success;
+                    clienteResponse.Message = clienteDataValidations.Message;
+                    return clienteResponse;
+                }
                 Cliente cliente = new Cliente()
                 {   
                     NombreCompleto = dtoSave.NombreCompleto,
@@ -153,6 +163,16 @@ namespace Hotel.Application.Services
 
             try
             {
+                //*********Validaciones********************************
+                var clienteDataValidations = dtoUpdate.ClienteDataValidations(this.configuration);
+
+                if (!clienteDataValidations.Success)
+                {
+                    serviceResult.Success = clienteDataValidations.Success;
+                    serviceResult.Message = clienteDataValidations.Message;
+                    return serviceResult;
+                }
+
                 Cliente cliente = new Cliente()
                 {
                     IdCliente = dtoUpdate.IdCliente,
