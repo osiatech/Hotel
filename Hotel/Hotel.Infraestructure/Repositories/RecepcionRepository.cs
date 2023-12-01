@@ -25,8 +25,8 @@ namespace Hotel.Infraestructure.Repositories
 
         public override void Save(Recepcion entity)
         {
-            context.RECEPCION.Add(entity);
-            context.SaveChanges();
+            base.Save(entity);
+            this.context.SaveChanges();
         }
 
         public override void Update(Recepcion entity)

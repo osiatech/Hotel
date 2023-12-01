@@ -2,7 +2,6 @@
 using Hotel.Application.Contracts;
 using Hotel.Application.Core;
 using Hotel.Application.Dtos.Cliente;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Web.Controllers
