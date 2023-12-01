@@ -1,0 +1,117 @@
+﻿
+@model IEnumerable<Hotel.Web.Models.Responses.RecepcionViewResponse>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>RecepcionesHttpClient</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSalida)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSalidaConfirmacion)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioInicial)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Adelanto)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioRestante)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPagado)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CostoPenalidad)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Observacion)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaEntrada)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSalida)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSalidaConfirmacion)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioInicial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adelanto)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioRestante)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPagado)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostoPenalidad)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacion)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRegistro)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdRecepcion }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdRecepcion }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,15 +14,13 @@ namespace Hotel.API.Controllers
     public class RecepcionController : ControllerBase
     {
         private readonly IRecepcionService recepcionService;
-        private readonly HotelContext context;
 
-        public RecepcionController(IRecepcionService recepcionService, HotelContext context)
+        public RecepcionController(IRecepcionService recepcionService)
         {
             this.recepcionService = recepcionService;
-            this.context = context;
         }
 
-        [HttpGet("Get All Recepciones")]
+        [HttpGet("GetAllRecepciones")]
         public IActionResult GetRecepciones()
         {
             var serviceResult = this.recepcionService.GetAll();
@@ -34,7 +32,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpGet("Get Recepcion By Recepcion id")]
+        [HttpGet("GetRecepcionByRecepcionId")]
         public IActionResult GetRecepcionByRecepcionId(int IdRecepcion)
         {
             var serviceResult = this.recepcionService.GetById(IdRecepcion);
@@ -47,21 +45,21 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpGet("Get Recepcion By Cliente id")]
+        [HttpGet("GetRecepcionByClienteId")]
         public ServiceResult GetRecepcionByClienteId(int clienteId)
         {
             var serviceResult = this.recepcionService.GetRecepcionByClienteId(clienteId);
             return serviceResult;
         }
 
-        [HttpGet("Get Recepcion By Habitacion id")]
+        [HttpGet("GetRecepcionByHabitacionId")]
         public ServiceResult GetRecepcionByHabitacionId(int habitacionId)
         {
             var serviceResult = this.recepcionService.GetRecepcionByHabitacionId(habitacionId);
             return serviceResult;
         }
 
-        [HttpPost("Save Recepcion")]
+        [HttpPost("SaveRecepcion")]
         public IActionResult Post([FromBody] RecepcionDtoSave recepcionDtoSave)
         {
             //var serviceResult = this.recepcionService.Save(new Application.Dtos.Recepcion.RecepcionDtoSave() { });
@@ -74,7 +72,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPut("Update Recepcion")]
+        [HttpPut("UpdateRecepcion")]
         public IActionResult Put([FromBody] RecepcionDtoUpdate recepcionDtoUpdate)
         {
             var serviceResult = this.recepcionService.Update(recepcionDtoUpdate);
@@ -86,7 +84,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPut("Remove Recepcion")]
+        [HttpPut("RemoveRecepcion")]
         public IActionResult Remove([FromBody] RecepcionDtoRemove recepcionDtoRemove)
         {
             var serviceResult = this.recepcionService.Remove(recepcionDtoRemove);

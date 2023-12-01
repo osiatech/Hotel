@@ -1,15 +1,39 @@
 ﻿
+using Hotel.Application.Contracts;
+using Hotel.Web.Models.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Hotel.Web.Controllers.Recepcion
 {
     public class RecepcionHttpClient : Controller
     {
+        private readonly IRecepcionService recepcionService;
+        HttpClientHandler httpClintHandler = new HttpClientHandler();
+
+        public RecepcionHttpClient(IRecepcionService recepcionService)
+        {
+            this.recepcionService = recepcionService;
+        }
+
         // GET: RecepcionWithHttpClientController
         public ActionResult Index()
         {
-            return View();
+            RecepcionListResponse recepcionListResponse = new RecepcionListResponse();
+
+            using(var httpClient = new HttpClient(this.httpClintHandler))
+            {
+                using(var serverResponse = httpClient.GetAsync("http://localhost:5212/api/Recepcion/GetAllRecepciones").Result)
+                {
+                    if(serverResponse.IsSuccessStatusCode)
+                    {
+                        string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
+                        recepcionListResponse = JsonConvert.DeserializeObject<RecepcionListResponse>(apiResponse);
+                    }
+                }
+            }
+            return View(recepcionListResponse.Data);
         }
 
         // GET: RecepcionWithHttpClientController/Details/5
