@@ -20,9 +20,9 @@ namespace Hotel.Web.Controllers
         {
             var serviceResult = this.recepcionService.GetAll();
 
-            if(!serviceResult.Success)
+            if (!serviceResult.Success)
             {
-                ViewBag.Message = serviceResult.Message; //ViewBag es parte de ASP.NET MVC. Este es una variable del tipo dynamic lo cual hace que se se vaya construyendo apartir de las diferentes propiedades que le pasemos o asignemos
+                ViewBag.Messages = serviceResult.Message;
                 return View();
             }
             return View(serviceResult.Data);
@@ -33,7 +33,7 @@ namespace Hotel.Web.Controllers
         {
             var serviceResult = this.recepcionService.GetById(id);
 
-            if(!serviceResult.Success)
+            if (!serviceResult.Success)
             {
                 ViewBag.Message = serviceResult.Message;
                 return View();
@@ -57,13 +57,12 @@ namespace Hotel.Web.Controllers
             {
                 serviceResult = this.recepcionService.Save(recepcionDtoSave);
 
-                if(!serviceResult.Success)
+                if (!serviceResult.Success)
                 {
                     ViewBag.Message = serviceResult.Message;
                     return View();
                 }
                 return RedirectToAction(nameof(Index));
-
             }
             catch
             {
@@ -77,13 +76,13 @@ namespace Hotel.Web.Controllers
         {
             var serviceResult = this.recepcionService.GetById(id);
 
-            if(!serviceResult.Success)
+            if (!serviceResult.Success)
             {
                 ViewBag.Message = serviceResult.Message;
                 return View();
             }
             var data = (RecepcionDtoGetAll)serviceResult.Data;
-            RecepcionDtoUpdate recepcionDtoUpdate = new RecepcionDtoUpdate()
+            RecepcionDtoUpdate clienteDtoUpdate = new RecepcionDtoUpdate()
             {
                 IdRecepcion = data.IdRecepcion,
                 FechaEntrada = data.FechaEntrada,
@@ -92,13 +91,13 @@ namespace Hotel.Web.Controllers
                 PrecioInicial = data.PrecioInicial,
                 Adelanto = data.Adelanto,
                 PrecioRestante = data.PrecioRestante,
-                TotalPagado  = data.TotalPagado,
+                TotalPagado = data.TotalPagado,
                 CostoPenalidad = data.CostoPenalidad,
                 Observacion = data.Observacion,
                 FechaRegistro = data.FechaRegistro,
                 FechaCreacion = data.FechaCreacion
             };
-            return View(recepcionDtoUpdate);
+            return View(clienteDtoUpdate);
         }
 
         // POST: RecepcionController/Edit/5
@@ -111,7 +110,7 @@ namespace Hotel.Web.Controllers
             {
                 serviceResult = this.recepcionService.Update(recepcionDtoUpdate);
 
-                if(!serviceResult.Success)
+                if (!serviceResult.Success)
                 {
                     ViewBag.Message = serviceResult.Message;
                     return View();
