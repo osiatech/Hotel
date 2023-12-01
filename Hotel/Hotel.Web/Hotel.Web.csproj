@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Hotel.Ioc\Hotel.Ioc.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\RecepcionHttpClient\" />
+  </ItemGroup>
+
 </Project>

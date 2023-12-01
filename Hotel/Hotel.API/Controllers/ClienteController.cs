@@ -19,7 +19,7 @@ namespace Hotel.API.Controllers
             this.clienteService = clienteService;
         }
 
-        [HttpGet("Get Cliente By Cliente id")]
+        [HttpGet("GetClienteByClienteId")]
         public IActionResult GetClienteByClienteId(int IdCliente)
         {
             var serviceResult = this.clienteService.GetById(IdCliente);
@@ -32,7 +32,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpGet("Get All Clientes")]
+        [HttpGet("GetAllClientes")]
         public IActionResult GetClientes()
         {
             var serviceResult = this.clienteService.GetAll();
@@ -44,7 +44,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPost("Save Cliente")]
+        [HttpPost("SaveCliente")]
         public IActionResult Post([FromBody] ClienteDtoSave clienteDtoSave)
         {
             //var serviceResult = this.clienteService.Save(new Application.Dtos.Cliente.ClienteDtoSave() { });
@@ -57,7 +57,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPut("Update Cliente")]
+        [HttpPut("UpdateCliente")]
         public IActionResult Put([FromBody] ClienteDtoUpdate clienteDtoUpdate)
         {
             var serviceResult = this.clienteService.Update(clienteDtoUpdate);
@@ -69,7 +69,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPut("Remove Cliente")]
+        [HttpPut("RemoveCliente")]
         public IActionResult Remove([FromBody] ClienteDtoRemove clienteDtoRemove)
         {
             var serviceResult = this.clienteService.Remove(clienteDtoRemove);

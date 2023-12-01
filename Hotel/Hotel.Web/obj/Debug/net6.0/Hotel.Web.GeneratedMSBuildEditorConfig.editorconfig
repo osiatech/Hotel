@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\DELL\Desktop\Hotel\Hotel\Hotel.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/DELL/Desktop/Hotel/Hotel/Hotel.Web/Views/ClienteHttpClient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZUh0dHBDbGllbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/DELL/Desktop/Hotel/Hotel/Hotel.Web/Views/Cliente/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
