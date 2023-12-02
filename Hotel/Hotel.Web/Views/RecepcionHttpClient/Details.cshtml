@@ -1,0 +1,105 @@
+﻿
+@model Hotel.Web.Models.Responses.Recepcion.RecepcionViewResult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEntrada)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaEntrada)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaSalida)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaSalidaConfirmacion)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaSalidaConfirmacion)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioInicial)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrecioInicial)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Adelanto)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Adelanto)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioRestante)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrecioRestante)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalPagado)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalPagado)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CostoPenalidad)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CostoPenalidad)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Observacion)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Observacion)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRecepcion }) |
+    <a asp-action="Index">Back to List</a>
+</div>

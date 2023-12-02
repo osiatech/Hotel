@@ -20,9 +20,9 @@ namespace Hotel.API.Controllers
         }
 
         [HttpGet("GetClienteByClienteId")]
-        public IActionResult GetClienteByClienteId(int IdCliente)
+        public IActionResult GetClienteByClienteId(int id)
         {
-            var serviceResult = this.clienteService.GetById(IdCliente);
+            var serviceResult = this.clienteService.GetById(id);
            
             if(!serviceResult.Success)
             {

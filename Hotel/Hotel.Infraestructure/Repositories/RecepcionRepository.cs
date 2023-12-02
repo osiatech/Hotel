@@ -1,4 +1,5 @@
-﻿using Hotel.Domain.Entities;
+﻿
+using Hotel.Domain.Entities;
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;

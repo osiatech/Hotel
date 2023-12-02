@@ -1,7 +1,6 @@
 ﻿
 using Hotel.Application.Contracts;
-using Hotel.Web.Models.Responses;
-using Microsoft.AspNetCore.Http;
+using Hotel.Web.Models.Responses.Recepcion;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -10,7 +9,7 @@ namespace Hotel.Web.Controllers.Recepcion
     public class RecepcionHttpClient : Controller
     {
         private readonly IRecepcionService recepcionService;
-        HttpClientHandler httpClintHandler = new HttpClientHandler();
+        HttpClientHandler httpClientHandler = new HttpClientHandler();
 
         public RecepcionHttpClient(IRecepcionService recepcionService)
         {
@@ -22,7 +21,7 @@ namespace Hotel.Web.Controllers.Recepcion
         {
             RecepcionListResponse recepcionListResponse = new RecepcionListResponse();
 
-            using(var httpClient = new HttpClient(this.httpClintHandler))
+            using(var httpClient = new HttpClient(this.httpClientHandler))
             {
                 using(var serverResponse = httpClient.GetAsync("http://localhost:5212/api/Recepcion/GetAllRecepciones").Result)
                 {
@@ -39,7 +38,27 @@ namespace Hotel.Web.Controllers.Recepcion
         // GET: RecepcionWithHttpClientController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            RecepcionDetailsResponse recepcionDetailsResponse = new RecepcionDetailsResponse();
+
+        
+            using (var httpClient = new HttpClient(this.httpClientHandler))
+            {
+                var url = $"http://localhost:5212/api/Recepcion/GetRecepcionByRecepcionId?IdRecepcion={id}";
+
+                using (var serverResponse = httpClient.GetAsync(url).Result)
+                {
+                    if (serverResponse.IsSuccessStatusCode)
+                    {
+                        string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
+
+                        recepcionDetailsResponse = JsonConvert.DeserializeObject<RecepcionDetailsResponse>(apiResponse);
+
+                        if (!recepcionDetailsResponse.Success)
+                            ViewBag.Message = recepcionDetailsResponse.Messages;
+                    }
+                }
+            }
+            return View(recepcionDetailsResponse.Data);
         }
 
         // GET: RecepcionWithHttpClientController/Create
