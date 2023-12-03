@@ -68,6 +68,7 @@ namespace Hotel.Web.Controllers.Cliente
             return View();
         }
 
+
         // POST: ClienteHttpClientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -83,11 +84,33 @@ namespace Hotel.Web.Controllers.Cliente
             }
         }
 
+
         // GET: ClienteHttpClientController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ClienteDetailsResponse clienteDetailsResponse = new ClienteDetailsResponse();
+
+
+            using (var httpClient = new HttpClient(this.httpClientHandler))
+            {
+                var url = $"http://localhost:5212/api/Cliente/GetClienteByClienteId?id={id}";
+
+                using (var serverResponse = httpClient.GetAsync(url).Result)
+                {
+                    if (serverResponse.IsSuccessStatusCode)
+                    {
+                        string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
+
+                        clienteDetailsResponse = JsonConvert.DeserializeObject<ClienteDetailsResponse>(apiResponse);
+
+                        if (!clienteDetailsResponse.Success)
+                            ViewBag.Message = clienteDetailsResponse.Message;
+                    }
+                }
+            }
+            return View(clienteDetailsResponse.Data);
         }
+
 
         // POST: ClienteHttpClientController/Edit/5
         [HttpPost]
@@ -103,6 +126,7 @@ namespace Hotel.Web.Controllers.Cliente
                 return View();
             }
         }
+
 
         // GET: ClienteHttpClientController/Delete/5
         public ActionResult Delete(int id)

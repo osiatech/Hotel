@@ -16,6 +16,7 @@ namespace Hotel.Web.Controllers.Recepcion
             this.recepcionService = recepcionService;
         }
 
+
         // GET: RecepcionWithHttpClientController
         public ActionResult Index()
         {
@@ -34,6 +35,7 @@ namespace Hotel.Web.Controllers.Recepcion
             }
             return View(recepcionListResponse.Data);
         }
+
 
         // GET: RecepcionWithHttpClientController/Details/5
         public ActionResult Details(int id)
@@ -61,11 +63,13 @@ namespace Hotel.Web.Controllers.Recepcion
             return View(recepcionDetailsResponse.Data);
         }
 
+
         // GET: RecepcionWithHttpClientController/Create
         public ActionResult Create()
         {
             return View();
         }
+
 
         // POST: RecepcionWithHttpClientController/Create
         [HttpPost]
@@ -85,8 +89,29 @@ namespace Hotel.Web.Controllers.Recepcion
         // GET: RecepcionWithHttpClientController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            RecepcionDetailsResponse recepcionDetailsResponse = new RecepcionDetailsResponse();
+
+
+            using (var httpClient = new HttpClient(this.httpClientHandler))
+            {
+                var url = $"http://localhost:5212/api/Recepcion/GetRecepcionByRecepcionId?IdRecepcion={id}";
+
+                using (var serverResponse = httpClient.GetAsync(url).Result)
+                {
+                    if (serverResponse.IsSuccessStatusCode)
+                    {
+                        string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
+
+                        recepcionDetailsResponse = JsonConvert.DeserializeObject<RecepcionDetailsResponse>(apiResponse);
+
+                        if (!recepcionDetailsResponse.Success)
+                            ViewBag.Message = recepcionDetailsResponse.Messages;
+                    }
+                }
+            }
+            return View(recepcionDetailsResponse.Data);
         }
+
 
         // POST: RecepcionWithHttpClientController/Edit/5
         [HttpPost]
