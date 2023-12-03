@@ -43,6 +43,7 @@ namespace Hotel.Web.Controllers.Cliente
                         }
 
                     }else{
+                        clienteListResponse.Message = "Error al Conectarse a la API";
                         ViewBag.Message = clienteListResponse.Message;
                         return View();
                     }
@@ -76,6 +77,7 @@ namespace Hotel.Web.Controllers.Cliente
                         }
 
                     }else{
+                        clienteDetailsResponse.Message = "Error al Conectarse a la API";
                         ViewBag.Message = clienteDetailsResponse.Message;
                         return View();
                     }
@@ -133,6 +135,7 @@ namespace Hotel.Web.Controllers.Cliente
                         }
 
                     }else{
+                        clienteDetailsResponse.Message = "Error al Conectarse a la API";
                         ViewBag.Message = clienteDetailsResponse.Message;
                         return View();
                     }
@@ -175,6 +178,7 @@ namespace Hotel.Web.Controllers.Cliente
                             }
 
                         }else{
+                            baseResponse.Message = "Error al Conectarse a la API";
                             ViewBag.Message = baseResponse.Message;
                             return View();
                         }

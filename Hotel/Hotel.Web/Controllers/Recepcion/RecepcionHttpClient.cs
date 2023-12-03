@@ -41,6 +41,7 @@ namespace Hotel.Web.Controllers.Recepcion
                         }
 
                     }else{
+                        recepcionListResponse.Message = "Error al Conectarse a la API.";
                         ViewBag.Message = recepcionListResponse.Message;
                         return View();
                     }
@@ -69,12 +70,13 @@ namespace Hotel.Web.Controllers.Recepcion
 
                         if (!recepcionDetailsResponse.Success)
                         {
-                            ViewBag.Message = recepcionDetailsResponse.Messages;
+                            ViewBag.Message = recepcionDetailsResponse.Message;
                             return View();
                         }
 
                     } else{
-                        ViewBag.Message = recepcionDetailsResponse.Messages;
+                        recepcionDetailsResponse.Message = "Error al Conectarse a la API";
+                        ViewBag.Message = recepcionDetailsResponse.Message;
                         return View();
                     }
                 }
@@ -123,12 +125,13 @@ namespace Hotel.Web.Controllers.Recepcion
 
                         if (!recepcionDetailsResponse.Success)
                         {
-                            ViewBag.Message = recepcionDetailsResponse.Messages;
+                            ViewBag.Message = recepcionDetailsResponse.Message;
                             return View();
                         } 
                         
                     }else{
-                        ViewBag.Message = recepcionDetailsResponse.Messages;
+                        recepcionDetailsResponse.Message = "Error al Conectarse a la API";
+                        ViewBag.Message = recepcionDetailsResponse.Message;
                         return View();
                     }
                 }
@@ -168,8 +171,8 @@ namespace Hotel.Web.Controllers.Recepcion
                                 return View();
                             }
                                 
-                        }else
-                        {
+                        }else{
+                            baseResponse.Message = "Error al Conectarse a la API";
                             ViewBag.Message = baseResponse.Message;
                             return View();
                         }
@@ -181,27 +184,6 @@ namespace Hotel.Web.Controllers.Recepcion
             catch
             {
                 ViewBag.Message = baseResponse.Message;
-                return View();
-            }
-        }
-
-        // GET: RecepcionWithHttpClientController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: RecepcionWithHttpClientController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
                 return View();
             }
         }
