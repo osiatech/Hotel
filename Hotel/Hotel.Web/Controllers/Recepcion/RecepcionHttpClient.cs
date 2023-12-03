@@ -1,10 +1,11 @@
 ﻿
 using Hotel.Application.Contracts;
-using Hotel.Application.Core;
+using Hotel.Web.Models.Responses.Base;
 using Hotel.Application.Dtos.Recepcion;
 using Hotel.Web.Models.Responses.Recepcion;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Hotel.Web.Models.Responses.Cliente;
 
 namespace Hotel.Web.Controllers.Recepcion
 {
@@ -33,6 +34,9 @@ namespace Hotel.Web.Controllers.Recepcion
                     {
                         string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
                         recepcionListResponse = JsonConvert.DeserializeObject<RecepcionListResponse>(apiResponse);
+
+                        if (!recepcionListResponse.Success)
+                            ViewBag.Message = recepcionListResponse.Message;
                     }
                 }
             }
@@ -60,6 +64,7 @@ namespace Hotel.Web.Controllers.Recepcion
 
                         if (!recepcionDetailsResponse.Success)
                             ViewBag.Message = recepcionDetailsResponse.Messages;
+                         
                     }
                 }
             }
@@ -120,7 +125,7 @@ namespace Hotel.Web.Controllers.Recepcion
         [ValidateAntiForgeryToken]
         public ActionResult Edit(RecepcionDtoUpdate recepcionDtoUpdate)
         {
-            ServiceResult serviceResult = new ServiceResult();
+            BaseResponse baseResponse = new BaseResponse();
 
             try
             {
@@ -138,6 +143,10 @@ namespace Hotel.Web.Controllers.Recepcion
                         if (serviceResponse.IsSuccessStatusCode)
                         {
                             string apiResponse = serviceResponse.Content.ReadAsStringAsync().Result;
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.Success)
+                                ViewBag.Message = baseResponse.Message;
                         }
                     }
                 }
@@ -146,7 +155,7 @@ namespace Hotel.Web.Controllers.Recepcion
 
             catch
             {
-                ViewBag.Message = serviceResult.Message;
+                ViewBag.Message = baseResponse.Message;
                 return View();
             }
         }

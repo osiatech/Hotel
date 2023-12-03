@@ -4,7 +4,7 @@ namespace Hotel.Web.Models.Responses.Cliente
     public class ClienteListResponse
     {
         public bool Success { get; set; }
-        public string Messages { get; set; }
+        public string Message { get; set; }
         public List<ClienteViewResult> Data { get; set; }
     }
 

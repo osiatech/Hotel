@@ -1,7 +1,7 @@
 ﻿
 using Hotel.Application.Contracts;
-using Hotel.Application.Core;
 using Hotel.Application.Dtos.Cliente;
+using Hotel.Web.Models.Responses.Base;
 using Hotel.Web.Models.Responses.Cliente;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -35,6 +35,9 @@ namespace Hotel.Web.Controllers.Cliente
                     {
                         string apiResponse = serverResponse.Content.ReadAsStringAsync().Result; 
                         clienteListResponse = JsonConvert.DeserializeObject<ClienteListResponse>(apiResponse); //DeserializeObject: Esto lo que hace es que convierte el Json que llega aca a la clase que recibe DeserializeObject
+
+                        if (!clienteListResponse.Success)
+                            ViewBag.Message = clienteListResponse.Message; //ViewBag es una propieda dinamica, a esta se le agrega las propiedades que necesitamos 
                     }
                 }
             }
@@ -61,6 +64,7 @@ namespace Hotel.Web.Controllers.Cliente
 
                         if (!clienteDetailsResponse.Success)
                             ViewBag.Message = clienteDetailsResponse.Message;
+                          
                     }
                 }
             }
@@ -123,7 +127,7 @@ namespace Hotel.Web.Controllers.Cliente
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ClienteDtoUpdate clienteDtoUpdate)
         {
-            ServiceResult serviceResult = new ServiceResult();
+            BaseResponse baseResponse = new BaseResponse();
 
             try
             {
@@ -142,6 +146,10 @@ namespace Hotel.Web.Controllers.Cliente
                         if(serviceResponse.IsSuccessStatusCode)
                         {
                             string apiResponse = serviceResponse.Content.ReadAsStringAsync().Result;
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.Success)
+                                ViewBag.Message = baseResponse.Message;
                         }
                     }
                 }
@@ -150,7 +158,7 @@ namespace Hotel.Web.Controllers.Cliente
                         
             catch
             {
-                ViewBag.Message = serviceResult.Message;
+                ViewBag.Message = baseResponse.Message;
                 return View();
             }
         }
