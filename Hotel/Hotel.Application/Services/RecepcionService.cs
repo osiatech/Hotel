@@ -19,12 +19,14 @@ namespace Hotel.Application.Services
         private readonly ILogger<RecepcionService> logger;
         private readonly IConfiguration configuration;
 
+
         public RecepcionService(IRecepcionRepository recepcionRepository, ILogger<RecepcionService> logger, IConfiguration configuration)
         {
             this.recepcionRepository = recepcionRepository;
             this.logger = logger;
             this.configuration = configuration;
         }
+
 
         public ServiceResult GetAll()
         {
@@ -63,6 +65,7 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
+
         public ServiceResult GetById(int id)
         {
             ServiceResult serviceResult = new ServiceResult();
@@ -100,6 +103,7 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
+
         public ServiceResult GetRecepcionByClienteId(int clienteId)
         {
             ServiceResult serviceResult = new ServiceResult();
@@ -120,6 +124,7 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
+
         public ServiceResult GetRecepcionByHabitacionId(int habitacionId)
         {
             ServiceResult serviceResult = new ServiceResult();
@@ -139,6 +144,7 @@ namespace Hotel.Application.Services
             }
             return serviceResult;
         }
+
 
         public ServiceResult Remove(RecepcionDtoRemove dtoRemove)
         {
@@ -164,6 +170,7 @@ namespace Hotel.Application.Services
             }
             return serviceResult;
         }
+
 
         public ServiceResult Save(RecepcionDtoSave dtoSave)
         {
@@ -204,6 +211,7 @@ namespace Hotel.Application.Services
             }
             return serviceResult;
         }
+
 
         public ServiceResult Update(RecepcionDtoUpdate dtoUpdate)
         {

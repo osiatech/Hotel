@@ -3,7 +3,9 @@ using Hotel.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Hotel.Ioc.Dependencies;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -13,7 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<HotelContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HotelContext")));
 
 
-//Repositories: Cliente and Recepcion  //NOTE: This part is already added in the IoC
+//**Repositories: Cliente and Recepcion  //NOTE: This part is already added in the IoC
 //builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 //builder.Services.AddTransient<IRecepcionRepository, RecepcionRepository>();
 

@@ -14,10 +14,12 @@ namespace Hotel.API.Controllers
     {
         private readonly IClienteService clienteService;
 
+
         public ClienteController(IClienteService clienteService) //inyecion de depencia (DIP)
         {
             this.clienteService = clienteService;
         }
+
 
         [HttpGet("GetClienteByClienteId")]
         public IActionResult GetClienteByClienteId(int id)
@@ -32,6 +34,7 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
+
         [HttpGet("GetAllClientes")]
         public IActionResult GetClientes()
         {
@@ -43,6 +46,7 @@ namespace Hotel.API.Controllers
             }
             return Ok(serviceResult);
         }
+
 
         [HttpPost("SaveCliente")]
         public IActionResult Post([FromBody] ClienteDtoSave clienteDtoSave)
@@ -57,7 +61,8 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPut("UpdateCliente")]
+
+        [HttpPost("UpdateCliente")]
         public IActionResult Put([FromBody] ClienteDtoUpdate clienteDtoUpdate)
         {
             var serviceResult = this.clienteService.Update(clienteDtoUpdate);
@@ -68,6 +73,7 @@ namespace Hotel.API.Controllers
             }
             return Ok(serviceResult);
         }
+
 
         [HttpPut("RemoveCliente")]
         public IActionResult Remove([FromBody] ClienteDtoRemove clienteDtoRemove)

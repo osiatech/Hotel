@@ -2,7 +2,6 @@
 using Hotel.Application.Contracts;
 using Hotel.Application.Core;
 using Hotel.Application.Dtos.Recepcion;
-using Hotel.Infraestructure.Context;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,10 +14,12 @@ namespace Hotel.API.Controllers
     {
         private readonly IRecepcionService recepcionService;
 
+
         public RecepcionController(IRecepcionService recepcionService)
         {
             this.recepcionService = recepcionService;
         }
+
 
         [HttpGet("GetAllRecepciones")]
         public IActionResult GetRecepciones()
@@ -31,6 +32,7 @@ namespace Hotel.API.Controllers
             }
             return Ok(serviceResult);
         }
+
 
         [HttpGet("GetRecepcionByRecepcionId")]
         public IActionResult GetRecepcionByRecepcionId(int IdRecepcion)
@@ -45,12 +47,14 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
+
         [HttpGet("GetRecepcionByClienteId")]
         public ServiceResult GetRecepcionByClienteId(int clienteId)
         {
             var serviceResult = this.recepcionService.GetRecepcionByClienteId(clienteId);
-            return serviceResult;
+            return (serviceResult);
         }
+
 
         [HttpGet("GetRecepcionByHabitacionId")]
         public ServiceResult GetRecepcionByHabitacionId(int habitacionId)
@@ -58,6 +62,7 @@ namespace Hotel.API.Controllers
             var serviceResult = this.recepcionService.GetRecepcionByHabitacionId(habitacionId);
             return serviceResult;
         }
+
 
         [HttpPost("SaveRecepcion")]
         public IActionResult Post([FromBody] RecepcionDtoSave recepcionDtoSave)
@@ -72,7 +77,8 @@ namespace Hotel.API.Controllers
             return Ok(serviceResult);
         }
 
-        [HttpPut("UpdateRecepcion")]
+
+        [HttpPost("UpdateRecepcion")]
         public IActionResult Put([FromBody] RecepcionDtoUpdate recepcionDtoUpdate)
         {
             var serviceResult = this.recepcionService.Update(recepcionDtoUpdate);
@@ -83,6 +89,7 @@ namespace Hotel.API.Controllers
             }
             return Ok(serviceResult);
         }
+
 
         [HttpPut("RemoveRecepcion")]
         public IActionResult Remove([FromBody] RecepcionDtoRemove recepcionDtoRemove)

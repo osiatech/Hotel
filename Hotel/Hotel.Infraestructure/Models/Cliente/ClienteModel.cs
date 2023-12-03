@@ -1,4 +1,5 @@
-﻿namespace Hotel.Infraestructure.Models.Cliente
+﻿
+namespace Hotel.Infraestructure.Models.Cliente
 {
     internal class ClienteModel
     {

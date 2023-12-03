@@ -10,10 +10,12 @@ namespace Hotel.Web.Controllers.Cliente
     {
         private readonly IClienteService clienteService;
 
+
         public ClienteController(IClienteService clienteService)
         {
             this.clienteService = clienteService;
         }
+
 
         // GET: ClienteController
         public ActionResult Index()
@@ -28,6 +30,7 @@ namespace Hotel.Web.Controllers.Cliente
             return View(serviceResult.Data);
         }
 
+
         // GET: ClienteController/Details/5
         public ActionResult Details(int id)
         {
@@ -41,11 +44,13 @@ namespace Hotel.Web.Controllers.Cliente
             return View(serviceResult.Data);
         }
 
+
         // GET: ClienteController/Create
         public ActionResult Create()
         {
             return View();
         }
+
 
         // POST: ClienteController/Create
         [HttpPost]
@@ -71,6 +76,7 @@ namespace Hotel.Web.Controllers.Cliente
             }
         }
 
+
         // GET: ClienteController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -93,6 +99,7 @@ namespace Hotel.Web.Controllers.Cliente
             };
             return View(clienteDtoUpdate);
         }
+
 
         // POST: ClienteController/Edit/5
         [HttpPost]

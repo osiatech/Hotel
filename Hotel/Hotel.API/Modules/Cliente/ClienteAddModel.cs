@@ -1,4 +1,5 @@
-﻿using Hotel.API.Models.Core;
+﻿
+using Hotel.API.Models.Core;
 
 namespace Hotel.API.Modules.Cliente
 {

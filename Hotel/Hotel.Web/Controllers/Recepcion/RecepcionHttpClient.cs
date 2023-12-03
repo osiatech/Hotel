@@ -1,5 +1,7 @@
 ﻿
 using Hotel.Application.Contracts;
+using Hotel.Application.Core;
+using Hotel.Application.Dtos.Recepcion;
 using Hotel.Web.Models.Responses.Recepcion;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -10,6 +12,7 @@ namespace Hotel.Web.Controllers.Recepcion
     {
         private readonly IRecepcionService recepcionService;
         HttpClientHandler httpClientHandler = new HttpClientHandler();
+
 
         public RecepcionHttpClient(IRecepcionService recepcionService)
         {
@@ -101,7 +104,6 @@ namespace Hotel.Web.Controllers.Recepcion
                     if (serverResponse.IsSuccessStatusCode)
                     {
                         string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
-
                         recepcionDetailsResponse = JsonConvert.DeserializeObject<RecepcionDetailsResponse>(apiResponse);
 
                         if (!recepcionDetailsResponse.Success)
@@ -116,14 +118,35 @@ namespace Hotel.Web.Controllers.Recepcion
         // POST: RecepcionWithHttpClientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(RecepcionDtoUpdate recepcionDtoUpdate)
         {
+            ServiceResult serviceResult = new ServiceResult();
+
             try
             {
+                using (var httpClient = new HttpClient(this.httpClientHandler))
+                {
+                    var url = $"http://localhost:5212/api/Recepcion/UpdateRecepcion";
+
+                    recepcionDtoUpdate.ChangeDate = DateTime.Now;
+                    recepcionDtoUpdate.ChangeUser = 22;
+
+                    StringContent stringContent = new StringContent(JsonConvert.SerializeObject(recepcionDtoUpdate), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var serviceResponse = httpClient.PostAsync(url, stringContent).Result)
+                    {
+                        if (serviceResponse.IsSuccessStatusCode)
+                        {
+                            string apiResponse = serviceResponse.Content.ReadAsStringAsync().Result;
+                        }
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
+
             catch
             {
+                ViewBag.Message = serviceResult.Message;
                 return View();
             }
         }

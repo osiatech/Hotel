@@ -1,4 +1,5 @@
-﻿namespace Hotel.API.Models.Core
+﻿
+namespace Hotel.API.Models.Core
 {
     public class BaseModel
     {

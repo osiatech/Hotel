@@ -5,7 +5,5 @@ using Hotel.Application.Dtos.Cliente;
 
 namespace Hotel.Application.Contracts
 {
-    public interface IClienteService : IBaseServices <ClienteDtoSave,ClienteDtoUpdate, ClienteDtoRemove>
-    {
-    }
+    public interface IClienteService : IBaseServices <ClienteDtoSave,ClienteDtoUpdate, ClienteDtoRemove> {}
 }

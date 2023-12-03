@@ -21,12 +21,14 @@ namespace Hotel.Application.Services
         private readonly ILogger<ClienteService> logger;
         private readonly IConfiguration configuration;
 
+
         public ClienteService(IClienteRepository clienteRepository, ILogger<ClienteService> logger, IConfiguration configuration)
         {
             this.clienteRepository = clienteRepository;
             this.logger = logger;
             this.configuration = configuration;
         }
+
 
         public ServiceResult GetAll()
         {
@@ -47,6 +49,7 @@ namespace Hotel.Application.Services
                     });
                 serviceResult.Data = clientes;
                 serviceResult.Message = this.configuration["Cliente.Success.Messages:GetAll.Success.Message"];
+
             }
             catch(Exception exception)
             {
@@ -54,8 +57,10 @@ namespace Hotel.Application.Services
                 serviceResult.Message = this.configuration["Cliente.Error.Messages:GetAll.Error.Message"];
                 this.logger.LogError(serviceResult.Message, exception.ToString());
             }
+
             return serviceResult;
         }
+
 
         public ServiceResult GetById(int id)
         {
@@ -89,6 +94,7 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
+
         public ServiceResult Remove(ClienteDtoRemove dtoRemove)
         {
             ServiceResult serviceResult = new ServiceResult();
@@ -114,6 +120,7 @@ namespace Hotel.Application.Services
             return serviceResult;
         }
 
+
         public ServiceResult Save(ClienteDtoSave dtoSave)
         {
             ServiceResult serviceResult = new ServiceResult();
@@ -124,12 +131,14 @@ namespace Hotel.Application.Services
                 //*************Validaciones************************
                 var clienteDataValidations = dtoSave.ClienteDataValidations(this.configuration);
 
+
                 if(!clienteDataValidations.Success)
                 {
                     clienteResponse.Success = clienteDataValidations.Success;
                     clienteResponse.Message = clienteDataValidations.Message;
                     return clienteResponse;
                 }
+
                 Cliente cliente = new Cliente()
                 {   
                     NombreCompleto = dtoSave.NombreCompleto,
@@ -146,7 +155,6 @@ namespace Hotel.Application.Services
                 serviceResult.Message = this.configuration["Cliente.Success.Messages:Save.Success.Message"];
 
                 clienteResponse.IdCliente = cliente.IdCliente;
-
             }
             catch(Exception exception)
             {
@@ -156,6 +164,7 @@ namespace Hotel.Application.Services
             }
             return serviceResult;
         }
+
 
         public ServiceResult Update(ClienteDtoUpdate dtoUpdate)
         {
