@@ -5,7 +5,6 @@ using Hotel.Application.Dtos.Recepcion;
 using Hotel.Web.Models.Responses.Recepcion;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Hotel.Web.Models.Responses.Cliente;
 
 namespace Hotel.Web.Controllers.Recepcion
 {
@@ -36,7 +35,14 @@ namespace Hotel.Web.Controllers.Recepcion
                         recepcionListResponse = JsonConvert.DeserializeObject<RecepcionListResponse>(apiResponse);
 
                         if (!recepcionListResponse.Success)
+                        {
                             ViewBag.Message = recepcionListResponse.Message;
+                            return View();
+                        }
+
+                    }else{
+                        ViewBag.Message = recepcionListResponse.Message;
+                        return View();
                     }
                 }
             }
@@ -49,7 +55,6 @@ namespace Hotel.Web.Controllers.Recepcion
         {
             RecepcionDetailsResponse recepcionDetailsResponse = new RecepcionDetailsResponse();
 
-        
             using (var httpClient = new HttpClient(this.httpClientHandler))
             {
                 var url = $"http://localhost:5212/api/Recepcion/GetRecepcionByRecepcionId?IdRecepcion={id}";
@@ -63,8 +68,14 @@ namespace Hotel.Web.Controllers.Recepcion
                         recepcionDetailsResponse = JsonConvert.DeserializeObject<RecepcionDetailsResponse>(apiResponse);
 
                         if (!recepcionDetailsResponse.Success)
+                        {
                             ViewBag.Message = recepcionDetailsResponse.Messages;
-                         
+                            return View();
+                        }
+
+                    } else{
+                        ViewBag.Message = recepcionDetailsResponse.Messages;
+                        return View();
                     }
                 }
             }
@@ -99,7 +110,6 @@ namespace Hotel.Web.Controllers.Recepcion
         {
             RecepcionDetailsResponse recepcionDetailsResponse = new RecepcionDetailsResponse();
 
-
             using (var httpClient = new HttpClient(this.httpClientHandler))
             {
                 var url = $"http://localhost:5212/api/Recepcion/GetRecepcionByRecepcionId?IdRecepcion={id}";
@@ -112,7 +122,14 @@ namespace Hotel.Web.Controllers.Recepcion
                         recepcionDetailsResponse = JsonConvert.DeserializeObject<RecepcionDetailsResponse>(apiResponse);
 
                         if (!recepcionDetailsResponse.Success)
+                        {
                             ViewBag.Message = recepcionDetailsResponse.Messages;
+                            return View();
+                        } 
+                        
+                    }else{
+                        ViewBag.Message = recepcionDetailsResponse.Messages;
+                        return View();
                     }
                 }
             }
@@ -146,7 +163,15 @@ namespace Hotel.Web.Controllers.Recepcion
                             baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
 
                             if (!baseResponse.Success)
+                            {
                                 ViewBag.Message = baseResponse.Message;
+                                return View();
+                            }
+                                
+                        }else
+                        {
+                            ViewBag.Message = baseResponse.Message;
+                            return View();
                         }
                     }
                 }
