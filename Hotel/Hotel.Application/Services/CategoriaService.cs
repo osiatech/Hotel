@@ -62,12 +62,12 @@ namespace Hotel.Application.Services
             return result;
         }
 
-        public ServiceResult GetById(int Id)
+        public ServiceResult GetById(int id)
         {
             ServiceResult result = new ServiceResult();
             try
             {
-                var categoria = this.categoriaRepository.GetEntity(Id);
+                var categoria = this.categoriaRepository.GetEntity(id);
 
                 CategoriaDtoGetAll categoriaModel = new CategoriaDtoGetAll()
                 {
@@ -76,6 +76,7 @@ namespace Hotel.Application.Services
                     FechaCreacion = categoria.FechaCreacion,
                     Descripcion = categoria.Descripcion,
                     Estado = categoria.Estado
+                   
 
                 };
 

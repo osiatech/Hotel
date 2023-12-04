@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\joang\source\repos\Hotel\Hotel\Hotel.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Categoria/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Categoria/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Categoria/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,6 +34,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Piso/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Piso/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzb1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Piso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Shared/Error.cshtml]

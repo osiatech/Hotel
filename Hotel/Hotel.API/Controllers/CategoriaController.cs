@@ -21,9 +21,9 @@ namespace Hotel.API.Controllers
         }
 
         [HttpGet("GetCategoriaByCategoriaId")]
-        public IActionResult Get(int categoriaId)
+        public IActionResult Get(int id)
         {
-            var result = this.categoriaService.GetById(categoriaId);
+            var result = this.categoriaService.GetById(id);
             if (!result.Success)
             {
                 return BadRequest(result);

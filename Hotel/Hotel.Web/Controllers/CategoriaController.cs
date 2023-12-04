@@ -40,7 +40,36 @@ namespace Hotel.Web.Controllers
         // GET: CategoriaController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            CategoriaDetailResponse categoriaDetailResponse = new CategoriaDetailResponse();
+
+
+            using (var httpClient = new HttpClient(this.clientHandler))
+            {
+                var url = $"http://localhost:5212/api/Categoria/GetCategoriaByCategoriaId?id={id}";
+
+                using (var serverResponse = httpClient.GetAsync(url).Result)
+                {
+                    if (serverResponse.IsSuccessStatusCode)
+                    {
+                        string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
+                        categoriaDetailResponse = JsonConvert.DeserializeObject<CategoriaDetailResponse>(apiResponse);
+
+                        if (!categoriaDetailResponse.success)
+                        {
+                            ViewBag.Message = categoriaDetailResponse.message;
+                            return View();
+                        }
+
+                    }
+                    else
+                    {
+                        categoriaDetailResponse.message = "Error al Conectarse a la API";
+                        ViewBag.Message = categoriaDetailResponse.message;
+                        return View();
+                    }
+                }
+            }
+            return View(categoriaDetailResponse.data);
         }
 
         // GET: CategoriaController/Create
@@ -52,14 +81,49 @@ namespace Hotel.Web.Controllers
         // POST: CategoriaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CategoriaDtoAdd categoriaDtoAdd)
         {
+            BaseResponse baseResponse = new BaseResponse();
             try
             {
-                return RedirectToAction(nameof(Index));
+                using (var client = new HttpClient(this.clientHandler))
+                {
+                    var url = $"http://localhost:5212/api/Categoria/SaveCategoria";
+
+                    categoriaDtoAdd.ChangeDate = DateTime.Now;
+                    categoriaDtoAdd.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(categoriaDtoAdd), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+
+                        }
+                        else
+                        {
+                            baseResponse.message = "Error conectandose al api.";
+                            baseResponse.success = false;
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
+                }
+                    return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = baseResponse.message;
                 return View();
             }
         }

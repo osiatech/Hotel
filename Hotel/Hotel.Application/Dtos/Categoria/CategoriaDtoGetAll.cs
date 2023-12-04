@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hotel.Application.Dtos.Categoria
 {
-    public class CategoriaDtoGetAll
+    public class CategoriaDtoGetAll : DtoBase
     {
         public int IdCategoria { get; set; }
         public string? Descripcion { get; set; }

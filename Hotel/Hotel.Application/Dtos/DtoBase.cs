@@ -11,10 +11,9 @@ namespace Hotel.Application.Dtos
         public int ChangeUser { get; set; }
 
         [JsonProperty("changeDate")]
-        public int IdUsuarioCreacion { get; set; }
         public DateTime ChangeDate { get; set; }
         
-        public bool Eliminado { get; set; }
+       
 
 
     }
