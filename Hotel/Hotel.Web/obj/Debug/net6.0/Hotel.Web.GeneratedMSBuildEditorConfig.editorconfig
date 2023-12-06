@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Categoria/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Categoria/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Piso/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzb1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Piso/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzb1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/joang/source/repos/Hotel/Hotel/Hotel.Web/Views/Piso/Index.cshtml]

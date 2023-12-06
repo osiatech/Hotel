@@ -119,7 +119,7 @@ namespace Hotel.Web.Controllers
                         }
                     }
                 }
-                    return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -131,20 +131,79 @@ namespace Hotel.Web.Controllers
         // GET: CategoriaController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            CategoriaDetailResponse categoriaDetailResponse = new CategoriaDetailResponse();
+
+
+            using (var client = new HttpClient(this.clientHandler))
+            {
+
+                var url = $"http://localhost:5212/api/Categoria/GetCategoriaByCategoriaId?id={id}";
+
+                using (var response = client.GetAsync(url).Result)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                        categoriaDetailResponse = JsonConvert.DeserializeObject<CategoriaDetailResponse>(apiResponse);
+
+                    }
+                }
+            }
+
+            return View(categoriaDetailResponse.data);
         }
 
         // POST: CategoriaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CategoriaDtoUpdate categoriaDtoUpdate)
         {
+            BaseResponse baseResponse = new BaseResponse();
+
             try
             {
+
+                using (var client = new HttpClient(this.clientHandler))
+                {
+
+                    var url = $"http://localhost:5212/api/Categoria/UpdateCategoria";
+
+                    categoriaDtoUpdate.ChangeDate = DateTime.Now;
+                    categoriaDtoUpdate.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(categoriaDtoUpdate), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+
+                        }
+                        else
+                        {
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
+                }
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = baseResponse.message;
                 return View();
             }
         }

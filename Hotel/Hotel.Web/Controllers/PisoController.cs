@@ -118,20 +118,79 @@ namespace Hotel.Web.Controllers
         // GET: PisoController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            PisoDetailResponse pisoDetailResponse = new PisoDetailResponse();
+
+
+            using (var client = new HttpClient(this.clientHandler))
+            {
+
+                var url = $"http://localhost:5212/api/Piso/GetPisoByPisoId?pisoId={id}";
+
+                using (var response = client.GetAsync(url).Result)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                        pisoDetailResponse = JsonConvert.DeserializeObject<PisoDetailResponse>(apiResponse);
+
+                    }
+                }
+            }
+
+            return View(pisoDetailResponse.data);
         }
 
         // POST: PisoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, PisoDtoUpdate pisoDtoUpdate)
         {
+            BaseResponse baseResponse = new BaseResponse();
+
             try
             {
+
+                using (var client = new HttpClient(this.clientHandler))
+                {
+
+                    var url = $"http://localhost:5212/api/Categoria/UpdateCategoria";
+
+                    pisoDtoUpdate.ChangeDate = DateTime.Now;
+                    pisoDtoUpdate.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(pisoDtoUpdate), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+
+                        }
+                        else
+                        {
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
+                }
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = baseResponse.message;
                 return View();
             }
         }

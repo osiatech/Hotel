@@ -17,7 +17,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.FechaRegistro)
             </th>
@@ -35,13 +38,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado) 
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaRegistro)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaCreacion)
                 </td>
+                
                 <td>
                     @Html.ActionLink("Edit", "Edit", new {  id= item.IdCategoria  }) |
                     @Html.ActionLink("Details", "Details", new { id=item.IdCategoria})
