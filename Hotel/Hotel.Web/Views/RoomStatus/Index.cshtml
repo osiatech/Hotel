@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Hotel.Application.Dtos.RoomStatus.RoomStatusDtoGetAll>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Rooms Status</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRoomStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+@*            <th>
+                @Html.DisplayNameFor(model => model.IdCreationUser)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+@*            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>*@
+@*            <th>
+                @Html.DisplayNameFor(model => model.IdUserModify)
+            </th>*@
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.IdRoomStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Status)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(model => item.ChangeUser)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(model => item.CreationDate)
+                </td>
+@*                <th>
+                    @Html.DisplayFor(model => item.Deleted)
+                </th>*@
+@*                <td>
+                    @Html.DisplayFor(model => item.IdUserModify)
+                </td>*@
+
+               <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.IdRoomStatus}) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdRoomStatus }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdRoomStatus })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

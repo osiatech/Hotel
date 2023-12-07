@@ -1,5 +1,5 @@
 ﻿
-@model Hotel.Web.Models.Responses.RoomViewResult
+@model Hotel.Application.Dtos.Room.RoomDtoUpdate
 
 @{
     ViewData["Title"] = "Edit";
@@ -16,36 +16,47 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Code</label>
-                <input asp-for="idRoom" class="form-control" />
-                <span asp-validation-for="idRoom" class="text-danger"></span>
+                <input asp-for="IdRoom" class="form-control" />
+                <span asp-validation-for="IdRoom" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label class="control-label">Number</label>
-                <input asp-for="number" class="form-control" />
-                <span asp-validation-for="number" class="text-danger"></span>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label class="control-label">Details</label>
-                <input asp-for="details" class="form-control" />
-                <span asp-validation-for="details" class="text-danger"></span>
+                <input asp-for="Details" class="form-control" />
+                <span asp-validation-for="Details" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label class="control-label">Price</label>
-                <input asp-for="price" class="form-control" />
-                <span asp-validation-for="price" class="text-danger"></span>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label class="control-label">Status</label>
-                <input asp-for="status" class="form-control" />
-                <span asp-validation-for="status" class="text-danger"></span>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="registryDate" class="control-label"></label>
-                <input asp-for="registryDate" class="form-control" />
-                <span asp-validation-for="registryDate" class="text-danger"></span>
+                <label class="control-label">Id User Modify</label>
+                <input asp-for="IdUserModify" class="form-control" />
+                <span asp-validation-for="IdUserModify" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="RegistryDate" class="control-label"></label>
+                <input asp-for="RegistryDate" class="form-control" />
+                <span asp-validation-for="RegistryDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         </form>
 

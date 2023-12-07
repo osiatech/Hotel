@@ -40,7 +40,7 @@ namespace Hotel.Application.Services
                     {
                         CreationDate = ur.CreationDate,
                         IdUserRol = ur.IdUserRol,
-                        Description = ur.Description,                                                    
+                        Description = ur.Description,
                         Status = ur.Status,
                         RegistryDate = ur.RegistryDate
                     });

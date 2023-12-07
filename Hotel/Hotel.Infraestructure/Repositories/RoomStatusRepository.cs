@@ -32,6 +32,7 @@ namespace Hotel.Infraestructure.Repositories
             roomStatusToUpdate.RegistryDate = entity.RegistryDate;
             roomStatusToUpdate.ModifyDate = entity.ModifyDate;
             roomStatusToUpdate.IdUserModify = entity.IdUserModify;
+            roomStatusToUpdate.Deleted = entity.Deleted;
 
             context.RoomStatus.Update(roomStatusToUpdate);
             context.SaveChanges();

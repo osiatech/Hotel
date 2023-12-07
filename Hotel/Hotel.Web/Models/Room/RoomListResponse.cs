@@ -17,8 +17,11 @@
         public decimal? price { get; set; }
         public bool? status { get; set; }
         public bool? deleted { get; set; }
-        public DateTime creationDate { get; set; }
+        public int changeUser { get; set; }
 
+        public DateTime creationDate { get; set; }
+        public int IdCreationUser { get; set; }
+        public DateTime changeDate { get; set; }
         public DateTime registryDate { get; set; }
 
     }

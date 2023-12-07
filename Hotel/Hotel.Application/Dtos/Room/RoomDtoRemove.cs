@@ -8,6 +8,6 @@ namespace Hotel.Application.Dtos.Room
     public class RoomDtoRemove : DtoBase
     {
         public int IdRoom { get; set; }
-        public bool Deleted { get; set; }
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Hotel.Application.Dtos.UserRol
 {
-    public class UserRolDtoGetAll
+    public class UserRolDtoGetAll : UserRolDtoBase  
     {
         public int IdUserRol { get; set; }
         public string? Description { get; set; }

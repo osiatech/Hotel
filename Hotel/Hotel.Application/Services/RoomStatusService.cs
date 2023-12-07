@@ -34,9 +34,10 @@ namespace Hotel.Application.Services
             try
             {
                 var roomStatus = this.roomStatusRepository.GetEntities().
-                    Select(rs =>new RoomStatusDtoGetAll()
+                    Select(rs => new RoomStatusDtoGetAll()
                     {
                         CreationDate = rs.CreationDate,
+                        IdCreationUser = rs.IdCreationUser,
                         IdRoomStatus = rs.IdRoomStatus,
                         Description = rs.Description,
                         Status = rs.Status,
@@ -65,6 +66,7 @@ namespace Hotel.Application.Services
                 RoomStatusDtoGetAll roomStatusModel = new RoomStatusDtoGetAll()
                 {
                     CreationDate = roomStatus.CreationDate,
+                    IdCreationUser = roomStatus.IdCreationUser,
                     IdRoomStatus = roomStatus.IdRoomStatus,
                     Description = roomStatus.Description,
                     Status = roomStatus.Status,
@@ -184,6 +186,7 @@ namespace Hotel.Application.Services
                     RegistryDate = dtoUpdate.RegistryDate,
                     Description = dtoUpdate.Description,
                     Status = dtoUpdate.Status,
+                    Deleted = dtoUpdate.Deleted,
                     ModifyDate = dtoUpdate.ChangeDate,
                     IdUserModify = dtoUpdate.ChangeUser
                 };
@@ -201,6 +204,6 @@ namespace Hotel.Application.Services
             }
             return result;
         }
-    }   
+    }
 }
 

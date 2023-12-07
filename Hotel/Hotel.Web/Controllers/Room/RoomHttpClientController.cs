@@ -1,20 +1,20 @@
 ﻿using Hotel.Application.Contracts;
 using Hotel.Application.Dtos.Room;
 using Hotel.Web.Models.Responses;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
 
 namespace Hotel.Web.Controllers
 {
-    public class RoomController : Controller
+    public class RoomHttpClientController : Controller
     {
         private readonly IRoomService roomService;
 
         HttpClientHandler clientHandler = new HttpClientHandler();
 
-        public RoomController(IRoomService roomService)
-        {   
+        public RoomHttpClientController(IRoomService roomService)
+        {
             this.roomService = roomService;
         }
 

@@ -19,7 +19,7 @@ namespace Hotel.Application.Services
         private readonly ILogger<IRoomService> logger;
         private readonly IConfiguration configuration;
         public RoomService(IRoom roomRepository,
-                     ILogger<RoomService> logger, 
+                     ILogger<RoomService> logger,
                      IConfiguration configuration)
         {
             this.roomRepository = roomRepository;
@@ -40,6 +40,7 @@ namespace Hotel.Application.Services
                         Details = roo.Details,
                         Price = roo.Price,
                         Status = roo.Status,
+                        Deleted = roo.Deleted,
                         IdRoom = roo.IdRoom,
                         IdFlat = roo.IdFlat,
                         RegistryDate = roo.RegistryDate

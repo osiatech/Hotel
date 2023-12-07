@@ -34,6 +34,16 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label class="control-label">Deleted</label>
+                <input asp-for="Deleted" class="form-control" />
+                <span asp-validation-for="Deleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCreationUser" class="control-label"></label>
+                <input asp-for="ChangeUser" class="form-control" />
+                <span asp-validation-for="ChangeUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ChangeDate" class="control-label"></label>
                 <input asp-for="ChangeDate" class="form-control" />
                 <span asp-validation-for="ChangeDate" class="text-danger"></span>

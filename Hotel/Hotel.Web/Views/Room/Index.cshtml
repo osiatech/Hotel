@@ -1,5 +1,5 @@
 ﻿﻿
-@model IEnumerable<Hotel.Web.Models.Responses.RoomViewResult>
+@model IEnumerable<Hotel.Application.Dtos.Room.RoomDtoGetAll>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,34 +16,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idRoom)
+                @Html.DisplayNameFor(model => model.IdRoom)
             </th>
-             <th>
-                @Html.DisplayNameFor(model => model.idRoomStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.idFlat)
+@*             <th>
+                @Html.DisplayNameFor(model => model.IdRoomStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idCategory)
+                @Html.DisplayNameFor(model => model.IdFlat)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.deleted)
+                @Html.DisplayNameFor(model => model.IdCategory)
+            </th>*@
+@*            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.number)
+                @Html.DisplayNameFor(model => model.Details)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.details)
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.price)
+                @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.creationDate)
+                @Html.DisplayNameFor(model => model.CreationDate)
             </th>
             <th></th>
         </tr>
@@ -53,40 +53,40 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.idRoom)
+                    @Html.DisplayFor(model => item.IdRoom)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(model => item.IdRoomStatus)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.status)
+                    @Html.DisplayFor(model => item.IdFlat)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.idFlat)
+                    @Html.DisplayFor(model => item.IdCategory)
+                </td>*@
+@*                <td>
+                    @Html.DisplayFor(model => item.Deleted)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(model => item.Number)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.idCategory)
+                    @Html.DisplayFor(model => item.Details)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.deleted)
+                    @Html.DisplayFor(model => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.number)
+                    @Html.DisplayFor(model => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.details)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.price)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.status)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.creationDate)
+                    @Html.DisplayFor(model => item.CreationDate)
                 </td>
 
                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.idRoom}) |
-                    @Html.ActionLink("Details", "Details", new { id=item.idRoom }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.idRoom })
+                    @Html.ActionLink("Edit", "Edit", new { id=item.IdRoom}) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdRoom }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdRoom })
                 </td>
             </tr>
         }

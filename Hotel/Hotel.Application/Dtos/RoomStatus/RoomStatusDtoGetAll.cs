@@ -2,12 +2,10 @@
 
 namespace Hotel.Application.Dtos.RoomStatus
 {
-    public class RoomStatusDtoGetAll
+    public class RoomStatusDtoGetAll : RoomStatusDtoBase
     {
         public int IdRoomStatus { get; set; }
-        public string? Description { get; set; }
-        public bool? Status { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime RegistryDate { get; set; }
+
     }
 }

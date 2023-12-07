@@ -19,6 +19,6 @@ namespace Hotel.Domain.Entities
         public bool? Status { get; set; }
         [Column("FechaRegistro")]
         public DateTime RegistryDate { get; set; }
-       
+
     }
 }
