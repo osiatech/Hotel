@@ -97,14 +97,50 @@ namespace Hotel.Web.Controllers.Cliente
         // POST: ClienteHttpClientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ClienteDtoSave clienteDtoSave)
         {
+            BaseResponse baseResponse = new BaseResponse();
+
             try
             {
+                using (var httpClient = new HttpClient(this.httpClientHandler))
+                {
+
+                    var url = $"http://localhost:5212/api/Cliente/SaveCliente";
+
+                    clienteDtoSave.ChangeDate = DateTime.Now;
+                    clienteDtoSave.ChangeUser = 22;
+
+                    StringContent stringContent = new StringContent(JsonConvert.SerializeObject(clienteDtoSave), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var serverResponse = httpClient.PostAsync(url, stringContent).Result)
+                    {
+                        if (serverResponse.IsSuccessStatusCode)
+                        {
+                            string apiResponse = serverResponse.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.Success)
+                            {
+                                ViewBag.Message = baseResponse.Message;
+                                return View();
+                            }
+
+                        }else{
+                            baseResponse.Message = "Error conectandose al api.";
+                            baseResponse.Success = false;
+                            ViewBag.Message = baseResponse.Message;
+                            return View();
+                        }
+                    }
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = baseResponse.Message;
                 return View();
             }
         }
