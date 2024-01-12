@@ -13,7 +13,6 @@ namespace Hotel.Web.Controllers.Cliente
         private readonly IClienteService clienteService;
         HttpClientHandler httpClientHandler = new HttpClientHandler();
 
-
         public ClienteHttpClientController(IClienteService clienteService)
         {
             this.clienteService = clienteService;
